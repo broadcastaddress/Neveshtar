@@ -22,7 +22,6 @@ function()
 
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 	Route::get('/', 'WelcomeController@index');
-	Route::get('home', 'HomeController@index');
 	Route::get('category', 'CategoryController@index');
 	Route::get('categoryItem', 'CategoryItemController@index');
 	Route::get('about', 'AboutController@index');

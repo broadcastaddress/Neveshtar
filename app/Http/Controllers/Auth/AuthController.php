@@ -27,6 +27,11 @@ class AuthController extends Controller {
 		return Theme::view('admin/login_soft');
 	}
 
+	public function redirectPath()
+	{
+		return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
+	}
+
 	/**
 	 * Create a new authentication controller instance.
 	 *
