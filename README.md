@@ -8,12 +8,12 @@ This project is currently in it's early stages. But it will be moving forward ve
 Some of it's core features are:
 
 - Modules (Modular based CMS / Portal)
-	-- Default Administration Panel
-	-- Blog Support
-	-- eCommerce Enabled
-	-- Contact Page
-	-- Categories / Subcategories
-	-- Photo / Video Galleries
+	- Default Administration Panel
+	- Blog Support
+	- eCommerce Enabled
+	- Contact Page
+	- Categories / Subcategories
+	- Photo / Video Galleries
 - User Registration
 - User Permissions / Levels
 - Image Watermarks
