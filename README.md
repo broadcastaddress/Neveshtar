@@ -35,6 +35,6 @@ Some Possibilities
 
 # Installation
 
-- Check the requirments for Laravel 5 on http://laravel.com/docs/5.0#server-requirements
+- Check the server requirments section for Laravel 5 on http://laravel.com/docs/5.0
 - Rename the .env.example file to .env and change content according to your needs
 - Import the sql file in the mysql folder to the database defined in the .env file
