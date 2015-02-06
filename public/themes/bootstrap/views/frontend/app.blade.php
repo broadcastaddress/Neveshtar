@@ -79,7 +79,7 @@
                 <!-- BEGIN TOP BAR LEFT PART -->
                 <div class="col-md-6 col-sm-6 additional-shop-info">
                     <ul class="list-unstyled list-inline">
-                        <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li>
+                        <li><i class="fa fa-phone"></i><span>+98(935)402-402-1</span></li>
                         <li><i class="fa fa-envelope-o"></i><span>info@neveshtar.com</span></li>
                     </ul>
                 </div>

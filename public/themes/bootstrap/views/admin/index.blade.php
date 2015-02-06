@@ -229,35 +229,7 @@
 			<div class="clearfix">
 			</div>
 			<div class="row">
-				<div class="col-md-6 col-sm-6">
-					<!-- BEGIN PORTLET-->
-					<div class="portlet solid bordered grey-cararra">
-						<div class="portlet-title">
-							<div class="caption">
-								<i class="fa fa-bar-chart-o"></i>Site Visits
-							</div>
-							<div class="actions">
-								<div class="btn-group" data-toggle="buttons">
-									<label class="btn grey-steel btn-sm active">
-									<input type="radio" name="options" class="toggle" id="option1">New</label>
-									<label class="btn grey-steel btn-sm">
-									<input type="radio" name="options" class="toggle" id="option2">Returning</label>
-								</div>
-							</div>
-						</div>
-						<div class="portlet-body">
-							<div id="site_statistics_loading">
-								<img src="/themes/bootstrap/assets/admin/layout/img/loading.gif" alt="loading"/>
-							</div>
-							<div id="site_statistics_content" class="display-none">
-								<div id="site_statistics" class="chart">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- END PORTLET-->
-				</div>
-				<div class="col-md-6 col-sm-6">
+				<div class="col-md-12 col-sm-12">
 					<!-- BEGIN PORTLET-->
 					<div class="portlet solid grey-cararra bordered">
 						<div class="portlet-title">
@@ -1172,83 +1144,7 @@
 			<div class="clearfix">
 			</div>
 			<div class="row ">
-				<div class="col-md-6 col-sm-6">
-					<!-- BEGIN REGIONAL STATS PORTLET-->
-					<div class="portlet">
-						<div class="portlet-title">
-							<div class="caption">
-								<i class="fa fa-globe"></i>Regional Stats
-							</div>
-							<div class="tools">
-								<a href="" class="collapse">
-								</a>
-								<a href="#portlet-config" data-toggle="modal" class="config">
-								</a>
-								<a href="" class="reload">
-								</a>
-								<a href="" class="fullscreen">
-								</a>
-								<a href="" class="remove">
-								</a>
-							</div>
-						</div>
-						<div class="portlet-body">
-							<div id="region_statistics_loading">
-								<img src="/themes/bootstrap/assets/admin/layout/img/loading.gif" alt="loading"/>
-							</div>
-							<div id="region_statistics_content" class="display-none">
-								<div class="btn-toolbar margin-bottom-10">
-									<div class="btn-group" data-toggle="buttons">
-										<a href="" class="btn default btn-sm active">
-										Users </a>
-										<a href="" class="btn default btn-sm">
-										Orders </a>
-									</div>
-									<div class="btn-group pull-right">
-										<a href="" class="btn default btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-										Select Region <span class="fa fa-angle-down">
-										</span>
-										</a>
-										<ul class="dropdown-menu pull-right">
-											<li>
-												<a href="javascript:;" id="regional_stat_world">
-												World </a>
-											</li>
-											<li>
-												<a href="javascript:;" id="regional_stat_usa">
-												USA </a>
-											</li>
-											<li>
-												<a href="javascript:;" id="regional_stat_europe">
-												Europe </a>
-											</li>
-											<li>
-												<a href="javascript:;" id="regional_stat_russia">
-												Russia </a>
-											</li>
-											<li>
-												<a href="javascript:;" id="regional_stat_germany">
-												Germany </a>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div id="vmap_world" class="vmaps display-none">
-								</div>
-								<div id="vmap_usa" class="vmaps display-none">
-								</div>
-								<div id="vmap_europe" class="vmaps display-none">
-								</div>
-								<div id="vmap_russia" class="vmaps display-none">
-								</div>
-								<div id="vmap_germany" class="vmaps display-none">
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- END REGIONAL STATS PORTLET-->
-				</div>
-				<div class="col-md-6 col-sm-6">
+				<div class="col-md-12 col-sm-12">
 					<!-- BEGIN PORTLET-->
 					<div class="portlet paddingless">
 						<div class="portlet-title line">
@@ -2270,14 +2166,17 @@
 	<!-- END CONTENT -->
 @endsection
 
-@section('header')
+@section('headerPlugins')
 <link href="/themes/bootstrap/assets/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
 <link href="/themes/bootstrap/assets/global/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css"/>
 <link href="/themes/bootstrap/assets/global/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css"/>
+@endsection
+
+@section('header')
 <link href="/themes/bootstrap/assets/admin/pages/css/tasks.css" rel="stylesheet" type="text/css"/>
 @endsection
 
-@section('plugins')
+@section('footerPlugins')
 <script src="/themes/bootstrap/assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js" type="text/javascript"></script>
 <script src="/themes/bootstrap/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js" type="text/javascript"></script>
 <script src="/themes/bootstrap/assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
@@ -2291,6 +2190,10 @@
 <script src="/themes/bootstrap/assets/global/plugins/jquery.pulsate.min.js" type="text/javascript"></script>
 <script src="/themes/bootstrap/assets/global/plugins/bootstrap-daterangepicker/moment.min.js" type="text/javascript"></script>
 <script src="/themes/bootstrap/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<!-- IMPORTANT! fullcalendar depends on jquery-ui-1.10.3.custom.min.js for drag & drop support -->
+<script src="/themes/bootstrap/assets/global/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+<script src="/themes/bootstrap/assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js" type="text/javascript"></script>
+<script src="/themes/bootstrap/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
 @endsection
 
 @section('footer')

@@ -1,5 +1,4 @@
 @section('content')
-	SALAM
     <!-- BEGIN SLIDER -->
     <div class="page-slider margin-bottom-40">
       <div class="fullwidthbanner-container revolution-slider">
@@ -241,7 +240,7 @@
                                  data-easing="easeOutExpo">
                                  Lorem ipsum dolor sit amet, consectetuer elit sed diam<br> nonummy amet euismod dolore.
                             </div>
-                            <a class="caption lft slide_btn btn red slide_item_left" href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin" target="_blank"
+                            <a class="caption lft slide_btn btn red slide_item_left" href="/admin" target="_blank"
                                  data-x="30"
                                  data-y="300"
                                  data-speed="400"
@@ -305,10 +304,10 @@
         <!-- BEGIN BLOCKQUOTE BLOCK -->
         <div class="row quote-v1 margin-bottom-30">
           <div class="col-md-9">
-            <span>Metronic - The Most Complete &amp; Popular Admin &amp; Frontend Theme</span>
+            <span>Neveshtar - Open Source Laravel 5 Portal / CMS</span>
           </div>
           <div class="col-md-3 text-right">
-            <a class="btn-transparent" href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin" target="_blank"><i class="fa fa-rocket margin-right-10"></i>Preview Admin</a>
+            <a class="btn-transparent" href="/admin" target="_blank"><i class="fa fa-rocket margin-right-10"></i>Preview Admin</a>
           </div>
         </div>
         <!-- END BLOCKQUOTE BLOCK -->
