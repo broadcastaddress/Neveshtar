@@ -3,7 +3,7 @@
 use Theme;
 use View;
 
-class HomeController extends Controller {
+class CategoryItemController extends Controller {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -16,25 +16,11 @@ class HomeController extends Controller {
 	|
 	*/
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
-
-	/**
-	 * Show the application dashboard to the user.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
+		Theme::setLayout('frontend.app');
 		View::share('title','Neveshtar - Open Source Laravel CMS');
-		return Theme::view('frontend/index-header-fix');
+		return Theme::view('frontend/category-item');
 	}
 
 }

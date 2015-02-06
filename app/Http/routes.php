@@ -22,8 +22,20 @@ function()
 
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 	Route::get('/', 'WelcomeController@index');
-
 	Route::get('home', 'HomeController@index');
+	Route::get('category', 'CategoryController@index');
+	Route::get('categoryItem', 'CategoryItemController@index');
+	Route::get('about', 'AboutController@index');
+	Route::get('services', 'ServicesController@index');
+	Route::get('portfolio', 'PortfolioController@index');
+	Route::get('portfolioItem', 'PortfolioItemController@index');
+	Route::get('prices', 'pricesController@index');
+	Route::get('faq', 'FaqController@index');
+	Route::get('gallery', 'GalleryController@index');
+	Route::get('search', 'SearchController@index');
+	Route::get('careers', 'CareersController@index');
+	Route::get('sitemap', 'SitemapController@index');
+	Route::get('contact', 'ContactController@index');
 
 	Route::controllers([
 		'auth' => 'Auth\AuthController',

@@ -32,3 +32,15 @@
 \Component::register('app', function($title) {
     return \Theme::view('frontend.app', compact('title'));
 });
+
+\Component::register('header', function($title) {
+    return \Theme::view('frontend.partials.header', compact('title'));
+});
+
+\Component::register('topbar', function($data) {
+    return \Theme::view('frontend.partials.topbar', compact('data'));
+});
+
+\Component::register('footer', function($data) {
+    return \Theme::view('frontend.partials.footer', compact('data'));
+});
