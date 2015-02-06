@@ -135,8 +135,6 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
-		'Caffeinated\Modules\ModulesServiceProvider',
-		'Caffeinated\Themes\ThemesServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -146,6 +144,11 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+
+
+		/* Custom service Providers */
+		'Caffeinated\Themes\ThemesServiceProvider',
+	    'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
 
 
 	],
@@ -195,9 +198,9 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-		'Module'	=> 'Caffeinated\Modules\Facades\Module',
 		'Theme'     => 'Caffeinated\Themes\Facades\Theme',
-		'Component' => 'Caffeinated\Themes\Facades\Component'
+		'Component' => 'Caffeinated\Themes\Facades\Component',
+	    'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization'
 
 	],
 

@@ -11,18 +11,30 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
-
-Route::group(array('middleware' => 'auth', 'prefix' => 'admin'), function()
+Route::group(
+array(
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localizationRedirect' ]
+),
+function()
 {
-    // Example route with an admin prefix
-    Route::get('/', array('uses' => 'Admin\AdminController@index'));
-    Route::resource('categories', 'Admin\CategoriesController');
+
+    /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
+	Route::get('/', 'WelcomeController@index');
+
+	Route::get('home', 'HomeController@index');
+
+	Route::controllers([
+		'auth' => 'Auth\AuthController',
+		'password' => 'Auth\PasswordController',
+	]);
+
+	Route::group(array('middleware' => 'auth', 'prefix' => 'admin'), function()
+	{
+	    // Example route with an admin prefix
+	    Route::get('/', array('uses' => 'Admin\AdminController@index'));
+	    Route::resource('categories', 'Admin\CategoriesController');
+	});
+
 });
