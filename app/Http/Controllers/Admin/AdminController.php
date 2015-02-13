@@ -3,7 +3,6 @@
 use App\Http\Controllers\Controller;
 use View;
 use Theme;
-use Auth;
 
 class AdminController extends Controller {
 
@@ -21,17 +20,12 @@ class AdminController extends Controller {
 	{
 		$this->middleware('auth');
 	}
-	/**
-	 * Create a new authentication controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
-	 * @return void
-	 */
+
 	public function index() {
 
+		View::share('active','dashboard');
 		Theme::setLayout('admin.app');
-		View::share('title', 'Neveshtar.com');
+		View::share('title', 'Admin Panel');
 		return Theme::view('admin/index');
 	}
 

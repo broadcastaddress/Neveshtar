@@ -42,4 +42,7 @@ jQuery(document).ready(function() {
    // End PAGE LEVEL INITS
 });
 </script>
+<script>
+$("#side-{{$active}}").last().addClass("active");
+</script>
 <!-- END JAVASCRIPTS -->

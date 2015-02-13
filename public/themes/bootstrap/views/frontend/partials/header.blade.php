@@ -8,18 +8,18 @@
 <!-- Head BEGIN -->
 <head>
   <meta charset="utf-8">
-  <title>{{$title}}</title>
+  <title>{{$title}} -  {{Config::get('settings.name')}}</title>
 
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <meta content="Neveshtar description" name="description">
-  <meta content="Neveshtar keywords" name="keywords">
-  <meta content="Hossein Jabbari" name="author">
+  <meta content="{{Config::get('settings.description')}}" name="description">
+  <meta content="{{Config::get('settings.keywords')}}" name="keywords">
+  <meta content="{{Config::get('settings.author')}}" name="author">
 
-  <meta property="og:site_name" content="-CUSTOMER VALUE-">
-  <meta property="og:title" content="-CUSTOMER VALUE-">
-  <meta property="og:description" content="-CUSTOMER VALUE-">
+  <meta property="og:site_name" content="{{Config::get('settings.name')}}">
+  <meta property="og:title" content="{{$title}}">
+  <meta property="og:description" content="{{Config::get('settings.description')}}">
   <meta property="og:type" content="website">
   <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
   <meta property="og:url" content="-CUSTOMER VALUE-">

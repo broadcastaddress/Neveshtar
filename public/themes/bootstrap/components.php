@@ -26,6 +26,10 @@
     return \Theme::view('admin.partials.quickbar', compact('data'));
 });
 
+\Component::register('adminStyleCustomizer', function($data) {
+    return \Theme::view('admin.partials.stylecustomizer', compact('data'));
+});
+
 
 // Frontend Components
 

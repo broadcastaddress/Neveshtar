@@ -33,13 +33,13 @@
 					</form>
 					<!-- END RESPONSIVE QUICK SEARCH FORM -->
 				</li>
-				<li class="start active">
+				<li id="side-dashboard" class="start">
 					<a href="/admin">
 					<i class="icon-home"></i>
 					<span class="title">Dashboard</span>
 					</a>
 				</li>
-				<li class="start">
+				<li id="side-categories" class="start">
 					<a href="/admin/categories">
 					<i class="icon-list"></i>
 					<span class="title">Categories</span>
