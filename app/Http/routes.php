@@ -45,7 +45,7 @@ function()
 	{
 	    // Example route with an admin prefix
 	    Route::get('/', array('uses' => 'Admin\AdminController@index'));
-	    Route::resource('categories', 'Admin\CategoriesController');
+	    Route::resource('categories', 'Admin\Categories\CategoriesController');
 	});
 
 });

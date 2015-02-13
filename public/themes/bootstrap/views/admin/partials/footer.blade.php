@@ -1,6 +1,6 @@
 <div class="page-footer">
 	<div class="page-footer-inner">
-		 2014 &copy; Neveshtar.com
+		2014 &copy; Neveshtar.com
 	</div>
 	<div class="scroll-to-top">
 		<i class="icon-arrow-up"></i>
@@ -36,7 +36,6 @@
 jQuery(document).ready(function() {
    Metronic.init(); // init metronic core componets
    Layout.init(); // init layout
-   QuickSidebar.init(); // init quick sidebar
    // BEGIN PAGE LEVEL INITS
    @yield('inits')
    // End PAGE LEVEL INITS

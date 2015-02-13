@@ -38,3 +38,7 @@ Some Possibilities
 - Check the server requirments section for Laravel 5 on http://laravel.com/docs/5.0
 - Rename the .env.example file to .env and change content according to your needs
 - Import the sql file in the mysql folder to the database defined in the .env file
+
+# References
+
+- Form validation references: http://jqueryvalidation.org/documentation/ (List of built-in Validation methods)

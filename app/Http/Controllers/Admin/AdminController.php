@@ -25,7 +25,7 @@ class AdminController extends Controller {
 
 		View::share('active','dashboard');
 		Theme::setLayout('admin.app');
-		View::share('title', 'Admin Panel');
+		View::share('title', 'dashboard');
 		return Theme::view('admin/index');
 	}
 

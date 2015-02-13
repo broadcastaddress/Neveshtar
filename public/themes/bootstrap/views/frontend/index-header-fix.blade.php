@@ -27,7 +27,7 @@
                 data-easing="easeOutExpo">
                 This is what you were looking for
               </div>
-              <a class="caption lft btn dark slide_btn slide_item_left" href="#"
+              <a class="caption lft btn dark slide_btn slide_item_left" href="https://github.com/hosseinhkj/Neveshtar" target="_blank"
                 data-x="187"
                 data-y="315"
                 data-speed="400"
@@ -74,7 +74,7 @@
                 data-easing="easeOutExpo">
                 Lorem ipsum dolor sit amet, dolore eiusmod<br> quis tempor incididunt. Sed unde omnis iste.
               </div>
-              <a class="caption lft btn green slide_btn slide_item_left" href="#"
+              <a class="caption lft btn green slide_btn slide_item_left" href="https://github.com/hosseinhkj/Neveshtar" target="_blank"
                 data-x="30"
                 data-y="290"
                 data-speed="400"
