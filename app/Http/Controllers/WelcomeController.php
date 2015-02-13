@@ -24,7 +24,7 @@ class WelcomeController extends Controller {
 	public function index()
 	{
 		Theme::setLayout('frontend.app');
-		View::share('title','Neveshtar - Open Source Laravel CMS');
+		View::share('title','Open Source Laravel 5 CMS / Portal');
 		return Theme::view('frontend/index-header-fix');
 	}
 
