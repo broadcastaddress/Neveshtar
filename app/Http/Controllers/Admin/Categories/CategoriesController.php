@@ -30,7 +30,72 @@ class CategoriesController extends Controller {
 		View::share('active','categories');
 		Theme::setLayout('admin.app');
 		View::share('title', Lang::get('admin.categories'));
+		View::share('items', Categories::all()->take(10));
+		View::share('items_total', Categories::all()->count());
 		return Theme::view('admin.categories.index');
+	}
+
+	public function ajax_table() {
+
+		  $iTotalRecords = Categories::all()->count();
+		  $iDisplayLength = intval($_REQUEST['length']);
+		  $iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
+		  $iDisplayStart = intval($_REQUEST['start']);
+		  $sEcho = intval($_REQUEST['draw']);
+
+		  $records = array();
+		  $records["data"] = array();
+
+		  $end = $iDisplayStart + $iDisplayLength;
+		  $end = $end > $iTotalRecords ? $iTotalRecords : $end;
+
+		  $order = intval($_REQUEST['order'][0]['column']);
+		  switch ($order) {
+			  case '0':
+				  $order = 'id';
+				  break;
+			  case '1':
+				  $order = 'created_at';
+				  break;
+			  case '2':
+				  $order = 'title';
+				  break;
+			  case '3':
+				  $order = 'language';
+				  break;
+			  case '4':
+				  $order = 'order';
+				  break;
+			  case '5':
+				  $order = 'status';
+				  break;
+		  }
+		  $direction = $_REQUEST['order'][0]['dir'];
+
+		  $items = Categories::take($iDisplayLength)->skip($iDisplayStart)->orderBy($order, $direction)->get();
+		  foreach($items as $item) {
+		    $status = $item->status;
+		    if ($item->status == 0) { $status = "danger"; };
+		    if ($item->status == 1) { $status = "success"; };
+		    if ($item->status == 0) { $status2 = "Deactivated"; };
+		    if ($item->status == 1) { $status2 = "Active"; };
+		    $id = $item->id;
+		    $records["data"][] = array(
+		      $id,
+		      $item->created_at->toDateTimeString(),
+		      $item->title,
+		      $item->language,
+		      $item->order,
+		      '<span class="label label-sm label-'.($status).'">'.($status2).'</span>',
+		      '<a href="javascript:;" class="btn btn-xs default"><i class="fa fa-search"></i> View</a>',
+		   );
+		  }
+
+		  $records["draw"] = $sEcho;
+		  $records["recordsTotal"] = $iTotalRecords;
+		  $records["recordsFiltered"] = $iTotalRecords;
+		  echo json_encode($records);
+
 	}
 
 	public function create(Route $route) {
@@ -47,6 +112,7 @@ class CategoriesController extends Controller {
 	    $data['user_id'] = Auth::user()->id;
 	    $db = new Categories($data);
 	    $db->save();
+	    return redirect('/admin/categories')->with('message', Lang::get('admin.category').' '.Lang::get('admin.create_success'));
 	}
 
 }

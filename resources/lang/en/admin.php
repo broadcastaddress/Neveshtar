@@ -37,7 +37,7 @@ return [
 	'deactivated'				=> 'deactivated',
 	'content'					=> 'content',
 	'settings'					=> 'settings',
-	''				=> '',
+	'create_success'			=> 'created successfully',
 	''				=> '',
 	''				=> '',
 	''				=> '',

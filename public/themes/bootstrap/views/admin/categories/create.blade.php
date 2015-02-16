@@ -16,6 +16,12 @@
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="form-body">
 						<h3 class="form-section"><i class="fa fa-edit"></i> {{Lang::get('admin.content')}}</h3>
+						@foreach($errors->all() as $error)
+						<div class="alert alert-danger">
+							<button class="close" data-close="alert"></button>
+							{{$error}}
+						</div>
+						@endforeach
 						<div class="alert alert-danger display-hide">
 							<button class="close" data-close="alert"></button>
 							{{Lang::get('admin.form_errors')}}
@@ -29,42 +35,44 @@
 							* </span>
 							</label>
 							<div class="col-md-8">
-								<input type="text" name="title" data-required="1" class="form-control" required/>
+								<input type="text" name="title" value="{{old('title')}}" data-required="1" class="form-control" required/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.subtitle')}}
 							</label>
 							<div class="col-md-8">
-								<input type="text" name="subtitle" class="form-control"/>
+								<input type="text" name="subtitle" value="{{old('subtitle')}}" class="form-control"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.intro')}}
 							</label>
 							<div class="col-md-8">
-								<textarea name="intro" class="form-control"></textarea>
+								<textarea name="intro" class="form-control">{{old('intro')}}</textarea>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.quote')}}
 							</label>
 							<div class="col-md-8">
-								<textarea name="quote" class="form-control"></textarea>
+								<textarea name="quote" class="form-control">{{old('quote')}}</textarea>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.quote_author')}}
 							</label>
 							<div class="col-md-8">
-								<input type="text" name="quote_author" class="form-control"/>
+								<input type="text" name="quote_author" value="{{old('quote_author')}}" class="form-control"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.description')}}
 							</label>
 							<div class="col-md-8">
-								<textarea class="wysihtml5 form-control" rows="10" name="description" data-error-container="#editor1_error"></textarea>
+								<textarea class="wysihtml5 form-control" rows="10" name="description" data-error-container="#editor1_error">
+									{{old('description')}}
+								</textarea>
 								<div id="editor1_error">
 								</div>
 							</div>
@@ -74,7 +82,7 @@
 							* </span>
 							</label>
 							<div class="col-md-8">
-								<input type="text" name="slug" data-required="1" class="form-control" required/>
+								<input type="text" name="slug" value="{{old('slug')}}" data-required="1" class="form-control" required/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -82,7 +90,7 @@
 							* </span>
 							</label>
 							<div class="col-md-4">
-								<select class="form-control select2me" name="language">
+								<select class="form-control select2me" name="language" id="selectLanguage">
 									<option value="en">English</option>
 									<option value="fa">Persian</option>
 								</select>
@@ -98,7 +106,7 @@
 									<span class="input-group-addon">
 									<i class="fa fa-reorder"></i>
 									</span>
-									<input type="text" name="order" data-required="1" class="form-control" required/>
+									<input type="text" name="order" value="{{old('order')}}" data-required="1" class="form-control" required/>
 								</div>
 							</div>
 						</div>
@@ -111,7 +119,7 @@
 									<span class="input-group-addon">
 									<i class="fa fa-unlock-alt"></i>
 									</span>
-									<select class="form-control" name="status">
+									<select class="form-control" name="status" id="selectStatus">
 										<option value="1">{{ucwords(Lang::get('admin.activated'))}}</option>
 										<option value="0">{{ucwords(Lang::get('admin.deactivated'))}}</option>
 									</select>
@@ -159,6 +167,13 @@
 <script src="/themes/bootstrap/assets/admin/layout4/scripts/layout.js" type="text/javascript"></script>
 <script src="/themes/bootstrap/assets/admin/layout4/scripts/demo.js" type="text/javascript"></script>
 <script src="/themes/bootstrap/assets/admin/pages/scripts/form-validation.js"></script>
+
+<script>
+    $("#selectStatus").val("{{old('status')}}");
+</script>
+<script>
+    $("#selectLanguage").val("{{old('language')}}");
+</script>
 @endsection
 
 @section('inits')

@@ -30,20 +30,18 @@ var TableAjax = function () {
                 // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
                 // So when dropdowns used the scrollable div should be removed.
                 //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
-
-                "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
-
+				"bServerSide": true,
+                "bStateSave": false, // save datatable state(pagination, sort, etc) in cookie.
                 "lengthMenu": [
                     [10, 20, 50, 100, 150, -1],
                     [10, 20, 50, 100, 150, "All"] // change per page values here
                 ],
-                "pageLength": 10, // default record count per page
                 "ajax": {
-                    "url": "/themes/bootstrap/views/admin/demo/table_ajax.php", // ajax source
-                },
-                "order": [
-                    [1, "asc"]
-                ]// set first column as a default sort by asc
+                    "url": ajax_url, // ajax source
+					"data": {
+					    "_token": _token
+					}
+                }
             }
         });
 
@@ -78,14 +76,11 @@ var TableAjax = function () {
     }
 
     return {
-
         //main function to initiate the module
         init: function () {
-
             initPickers();
             handleRecords();
         }
-
     };
 
 }();
