@@ -1,7 +1,10 @@
 # Neveshtar
 Open Source Laravel 5 CMS and Portal
 
-This project is currently in it's early stages. But it will be moving forward very fast and a Beta will be available before the end of February 2015.
+New Release Date:
+I've been pretty busy in the past weeks and unfortunately I won't be able to make the initial release anytime soon. 
+So I have to postpone the release date for another month.
+The new Beta release date will be the end of March.
 
 # You can check it out live on www.neveshtar.com
 
