@@ -36,10 +36,16 @@ var TableAjax = function () {
                     [10, 20, 50, 100, 150, -1],
                     [10, 20, 50, 100, 150, "All"] // change per page values here
                 ],
+			    "columnDefs": [ {
+			      "targets"  : 'no-sort',
+			      "orderable": false,
+			    }],
                 "ajax": {
                     "url": ajax_url, // ajax source
-					"data": {
-					    "_token": _token
+					"data": function ( d ) {
+						return $.extend( {}, d, {
+							"_token": _token
+						} );
 					}
                 }
             }
@@ -50,11 +56,25 @@ var TableAjax = function () {
             e.preventDefault();
             var action = $(".table-group-action-input", grid.getTableWrapper());
             if (action.val() != "" && grid.getSelectedRowsCount() > 0) {
-                grid.setAjaxParam("customActionType", "group_action");
-                grid.setAjaxParam("customActionName", action.val());
-                grid.setAjaxParam("id", grid.getSelectedRows());
-                grid.getDataTable().ajax.reload();
-                grid.clearAjaxParams();
+                //grid.setAjaxParam("customActionType", "group_action");
+                //grid.setAjaxParam("customActionName", action.val());
+                //grid.setAjaxParam("id", grid.getSelectedRows());
+			    $.ajax({
+			        url: actions_url,
+			        type: "post",
+			        data: {"_token": _token, id: grid.getSelectedRows(), customActionName: action.val()},
+			        success: function(){
+		                Metronic.alert({
+		                    type: 'success',
+		                    icon: 'check',
+		                    message: 'Done',
+		                    container: grid.getTableWrapper(),
+		                    place: 'prepend'
+		                });
+			            grid.getDataTable().ajax.reload();
+		                grid.clearAjaxParams();
+			        }
+			    });
             } else if (action.val() == "") {
                 Metronic.alert({
                     type: 'danger',
@@ -73,6 +93,7 @@ var TableAjax = function () {
                 });
             }
         });
+
     }
 
     return {

@@ -47,6 +47,7 @@ function()
 	    Route::get('/', array('uses' => 'Admin\AdminController@index'));
 	    Route::resource('categories', 'Admin\Categories\CategoriesController');
 	    Route::post('categories/ajax_table', 'Admin\Categories\CategoriesController@ajax_table');
+	    Route::post('categories/actions', 'Admin\Categories\CategoriesController@actions');
 	});
 
 });

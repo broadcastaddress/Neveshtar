@@ -4,15 +4,16 @@
 <div class="row">
 	<div class="col-md-12">
 		<!-- BEGIN VALIDATION STATES-->
-		<div class="portlet box green">
+		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="fa fa-plus"></i> {{$title}}
+					<i class="fa fa-pencil"></i> {{$title}}
 				</div>
 			</div>
 			<div class="portlet-body form">
 				<!-- BEGIN FORM-->
-				<form action="/admin/{{$active}}" method="post" id="admin_form" class="form-horizontal">
+				<form action="/admin/{{$active}}/{{$item->id}}" method="POST" id="admin_form" class="form-horizontal">
+					<input name="_method" type="hidden" value="PUT">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="form-body">
 						<h3 class="form-section"><i class="fa fa-edit"></i> {{Lang::get('admin.content')}}</h3>
@@ -35,35 +36,35 @@
 							* </span>
 							</label>
 							<div class="col-md-8">
-								<input type="text" name="title" value="{{old('title')}}" data-required="1" class="form-control" required/>
+								<input type="text" name="title" value="{{$item->title}}" data-required="1" class="form-control" required/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.subtitle')}}
 							</label>
 							<div class="col-md-8">
-								<input type="text" name="subtitle" value="{{old('subtitle')}}" class="form-control"/>
+								<input type="text" name="subtitle" value="{{$item->subtitle}}" class="form-control"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.intro')}}
 							</label>
 							<div class="col-md-8">
-								<textarea name="intro" class="form-control">{{old('intro')}}</textarea>
+								<textarea name="intro" class="form-control">{{$item->intro}}</textarea>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.quote')}}
 							</label>
 							<div class="col-md-8">
-								<textarea name="quote" class="form-control">{{old('quote')}}</textarea>
+								<textarea name="quote" class="form-control">{{$item->quote}}</textarea>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.quote_author')}}
 							</label>
 							<div class="col-md-8">
-								<input type="text" name="quote_author" value="{{old('quote_author')}}" class="form-control"/>
+								<input type="text" name="quote_author" value="{{$item->quote_author}}" class="form-control"/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -71,7 +72,7 @@
 							</label>
 							<div class="col-md-8">
 								<textarea class="wysihtml5 form-control" rows="10" name="description" data-error-container="#editor1_error">
-									{{old('description')}}
+									{{$item->description}}
 								</textarea>
 								<div id="editor1_error">
 								</div>
@@ -83,7 +84,7 @@
 							* </span>
 							</label>
 							<div class="col-md-8">
-								<input type="text" name="slug" value="{{old('slug')}}" data-required="1" class="form-control" required/>
+								<input type="text" name="slug" value="{{$item->slug}}" data-required="1" class="form-control" required/>
 							</div>
 						</div>
 						<div class="form-group">
@@ -92,8 +93,9 @@
 							</label>
 							<div class="col-md-4">
 								<select class="form-control select2me" name="language" id="selectLanguage">
-									<option value="en">English</option>
-									<option value="fa">Persian</option>
+									@foreach($languages as $language)
+									<option value="{{$language->language}}">{{$language->name}}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -106,7 +108,7 @@
 									<span class="input-group-addon">
 									<i class="fa fa-reorder"></i>
 									</span>
-									<input type="text" name="order" value="{{old('order')}}" data-required="1" class="form-control" required/>
+									<input type="text" name="order" value="{{$item->order}}" data-required="1" class="form-control" required/>
 								</div>
 							</div>
 						</div>
@@ -177,10 +179,10 @@ $('input[name=title]').on('input', function() {
 });
 </script>
 <script>
-    $("#selectStatus").val("{{old('status')}}");
+    $("#selectStatus").val("{{$item->status}}");
 </script>
 <script>
-    $("#selectLanguage").val("{{old('language')}}");
+    $("#selectLanguage").val("{{$item->language}}");
 </script>
 @endsection
 

@@ -14,7 +14,6 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<!-- Begin: life time stats -->
 		<div class="portlet light">
 			<div class="portlet-title">
 				<div class="caption">
@@ -31,29 +30,43 @@
 			</div>
 			<div class="portlet-body">
 				<div class="table-container">
+					<div class="table-actions-wrapper">
+						<span>
+						</span>
+						<select class="table-group-action-input form-control input-inline input-small input-sm">
+							<option value="">{{Lang::get('admin.select')}}...</option>
+							<option value="activate">{{Lang::get('admin.activate')}}</option>
+							<option value="deactivate">{{Lang::get('admin.deactivate')}}</option>
+							<option value="delete">{{Lang::get('admin.delete')}}</option>
+						</select>
+						<button class="btn btn-sm yellow table-group-action-submit"><i class="fa fa-check"></i> {{Lang::get('admin.submit')}}</button>
+					</div>
 					<table class="table table-striped table-bordered table-hover" id="datatable_ajax">
 					<thead>
 					<tr role="row" class="heading">
+						<th width="5%" class="no-sort">
+							<input type="checkbox" class="group-checkable">
+						</th>
+						<th width="10%">
+							 #
+						</th>
+						<th width="20%">
+							 {{Lang::get('admin.date')}}
+						</th>
+						<th width="30%">
+							 {{Lang::get('admin.title')}}
+						</th>
 						<th width="5%">
-							 Record #
-						</th>
-						<th width="15%">
-							 Date
-						</th>
-						<th width="35%">
-							 Title
+							 {{Lang::get('admin.language')}}
 						</th>
 						<th width="10%">
-							 Language
+							 {{Lang::get('admin.order')}}
 						</th>
-						<th width="10%">
-							 Order
+						<th width="5%">
+							 {{Lang::get('admin.status')}}
 						</th>
-						<th width="10%">
-							 Status
-						</th>
-						<th width="15%">
-							 Actions
+						<th width="15%" class="no-sort">
+							 {{Lang::get('admin.actions')}}
 						</th>
 					</tr>
 					<input type="hidden" class="form-control form-filter input-sm" name="_token" value="{{ csrf_token() }}">
@@ -61,6 +74,8 @@
 					<tbody>
 						@foreach($items as $item)
 							<tr>
+								<td>
+								<input type="checkbox" name="id[]" value="{{$item->id}}"></td>
 								<td>{{$item->id}}</td>
 								<td>{{$item->created_at}}</td>
 								<td>{{$item->title}}</td>
@@ -75,7 +90,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- End: life time stats -->
 	</div>
 </div>
 <!-- END PAGE CONTENT-->
@@ -106,6 +120,7 @@
 
 <script>
 	var ajax_url = "/admin/categories/ajax_table"
+	var actions_url = "/admin/categories/actions"
 	var _token = "{{ csrf_token() }}"
 	var items_total = "{{$items_total}}"
 </script>

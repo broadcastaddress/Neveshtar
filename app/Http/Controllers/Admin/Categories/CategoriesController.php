@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers\Admin\Categories;
 
 use App\Http\Controllers\Controller;
+use App;
 use View;
 use Theme;
 use Lang;
@@ -8,6 +9,7 @@ use Illuminate\Routing\Route;
 use Input;
 use Model;
 use Auth;
+use Request;
 
 class CategoriesController extends Controller {
 
@@ -55,18 +57,21 @@ class CategoriesController extends Controller {
 				  $order = 'id';
 				  break;
 			  case '1':
-				  $order = 'created_at';
+				  $order = 'id';
 				  break;
 			  case '2':
-				  $order = 'title';
+				  $order = 'created_at';
 				  break;
 			  case '3':
-				  $order = 'language';
+				  $order = 'title';
 				  break;
 			  case '4':
-				  $order = 'order';
+				  $order = 'language';
 				  break;
 			  case '5':
+				  $order = 'order';
+				  break;
+			  case '6':
 				  $order = 'status';
 				  break;
 		  }
@@ -77,17 +82,18 @@ class CategoriesController extends Controller {
 		    $status = $item->status;
 		    if ($item->status == 0) { $status = "danger"; };
 		    if ($item->status == 1) { $status = "success"; };
-		    if ($item->status == 0) { $status2 = "Deactivated"; };
-		    if ($item->status == 1) { $status2 = "Active"; };
+		    if ($item->status == 0) { $status2 = Lang::get('admin.deactivated'); };
+		    if ($item->status == 1) { $status2 = Lang::get('admin.active'); };
 		    $id = $item->id;
 		    $records["data"][] = array(
+		      '<input type="checkbox" name="id[]" value="'.$id.'">',
 		      $id,
 		      $item->created_at->toDateTimeString(),
 		      $item->title,
 		      $item->language,
 		      $item->order,
 		      '<span class="label label-sm label-'.($status).'">'.($status2).'</span>',
-		      '<a href="javascript:;" class="btn btn-xs default"><i class="fa fa-search"></i> View</a>',
+		      '<a href="/admin/categories/'.$item->id.'" class="btn blue btn-xs default"><i class="fa fa-pencil"></i> '.Lang::get('admin.edit').'</a>',
 		   );
 		  }
 
@@ -113,6 +119,43 @@ class CategoriesController extends Controller {
 	    $db = new Categories($data);
 	    $db->save();
 	    return redirect('/admin/categories')->with('message', Lang::get('admin.category').' '.Lang::get('admin.create_success'));
+	}
+
+	public function show($id) {
+		View::share('active','categories');
+		Theme::setLayout('admin.app');
+		$item = Categories::find($id);
+		View::share('item', $item);
+		View::share('title', ''.Lang::get('admin.edit').': '.$item->title.'');
+		View::share('languages', App\Languages::where('status', 1)->get());
+		return Theme::view('admin.categories.show');
+	}
+
+	public function update($id) {
+	    $data = Input::all();
+	    array_forget($data, '_token');
+	    array_forget($data, '_wysihtml5_mode');
+	    $data['user_id'] = Auth::user()->id;
+	    $db = Categories::find($id);
+		$db->update($data);
+	    return redirect('/admin/categories')->with('message', Lang::get('admin.category').' '.Lang::get('admin.update_success'));
+	}
+
+	public function actions() {
+		foreach(Request::input('id') as $id) {
+				$db = Categories::find($id);
+			if (Request::input('customActionName') == "delete") {
+				$db->delete();
+			}
+			if (Request::input('customActionName') == "activate") {
+				$db->status = 1;
+				$db->save();
+			}
+			if (Request::input('customActionName') == "deactivate") {
+				$db->status = 0;
+				$db->save();
+			}
+		}
 	}
 
 }
