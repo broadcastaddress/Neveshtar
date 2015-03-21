@@ -16,12 +16,7 @@ abstract class Controller extends BaseController {
     public function __construct()
     {
         // Fetch the Site Settings object
-        $this->site_settings = App\Category::select(array('title','slug'))
-        						->where('status',1)
-        						->where('parent_id',null)
-        						->where('language',Lang::getLocale())
-        						->orderBy('order','ASC')
-        						->get();
+        $this->site_settings = App\Navigation::tree();
         View::share('navigation', $this->site_settings);
 
     }
