@@ -12,14 +12,15 @@
           <!-- BEGIN CONTENT -->
           <div class="col-md-12 col-sm-12">
             <h1>{{$title}}</h1>
-            @if(isset($item->subtitle))
-	            <h3>{{$item->subtitle}}</h3>
-            @endif
             <div class="content-page">
               <div class="row">
                 <!-- BEGIN LEFT SIDEBAR -->
                 <div class="col-md-9 col-sm-9 blog-posts">
-                  @if(isset($item->intro))
+	            @if(isset($item->subtitle) && ($item->subtitle <> ""))
+		            <h2>{{$item->subtitle}}</h2>
+		            <br/>
+	            @endif
+                  @if(isset($item->intro) && ($item->intro <> ""))
                   <div class="row">
                   	<div class="col-sm-12">
 	                  	<blockquote>
@@ -28,19 +29,19 @@
                   	</div>
                   </div>
 	              @endif
-                  @if(isset($item->description))
+                  @if(isset($item->description) && ($item->description <> ""))
                   <div class="row">
                   	<div class="col-sm-12">
 	                  	<p>{!!$item->description!!}</p>
                   	</div>
                   </div>
                   @endif
-                  @if(isset($item->quote))
+                  @if(isset($item->quote) && ($item->quote <> ""))
                   <div class="row">
                   	<div class="col-sm-12">
 	                  	<blockquote>
 				            <p>{{$item->quote}}</p>
-				            @if(isset($item->quote_author))
+				            @if(isset($item->quote_author) && ($item->quote_author <> ""))
 				            <small>{{$item->quote_author}}</small>
 				            @endif
 	                  	</blockquote>
@@ -154,11 +155,15 @@
                   <!-- CATEGORIES START -->
                   <h2 class="no-top-space">Categories</h2>
                   <ul class="nav sidebar-categories margin-bottom-40">
-                    <li><a href="#">London (18)</a></li>
-                    <li><a href="#">Moscow (5)</a></li>
-                    <li class="active"><a href="#">Paris (12)</a></li>
-                    <li><a href="#">Berlin (7)</a></li>
-                    <li><a href="#">Istanbul (3)</a></li>
+                  	@foreach($categories as $category)
+                  	@if($category->title == $item->title)
+                    <li class="active">
+                    @else
+                    <li>
+                    @endif
+                    	<a href="/{{Lang::getLocale()}}/c/{{$category->slug}}">{{$category->title}}</a>
+                	</li>
+                    @endforeach
                   </ul>
                   <!-- CATEGORIES END -->
 

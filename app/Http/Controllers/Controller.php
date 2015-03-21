@@ -5,7 +5,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use App;
 use View;
-use LaravelLocalization;
+use Lang;
 
 abstract class Controller extends BaseController {
 
@@ -16,8 +16,14 @@ abstract class Controller extends BaseController {
     public function __construct()
     {
         // Fetch the Site Settings object
-        $this->site_settings = App\Category::select(array('title','slug'))->where('parent_id',null)->where('language',LaravelLocalization::getCurrentLocale())->get();
+        $this->site_settings = App\Category::select(array('title','slug'))
+        						->where('status',1)
+        						->where('parent_id',null)
+        						->where('language',Lang::getLocale())
+        						->orderBy('order','ASC')
+        						->get();
         View::share('navigation', $this->site_settings);
+
     }
 
 }
