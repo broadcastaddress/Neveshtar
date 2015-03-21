@@ -1,11 +1,11 @@
 <?php
 
-return [
+	return [
 
-	'name' => 'Neveshtar.com',
-	'url' => 'http://www.neveshtar.com',
-	'description' => 'default description',
-	'keywords' => 'default keywords',
-	'author' => 'default author',
+		'name' => 'Neveshtar.com',
+		'url' => 'http://www.neveshtar.com',
+		'description' => 'Laravel 5 Open Source CMS / Portal',
+		'keywords' => 'Laravel 5 Open Source CMS / Portal',
+		'author' => 'Hossein Jabbari (https://github.com/hosseinhkj/Neveshtar)',
 
-];
+	];

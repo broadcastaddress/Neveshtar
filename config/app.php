@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://www.niloofarshop.com',
+	'url' => 'http://www.neveshtar.com',
 
 	/*
 	|--------------------------------------------------------------------------

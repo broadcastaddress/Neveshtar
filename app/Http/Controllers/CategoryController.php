@@ -2,6 +2,8 @@
 
 use Theme;
 use View;
+use App;
+use Request;
 
 class CategoryController extends Controller {
 
@@ -16,10 +18,12 @@ class CategoryController extends Controller {
 	|
 	*/
 
-	public function index()
+	public function show($slug)
 	{
+		$item = App\Category::where('slug',$slug)->where('status',1)->first();
+		View::share('item',$item);
 		Theme::setLayout('frontend.app');
-		View::share('title','Neveshtar - Open Source Laravel CMS');
+		View::share('title',$item->title);
 		return Theme::view('frontend/category');
 	}
 

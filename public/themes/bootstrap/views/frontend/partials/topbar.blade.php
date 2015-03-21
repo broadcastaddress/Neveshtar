@@ -61,12 +61,24 @@
         <!-- BEGIN NAVIGATION -->
         <div class="header-navigation pull-right font-transform-inherit">
           <ul>
+          	@if(Route::currentRouteName() == 'WelcomeController')
             <li class="active">
+            @else
+            <li>
+            @endif
               <a data-target="/" href="/">
                 Home
               </a>
             </li>
-            <li><a href="/category">Category</a></li>
+            @foreach($navigation as $menu)
+            @if((Request::segment(2)) == $menu->slug)
+            <li class="active">
+            @else
+            <li>
+            @endif
+            	<a href="/c/{{$menu->slug}}">{{$menu->title}}</a>
+        	</li>
+            @endforeach
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">
                 Pages

@@ -4,19 +4,49 @@
     <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Blog</a></li>
-            <li class="active">Blog Page</li>
+            <li><a href="/">{{Lang::get('site.home')}}</a></li>
+            <li class="active">{{$title}}</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
           <!-- BEGIN CONTENT -->
           <div class="col-md-12 col-sm-12">
-            <h1>Blog Page</h1>
+            <h1>{{$title}}</h1>
+            @if(isset($item->subtitle))
+	            <h3>{{$item->subtitle}}</h3>
+            @endif
             <div class="content-page">
               <div class="row">
                 <!-- BEGIN LEFT SIDEBAR -->
                 <div class="col-md-9 col-sm-9 blog-posts">
+                  @if(isset($item->intro))
+                  <div class="row">
+                  	<div class="col-sm-12">
+	                  	<blockquote>
+				            <p>{{$item->intro}}</p>
+	                  	</blockquote>
+                  	</div>
+                  </div>
+	              @endif
+                  @if(isset($item->description))
+                  <div class="row">
+                  	<div class="col-sm-12">
+	                  	<p>{!!$item->description!!}</p>
+                  	</div>
+                  </div>
+                  @endif
+                  @if(isset($item->quote))
+                  <div class="row">
+                  	<div class="col-sm-12">
+	                  	<blockquote>
+				            <p>{{$item->quote}}</p>
+				            @if(isset($item->quote_author))
+				            <small>{{$item->quote_author}}</small>
+				            @endif
+	                  	</blockquote>
+                  	</div>
+                  </div>
+                  @endif
                   <div class="row">
                     <div class="col-md-4 col-sm-4">
                       <!-- BEGIN CAROUSEL -->

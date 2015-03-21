@@ -2,6 +2,7 @@
 
 use Theme;
 use View;
+use Route;
 
 class WelcomeController extends Controller {
 
