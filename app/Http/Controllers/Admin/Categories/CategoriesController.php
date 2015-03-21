@@ -26,6 +26,7 @@ class CategoriesController extends Controller {
 	public function __construct()
 	{
 		$this->middleware('auth');
+		$this->middleware('checkInputs');
 	}
 
 	public function index() {
@@ -108,6 +109,8 @@ class CategoriesController extends Controller {
 		View::share('active','categories');
 		Theme::setLayout('admin.app');
 		View::share('title', Lang::get('admin.new').' '.Lang::get('admin.category'));
+		View::share('languages', App\Languages::where('status', 1)->get());
+		View::share('categories', App\Category::where('status', 1)->get());
 		return Theme::view('admin.categories.create');
 	}
 
@@ -128,6 +131,7 @@ class CategoriesController extends Controller {
 		View::share('item', $item);
 		View::share('title', ''.Lang::get('admin.edit').': '.$item->title.'');
 		View::share('languages', App\Languages::where('status', 1)->get());
+		View::share('categories', App\Category::where('status', 1)->where('id','<>',$id)->get());
 		return Theme::view('admin.categories.show');
 	}
 

@@ -76,7 +76,7 @@
             @else
             <li>
             @endif
-            	<a href="/{{Lang::getLocale()}}/c/{{$menu->slug}}">{{$menu->title}}</a>
+            	<a href="/{{Lang::getLocale()}}/c/{{$menu->slug}}">{{ucwords($menu->title)}}</a>
         	</li>
             @endforeach
             <li class="dropdown">

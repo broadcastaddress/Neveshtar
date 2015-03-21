@@ -80,6 +80,18 @@
 						</div>
 						<h3 class="form-section"><i class="fa fa-wrench"></i> {{Lang::get('admin.settings')}}</h3>
 						<div class="form-group">
+							<label class="control-label col-md-3">{{Lang::get('admin.parent')}} {{Lang::get('admin.category')}}
+							</label>
+							<div class="col-md-4">
+								<select class="form-control select2me" name="parent_id" id="selectParent">
+									<option value="">{{Lang::get('admin.none')}}</option>
+									@foreach($categories as $category)
+									<option value="{{$category->id}}">{{$category->title}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.slug')}} <span class="required">
 							* </span>
 							</label>
@@ -180,6 +192,9 @@ $('input[name=title]').on('input', function() {
 </script>
 <script>
     $("#selectStatus").val("{{$item->status}}");
+</script>
+<script>
+    $("#selectParent").val("{{$item->parent_id}}");
 </script>
 <script>
     $("#selectLanguage").val("{{$item->language}}");

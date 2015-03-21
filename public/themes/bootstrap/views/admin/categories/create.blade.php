@@ -79,6 +79,18 @@
 						</div>
 						<h3 class="form-section"><i class="fa fa-wrench"></i> {{Lang::get('admin.settings')}}</h3>
 						<div class="form-group">
+							<label class="control-label col-md-3">{{Lang::get('admin.parent')}} {{Lang::get('admin.category')}}
+							</label>
+							<div class="col-md-4">
+								<select class="form-control select2me" name="parent_id" id="selectParent">
+									<option value="">{{Lang::get('admin.none')}}</option>
+									@foreach($categories as $category)
+									<option value="{{$category->id}}">{{$category->title}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.slug')}} <span class="required">
 							* </span>
 							</label>
@@ -92,8 +104,9 @@
 							</label>
 							<div class="col-md-4">
 								<select class="form-control select2me" name="language" id="selectLanguage">
-									<option value="en">English</option>
-									<option value="fa">Persian</option>
+									@foreach($languages as $language)
+									<option value="{{$language->language}}">{{$language->name}}</option>
+									@endforeach
 								</select>
 							</div>
 						</div>
@@ -175,6 +188,9 @@ $('input[name=title]').on('input', function() {
 	var words = outputString.replace(/\s+/gi, '-').split('-');
     $('input[name=slug]').val(words.slice(0,9).join('-'));
 });
+</script>
+<script>
+    $("#selectParent").val("{{old('parent_id')}}");
 </script>
 <script>
     $("#selectStatus").val("{{old('status')}}");

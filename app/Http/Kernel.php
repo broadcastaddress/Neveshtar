@@ -25,6 +25,7 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
+		'checkInputs' => 'App\Http\Middleware\CheckInputs',
         'localize' => 'Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes',
         'localizationRedirect' => 'Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter',
 		'auth' => 'App\Http\Middleware\Authenticate',

@@ -5,19 +5,19 @@
       <div class="container">
         <ul class="breadcrumb">
             <li><a href="/">{{Lang::get('site.home')}}</a></li>
-            <li class="active">{{$title}}</li>
+            <li class="active">{{ucwords($title)}}</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
           <!-- BEGIN CONTENT -->
           <div class="col-md-12 col-sm-12">
-            <h1>{{$title}}</h1>
+            <h1>{{ucwords($title)}}</h1>
             <div class="content-page">
               <div class="row">
                 <!-- BEGIN LEFT SIDEBAR -->
                 <div class="col-md-9 col-sm-9 blog-posts">
 	            @if(isset($item->subtitle) && ($item->subtitle <> ""))
-		            <h2>{{$item->subtitle}}</h2>
+		            <h2>{{ucfirst($item->subtitle)}}</h2>
 		            <br/>
 	            @endif
                   @if(isset($item->intro) && ($item->intro <> ""))
@@ -161,7 +161,7 @@
                     @else
                     <li>
                     @endif
-                    	<a href="/{{Lang::getLocale()}}/c/{{$category->slug}}">{{$category->title}}</a>
+                    	<a href="/{{Lang::getLocale()}}/c/{{$category->slug}}">{{ucwords($category->title)}}</a>
                 	</li>
                     @endforeach
                   </ul>
