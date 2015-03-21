@@ -24,6 +24,13 @@ class CategoryController extends Controller {
 		View::share('item',$item);
 		$categories = App\Category::where('parent_id',$item->parent_id)->where('status',1)->get();
 		View::share('categories',$categories);
+		$subcategories = App\Category::where('parent_id',$item->id)->where('status',1)->get();
+		View::share('subcategories',$subcategories);
+		if($item->parent_id) {
+			$parent_category = App\Category::where('id',$item->parent_id)->first();
+			$parentcategories = App\Category::where('parent_id',$parent_category->parent_id)->where('status',1)->get();
+			View::share('parentcategories',$parentcategories);
+		};
 		Theme::setLayout('frontend.app');
 		View::share('title',$item->title);
 		return Theme::view('frontend/category');

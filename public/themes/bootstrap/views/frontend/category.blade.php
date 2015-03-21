@@ -152,11 +152,34 @@
 
                 <!-- BEGIN RIGHT SIDEBAR -->
                 <div class="col-md-3 col-sm-3 blog-sidebar">
+                  <!-- SUBCATEGORIES START -->
+                  @if(count($subcategories) > 0)
+                  <h2 class="no-top-space">{{ucfirst(Lang::get('site.sub'))}} {{ucfirst(Lang::get('site.categories'))}}</h2>
+                  <ul class="nav sidebar-categories margin-bottom-40">
+                  	@foreach($subcategories as $sub)
+                  	@if($sub->slug == $item->slug)
+                    <li class="active">
+                    @else
+                    <li>
+                    @endif
+                    	<a href="/{{Lang::getLocale()}}/c/{{$sub->slug}}">{{ucwords($sub->title)}}</a>
+                	</li>
+                    @endforeach
+                  </ul>
+                  @endif
+                  <!-- SUBCATEGORIES END -->
+
                   <!-- CATEGORIES START -->
-                  <h2 class="no-top-space">Categories</h2>
+                  @if(count($categories) > 1)
+                  @if(count($subcategories) > 0)
+                  <h2>
+                  @else
+                  <h2 class="no-top-space">
+                  @endif
+                  {{ucfirst(Lang::get('site.other'))}} {{ucfirst(Lang::get('site.categories'))}}</h2>
                   <ul class="nav sidebar-categories margin-bottom-40">
                   	@foreach($categories as $category)
-                  	@if($category->title == $item->title)
+                  	@if($category->slug == $item->slug)
                     <li class="active">
                     @else
                     <li>
@@ -165,10 +188,37 @@
                 	</li>
                     @endforeach
                   </ul>
+                  @endif
+                  <!-- CATEGORIES END -->
+
+                  <!-- CATEGORIES START -->
+                  @if(isset($parentcategories))
+                  @if(count($subcategories) > 0 || count($categories) > 0)
+                  <h2>
+                  @else
+                  <h2 class="no-top-space">
+                  @endif
+                  {{ucfirst(Lang::get('site.parent'))}} {{ucfirst(Lang::get('site.categories'))}}</h2>
+                  <ul class="nav sidebar-categories margin-bottom-40">
+                  	@foreach($parentcategories as $category)
+                  	@if($category->slug == $item->slug)
+                    <li class="active">
+                    @else
+                    <li>
+                    @endif
+                    	<a href="/{{Lang::getLocale()}}/c/{{$category->slug}}">{{ucwords($category->title)}}</a>
+                	</li>
+                    @endforeach
+                  </ul>
+                  @endif
                   <!-- CATEGORIES END -->
 
                   <!-- BEGIN RECENT NEWS -->
+                  @if(count($categories) < 2)
+                  <h2 class="no-top-space">Recent News</h2>
+                  @else
                   <h2>Recent News</h2>
+                  @endif
                   <div class="recent-news margin-bottom-10">
                     <div class="row margin-bottom-10">
                       <div class="col-md-3">
