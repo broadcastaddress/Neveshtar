@@ -25,6 +25,12 @@
 						<span class="title">Categories</span>
 						</a>
 					</li>
+					<li id="side-categories">
+						<a href="/admin/items">
+						<i class="icon-note"></i>
+						<span class="title">Items</span>
+						</a>
+					</li>
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>

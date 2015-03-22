@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\Admin\Categories;
+<?php namespace App\Http\Controllers\Admin\Items;
 
 use App\Http\Controllers\Controller;
 use App;
@@ -11,7 +11,7 @@ use Model;
 use Auth;
 use Request;
 
-class CategoriesController extends Controller {
+class ItemsController extends Controller {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -30,17 +30,17 @@ class CategoriesController extends Controller {
 	}
 
 	public function index() {
-		View::share('active','categories');
+		View::share('active','items');
 		Theme::setLayout('admin.app');
-		View::share('title', Lang::get('admin.categories'));
-		View::share('items', Categories::all()->take(10));
-		View::share('items_total', Categories::all()->count());
-		return Theme::view('admin.categories.index');
+		View::share('title', Lang::get('admin.items'));
+		View::share('items', Items::all()->take(10));
+		View::share('items_total', Items::all()->count());
+		return Theme::view('admin.items.index');
 	}
 
 	public function ajax_table() {
 
-		  $iTotalRecords = Categories::all()->count();
+		  $iTotalRecords = Items::all()->count();
 		  $iDisplayLength = intval($_REQUEST['length']);
 		  $iDisplayLength = $iDisplayLength < 0 ? $iTotalRecords : $iDisplayLength;
 		  $iDisplayStart = intval($_REQUEST['start']);
@@ -70,7 +70,7 @@ class CategoriesController extends Controller {
 				  $order = 'language';
 				  break;
 			  case '5':
-				  $order = 'order';
+				  $order = 'user_id';
 				  break;
 			  case '6':
 				  $order = 'status';
@@ -78,7 +78,7 @@ class CategoriesController extends Controller {
 		  }
 		  $direction = $_REQUEST['order'][0]['dir'];
 
-		  $items = Categories::take($iDisplayLength)->skip($iDisplayStart)->orderBy($order, $direction)->get();
+		  $items = Items::take($iDisplayLength)->skip($iDisplayStart)->orderBy($order, $direction)->get();
 		  foreach($items as $item) {
 		    $status = $item->status;
 		    if ($item->status == 0) { $status = "danger"; };
@@ -92,9 +92,9 @@ class CategoriesController extends Controller {
 		      $item->created_at->toDateTimeString(),
 		      $item->title,
 		      $item->language,
-		      $item->order,
+		      $item->user->name,
 		      '<span class="label label-sm label-'.($status).'">'.($status2).'</span>',
-		      '<a href="/admin/categories/'.$item->id.'" class="btn blue btn-xs default"><i class="fa fa-pencil"></i> '.Lang::get('admin.edit').'</a>',
+		      '<a href="/admin/items/'.$item->id.'" class="btn blue btn-xs default"><i class="fa fa-pencil"></i> '.Lang::get('admin.edit').'</a>',
 		   );
 		  }
 
@@ -106,73 +106,102 @@ class CategoriesController extends Controller {
 	}
 
 	public function create(Route $route) {
-		View::share('active','categories');
+		View::share('active','items');
 		Theme::setLayout('admin.app');
-		View::share('title', Lang::get('admin.new').' '.Lang::get('admin.category'));
+		View::share('title', Lang::get('admin.new').' '.Lang::get('admin.item'));
 		View::share('languages', App\Languages::where('status', 1)->get());
 		View::share('categories', App\Category::where('status', 1)->get());
-		return Theme::view('admin.categories.create');
+		return Theme::view('admin.items.create');
 	}
 
-	public function store(CategoriesRequest $request) {
+	public function store(itemsRequest $request) {
 	    $data = Input::all();
 	    array_forget($data, '_token');
 	    array_forget($data, '_wysihtml5_mode');
 	    $data['user_id'] = Auth::user()->id;
-	    $db = new Categories($data);
-	    $db->save();
-	    return redirect('/admin/categories')->with('message', Lang::get('admin.category').' '.Lang::get('admin.create_success'));
+	    $db = new items($data);
+		$db->save();
+
+        if (Input::get('tags') !== NULL) {
+            $tags = explode(',', Input::get('tags'));
+            foreach($tags as $tag) {
+	            $new_tag = App\Tags::firstOrCreate(array('tag' => $tag, 'user_id' => Auth::user()->id));
+				$item_tag = new App\ItemTag;
+				$item_tag->item_id = $db->id;
+				$item_tag->tag_id = $new_tag->id;
+				$item_tag->save();
+            }
+        }
+
+	    return redirect('/admin/items')->with('message', Lang::get('admin.item').' '.Lang::get('admin.create_success'));
 	}
 
 	public function show($id) {
-		View::share('active','categories');
+		View::share('active','items');
 		Theme::setLayout('admin.app');
-		$item = Categories::find($id);
+		$item = Items::find($id);
 		View::share('item', $item);
 		View::share('title', ''.Lang::get('admin.edit').': '.$item->title.'');
 		View::share('languages', App\Languages::where('status', 1)->get());
-		View::share('categories', App\Category::where('status', 1)->where('id','<>',$id)->get());
-		return Theme::view('admin.categories.show');
+		View::share('categories', App\Category::where('status', 1)->get());
+		return Theme::view('admin.items.show');
 	}
 
-	public function update($id, CategoriesRequest $request) {
+	public function update($id, itemsRequest $request) {
 	    $data = Input::all();
 	    array_forget($data, '_token');
 	    array_forget($data, '_wysihtml5_mode');
 	    $data['user_id'] = Auth::user()->id;
-	    $db = Categories::find($id);
+	    $db = Items::find($id);
 		$db->update($data);
-	    return redirect('/admin/categories')->with('message', Lang::get('admin.category').' '.Lang::get('admin.update_success'));
+
+        if (Input::get('tags') !== NULL) {
+            $tags = explode(',', Input::get('tags'));
+        	App\ItemTag::where('item_id',$id)->delete();
+            foreach($tags as $tag) {
+	            $new_tag = App\Tags::firstOrCreate(array('tag' => $tag, 'user_id' => Auth::user()->id));
+				$item_tag = new App\ItemTag;
+				$item_tag->item_id = $db->id;
+				$item_tag->tag_id = $new_tag->id;
+				$item_tag->save();
+            }
+        }
+
+	    return redirect('/admin/items')->with('message', Lang::get('admin.item').' '.Lang::get('admin.update_success'));
 	}
 
 	public function actions() {
 		foreach(Request::input('id') as $id) {
-				$db = Categories::find($id);
-				$items = App\Items::where('category_id',$id)->get();
+				$db = Items::find($id);
 			if (Request::input('customActionName') == "delete") {
-				foreach($items as $item) {
-					$item->status = 0;
-					$item->save();
-				};
+	        	App\ItemTag::where('item_id',$id)->delete();
 				$db->delete();
 			}
 			if (Request::input('customActionName') == "activate") {
-				foreach($items as $item) {
-					$item->status = 1;
-					$item->save();
-				};
 				$db->status = 1;
 				$db->save();
 			}
 			if (Request::input('customActionName') == "deactivate") {
-				foreach($items as $item) {
-					$item->status = 0;
-					$item->save();
-				};
 				$db->status = 0;
 				$db->save();
 			}
 		}
+	}
+
+	public function categories() {
+
+		$query = Input::get('term');
+		$search = App\Category::where('title', 'LIKE', "%$query%")->select(array('id','title as text'))->take(10)->get();
+		return json_encode($search);
+
+	}
+
+	public function tags() {
+
+		$query = Input::get('term');
+		$search = App\Tags::where('tag', 'LIKE', "%$query%")->select(array('id','tag as text'))->take(10)->get();
+		return json_encode($search);
+
 	}
 
 }
