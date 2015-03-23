@@ -2,24 +2,16 @@
 
 use Theme;
 use View;
+use App;
 
 class CategoryItemController extends Controller {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller renders your application's "dashboard" for users that
-	| are authenticated. Of course, you are free to change or remove the
-	| controller as you wish. It is just here to get your app started!
-	|
-	*/
-
-	public function index()
+	public function index($slug)
 	{
 		Theme::setLayout('frontend.app');
-		View::share('title','Neveshtar - Open Source Laravel CMS');
+		$item = App\Items::where('slug', $slug)->where('status',1)->first();
+		View::share('item',$item);
+		View::share('title',$item->title);
 		return Theme::view('frontend/category-item');
 	}
 

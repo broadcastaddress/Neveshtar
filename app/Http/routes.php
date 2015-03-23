@@ -24,6 +24,8 @@ function()
 	Route::get('/', [
 	    'as' => 'WelcomeController', 'uses' => 'WelcomeController@index'
 	]);
+	Route::get('/{slug}', 'CategoryItemController@index');
+	Route::post('/{slug}', 'CategoryItemController@comment');
     Route::resource('c', 'CategoryController');
 	Route::get('categoryItem', 'CategoryItemController@index');
 	Route::get('about', 'AboutController@index');

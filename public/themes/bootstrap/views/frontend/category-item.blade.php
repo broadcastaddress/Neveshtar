@@ -12,7 +12,7 @@
         <div class="row margin-bottom-40">
           <!-- BEGIN CONTENT -->
           <div class="col-md-12 col-sm-12">
-            <h1>Blog Item</h1>
+            <h1>{{ucwords($item->title)}}</h1>
             <div class="content-page">
               <div class="row">
                 <!-- BEGIN LEFT SIDEBAR -->
@@ -46,65 +46,56 @@
                     </div>
                     <!-- END CAROUSEL -->
                   </div>
-                  <h2><a href="#">Corrupti quos dolores etquas</a></h2>
-                  <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui sint blanditiis prae sentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing condimentum eleifend enim a feugiat.</p>
+                  <h2>{{ucfirst($item->subtitle)}}</h2>
+                  <p><strong>{{ucfirst($item->intro)}}</strong></p>
                   <blockquote>
-                    <p>Pellentesque ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante Integer posuere erat a ante.</p>
-                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                    <p>{{ucfirst($item->quote)}}</p>
+                    <small>{{ucwords($item->quote_author)}}</small>
                   </blockquote>
-                  <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
-                  <p>Culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat.</p>
+                  <p>{{ucfirst($item->description)}}</p>
                   <ul class="blog-info">
-                    <li><i class="fa fa-user"></i> By admin</li>
-                    <li><i class="fa fa-calendar"></i> 25/07/2013</li>
-                    <li><i class="fa fa-comments"></i> 17</li>
-                    <li><i class="fa fa-tags"></i> Metronic, Keenthemes, UI Design</li>
+                    <li><i class="fa fa-user"></i> {{$item->user->name}}</li>
+                    <li><i class="fa fa-clock-o"></i> {{$item->created_at->diffForHumans()}}</li>
+                    <li><i class="fa fa-calendar"></i> {{$item->created_at->toDayDateTimeString()}}</li>
+                    <li><i class="fa fa-comments"></i> {{count($item->comments)}}</li>
+                    <li><i class="fa fa-tags"></i>
+                    	<?php $i = 0; ?>
+                        @foreach($item->tags as $tag)
+                        	<?php $i++; ?>
+                        	{{ucwords($tag->tag)}}@if($i < count($item->tags)){{","}}@endif
+                        @endforeach
+                    </li>
                   </ul>
 
-                  <h2>Comments</h2>
+                  @if(count($item->comments) > 0)
+                  <h2>{{ucfirst(Lang::get('site.comments'))}}</h2>
                   <div class="comments">
+                  	@foreach($item->comments as $comment)
                     <div class="media">
                       <a href="#" class="pull-left">
                       <img src="/themes/bootstrap/assets/frontend/pages/img/people/img1-small.jpg" alt="" class="media-object">
                       </a>
                       <div class="media-body">
-                        <h4 class="media-heading">Media heading <span>5 hours ago / <a href="#">Reply</a></span></h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                        <h4 class="media-heading">{{$comment->user->name}} <span><i class="fa fa-clock-o"></i> {{$comment->created_at->diffForHumans()}} <i class="fa fa-calendar"></i> {{$comment->created_at->toDayDateTimeString()}} / <a href="#"><strong>{{ucfirst(Lang::get('site.reply'))}}</strong></a></span></h4>
+                        <p> {{$comment->description}} </p>
+                        @foreach($comment->replies as $reply)
                         <!-- Nested media object -->
                         <div class="media">
                           <a href="#" class="pull-left">
                           <img src="/themes/bootstrap/assets/frontend/pages/img/people/img2-small.jpg" alt="" class="media-object">
                           </a>
                           <div class="media-body">
-                            <h4 class="media-heading">Media heading <span>17 hours ago / <a href="#">Reply</a></span></h4>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <h4 class="media-heading">{{$reply->user->name}} <span><i class="fa fa-clock-o"></i> {{$reply->created_at->diffForHumans()}} <i class="fa fa-calendar"></i> {{$reply->created_at->toDayDateTimeString()}}</span></h4>
+                            <p> {{$reply->description}}</p>
                           </div>
                         </div>
                         <!--end media-->
-                        <div class="media">
-                          <a href="#" class="pull-left">
-                          <img src="/themes/bootstrap/assets/frontend/pages/img/people/img3-small.jpg" alt="" class="media-object">
-                          </a>
-                          <div class="media-body">
-                            <h4 class="media-heading">Media heading <span>2 days ago / <a href="#">Reply</a></span></h4>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                          </div>
-                        </div>
-                        <!--end media-->
+                        @endforeach
                       </div>
                     </div>
-                    <!--end media-->
-                    <div class="media">
-                      <a href="#" class="pull-left">
-                      <img src="/themes/bootstrap/assets/frontend/pages/img/people/img4-small.jpg" alt="" class="media-object">
-                      </a>
-                      <div class="media-body">
-                        <h4 class="media-heading">Media heading <span>July 25,2013 / <a href="#">Reply</a></span></h4>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                      </div>
-                    </div>
-                    <!--end media-->
+                    @endforeach
                   </div>
+                  @endif
 
                   <div class="post-comment padding-top-40">
                     <h3>Leave a Comment</h3>

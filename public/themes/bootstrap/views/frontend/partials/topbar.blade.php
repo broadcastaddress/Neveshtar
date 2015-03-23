@@ -34,13 +34,13 @@
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
 						@if (Auth::guest())
-							<li><a href="/auth/login">Login</a>
-							<li><a href="/auth/register">Register</a></li>
+							<li><a href="/{{Lang::getLocale()}}/auth/login">Login</a>
+							<li><a href="/{{Lang::getLocale()}}/auth/register">Register</a></li>
 						@else
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="/auth/logout">Logout</a></li>
+									<li><a href="/{{Lang::getLocale()}}/auth/logout">Logout</a></li>
 								</ul>
 							</li>
 						@endif
@@ -54,7 +54,7 @@
     <!-- BEGIN HEADER -->
     <div class="header">
       <div class="container">
-        <a class="site-logo" href="/">Neveshtar.com</a>
+        <a class="site-logo" href="/{{Lang::getLocale()}}">Neveshtar.com</a>
 
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
@@ -66,7 +66,7 @@
             @else
             <li>
             @endif
-              <a data-target="/" href="/">
+              <a data-target="/{{Lang::getLocale()}}" href="/{{Lang::getLocale()}}">
                 Home
               </a>
             </li>

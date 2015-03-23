@@ -136,6 +136,7 @@ class CategoriesController extends Controller {
 	}
 
 	public function update($id, CategoriesRequest $request) {
+		$rules['slug'] = "required|unique:categories,slug,{$id}";
 	    $data = Input::all();
 	    array_forget($data, '_token');
 	    array_forget($data, '_wysihtml5_mode');

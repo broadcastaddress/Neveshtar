@@ -8,7 +8,7 @@ class Category extends Model {
 
     public function items()
     {
-        return $this->hasMany('App\Items');
+        return $this->hasMany('App\Items', 'category_id', 'id')->where('status',1);
     }
 
 }

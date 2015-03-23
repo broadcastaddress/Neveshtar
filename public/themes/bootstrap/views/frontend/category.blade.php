@@ -4,7 +4,7 @@
     <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="/">{{Lang::get('site.home')}}</a></li>
+            <li><a href="/{{Lang::getLocale()}}">{{Lang::get('site.home')}}</a></li>
             <li class="active">{{ucwords($title)}}</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
@@ -16,6 +16,8 @@
               <div class="row">
                 <!-- BEGIN LEFT SIDEBAR -->
                 <div class="col-md-9 col-sm-9 blog-posts">
+
+				@if((!Request::Get('page')) || (Request::Get('page') < 2))
 	            @if(isset($item->subtitle) && ($item->subtitle <> ""))
 		            <h2>{{ucfirst($item->subtitle)}}</h2>
 		            <br/>
@@ -48,8 +50,16 @@
                   	</div>
                   </div>
                   @endif
+                  @endif
 
-                  @foreach($item->items as $post)
+				  @if($posts->render())
+                  <hr class="blog-post-sep no-top-space">
+				  {!!$posts->render()!!}
+                  <hr class="blog-post-sep">
+                  @else
+                  <hr class="blog-post-sep no-top-space">
+                  @endif
+                  @foreach($posts as $post)
                   <div class="row">
                     <div class="col-md-4 col-sm-4">
                       <!-- BEGIN CAROUSEL -->
@@ -79,29 +89,33 @@
                       <!-- END CAROUSEL -->
                     </div>
                     <div class="col-md-8 col-sm-8">
-                      <h2><a href="/categoryItem">{{ucwords($post->title)}}</a></h2>
+                      <h2><a href="/{{Lang::getLocale()}}/{{$post->slug}}">{{ucwords($post->title)}}</a></h2>
                       <ul class="blog-info">
-                        <li><i class="fa fa-calendar"></i> {{$post->created_at->diffForHumans()}}</li>
-                        <li><i class="fa fa-comments"></i> 17</li>
-                        <li><i class="fa fa-tags"></i> Metronic, Keenthemes, UI Design</li>
+                        <li><i class="fa fa-clock-o"></i> {{$post->created_at->diffForHumans()}}</li>
+                        <li><i class="fa fa-calendar"></i> {{$post->created_at->toDayDateTimeString()}}</li>
+                        <li><i class="fa fa-comments"></i> {{count($post->comments)}}</li>
+                        <li><i class="fa fa-tags"></i>
+                        	<?php $i = 0; ?>
+	                        @foreach($post->tags as $tag)
+	                        	<?php $i++; ?>
+	                        	{{ucwords($tag->tag)}}@if($i < count($post->tags)){{","}}@endif
+	                        @endforeach
+                        </li>
                       </ul>
-                      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui sint blanditiis prae sentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing condimentum eleifend enim a feugiat.</p>
-                      <a href="blog-item.html" class="more">Read more <i class="icon-angle-right"></i></a>
+                      <p>{{$post->intro}}</p>
+                      <a href="/{{Lang::getLocale()}}/{{$post->slug}}" class="more">{{ucwords(Lang::get('site.read_more'))}} <i class="fa fa-angle-right"></i></a>
                     </div>
                   </div>
                   <hr class="blog-post-sep">
 
 				  @endforeach
 
-                  <ul class="pagination">
-                    <li><a href="#">Prev</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li class="active"><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">Next</a></li>
-                  </ul>
+				  @if($posts->render())
+				  {!!$posts->render()!!}
+                  <hr class="blog-post-sep">
+                  @endif
+
+
                 </div>
                 <!-- END LEFT SIDEBAR -->
 
