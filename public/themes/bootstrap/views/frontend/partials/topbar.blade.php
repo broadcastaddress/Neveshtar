@@ -37,12 +37,12 @@
 							<li><a href="/{{Lang::getLocale()}}/auth/login">Login</a>
 							<li><a href="/{{Lang::getLocale()}}/auth/register">Register</a></li>
 						@else
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="/{{Lang::getLocale()}}/auth/logout">Logout</a></li>
-								</ul>
-							</li>
+                        <li class="langs-block dropdown">
+                            <a href="/profile" class="current"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a>
+                            <div class="langs-block-others-wrapper"><div class="langs-block-others">
+                              <a href="/{{Lang::getLocale()}}/auth/logout"><i class="fa fa-times-circle-o"></i> Logout</a>
+                            </div></div>
+                        </li>
 						@endif
                     </ul>
                 </div>
