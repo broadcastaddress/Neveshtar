@@ -20,31 +20,6 @@ array(
 function()
 {
 
-    /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
-	Route::get('/', [
-	    'as' => 'WelcomeController', 'uses' => 'WelcomeController@index'
-	]);
-	Route::get('/{slug}', 'CategoryItemController@index');
-	Route::post('/{slug}', 'CategoryItemController@comment');
-    Route::resource('c', 'CategoryController');
-	Route::get('categoryItem', 'CategoryItemController@index');
-	Route::get('about', 'AboutController@index');
-	Route::get('services', 'ServicesController@index');
-	Route::get('portfolio', 'PortfolioController@index');
-	Route::get('portfolioItem', 'PortfolioItemController@index');
-	Route::get('prices', 'pricesController@index');
-	Route::get('faq', 'FaqController@index');
-	Route::get('gallery', 'GalleryController@index');
-	Route::get('search', 'SearchController@index');
-	Route::get('careers', 'CareersController@index');
-	Route::get('sitemap', 'SitemapController@index');
-	Route::get('contact', 'ContactController@index');
-
-	Route::controllers([
-		'auth' => 'Auth\AuthController',
-		'password' => 'Auth\PasswordController',
-	]);
-
 	Route::group(array('middleware' => 'auth', 'prefix' => 'admin'), function()
 	{
 	    // Example route with an admin prefix
@@ -62,5 +37,30 @@ function()
 	    Route::post('items/ajax_table', 'Admin\Items\ItemsController@ajax_table');
 	    Route::post('items/actions', 'Admin\Items\ItemsController@actions');
 	});
+
+	Route::get('/', [
+	    'as' => 'WelcomeController', 'uses' => 'WelcomeController@index'
+	]);
+    Route::resource('c', 'CategoryController');
+	Route::get('categoryItem', 'CategoryItemController@index');
+	Route::get('about', 'AboutController@index');
+	Route::get('services', 'ServicesController@index');
+	Route::get('portfolio', 'PortfolioController@index');
+	Route::get('portfolioItem', 'PortfolioItemController@index');
+	Route::get('prices', 'pricesController@index');
+	Route::get('faq', 'FaqController@index');
+	Route::get('gallery', 'GalleryController@index');
+	Route::get('search', 'SearchController@index');
+	Route::get('careers', 'CareersController@index');
+	Route::get('sitemap', 'SitemapController@index');
+	Route::get('contact', 'ContactController@index');
+
+	Route::get('/{slug}', 'CategoryItemController@index');
+	Route::post('/{slug}', 'CategoryItemController@comment');
+
+	Route::controllers([
+		'auth' => 'Auth\AuthController',
+		'password' => 'Auth\PasswordController',
+	]);
 
 });

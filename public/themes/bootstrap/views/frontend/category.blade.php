@@ -93,7 +93,7 @@
                       <ul class="blog-info">
                         <li><i class="fa fa-clock-o"></i> {{$post->created_at->diffForHumans()}}</li>
                         <li><i class="fa fa-calendar"></i> {{$post->created_at->toDayDateTimeString()}}</li>
-                        <li><i class="fa fa-comments"></i> {{count($post->comments)}}</li>
+                        <li><i class="fa fa-comments"></i> {{count($post->comments_count)}}</li>
                         <li><i class="fa fa-tags"></i>
                         	<?php $i = 0; ?>
 	                        @foreach($post->tags as $tag)

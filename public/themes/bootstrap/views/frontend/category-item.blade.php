@@ -57,7 +57,7 @@
                     <li><i class="fa fa-user"></i> {{$item->user->name}}</li>
                     <li><i class="fa fa-clock-o"></i> {{$item->created_at->diffForHumans()}}</li>
                     <li><i class="fa fa-calendar"></i> {{$item->created_at->toDayDateTimeString()}}</li>
-                    <li><i class="fa fa-comments"></i> {{count($item->comments)}}</li>
+                    <li><i class="fa fa-comments"></i> {{count($item->comments_count)}}</li>
                     <li><i class="fa fa-tags"></i>
                     	<?php $i = 0; ?>
                         @foreach($item->tags as $tag)

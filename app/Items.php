@@ -16,6 +16,12 @@ class Items extends Model {
         return $this->hasMany('App\Comments', 'item_id', 'id')->where('status',1)->where('parent_id',null);
     }
 
+    public function comments_count()
+    {
+        return $this->hasMany('App\Comments', 'item_id', 'id')->where('status',1)->select(array('id'));
+    }
+
+
     public function user()
     {
         return $this->hasOne('App\User', 'id', 'user_id');
