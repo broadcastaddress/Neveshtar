@@ -31,6 +31,12 @@
 						<span class="title">Items</span>
 						</a>
 					</li>
+					<li id="side-categories">
+						<a href="/admin/images">
+						<i class="icon-picture"></i>
+						<span class="title">Images</span>
+						</a>
+					</li>
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>

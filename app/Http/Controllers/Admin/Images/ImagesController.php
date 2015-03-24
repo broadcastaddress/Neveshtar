@@ -57,10 +57,10 @@ class ImagesController extends Controller {
 				  $order = 'title';
 				  break;
 			  case '4':
-				  $order = 'language';
+				  $order = 'type';
 				  break;
 			  case '5':
-				  $order = 'order';
+				  $order = 'owner';
 				  break;
 			  case '6':
 				  $order = 'status';
@@ -98,9 +98,7 @@ class ImagesController extends Controller {
 	public function create(Route $route) {
 		View::share('active','images');
 		Theme::setLayout('admin.app');
-		View::share('title', Lang::get('admin.new').' '.Lang::get('admin.category'));
-		View::share('languages', App\Languages::where('status', 1)->get());
-		View::share('images', App\Category::where('status', 1)->get());
+		View::share('title', Lang::get('admin.new').' '.Lang::get('admin.image'));
 		return Theme::view('admin.images.create');
 	}
 
@@ -111,7 +109,7 @@ class ImagesController extends Controller {
 	    $data['user_id'] = Auth::user()->id;
 	    $db = new images($data);
 	    $db->save();
-	    return redirect('/admin/images')->with('message', Lang::get('admin.category').' '.Lang::get('admin.create_success'));
+	    return redirect('/admin/images')->with('message', Lang::get('admin.image').' '.Lang::get('admin.create_success'));
 	}
 
 	public function show($id) {
@@ -120,48 +118,29 @@ class ImagesController extends Controller {
 		$item = images::find($id);
 		View::share('item', $item);
 		View::share('title', ''.Lang::get('admin.edit').': '.$item->title.'');
-		View::share('languages', App\Languages::where('status', 1)->get());
-		View::share('images', App\Category::where('status', 1)->where('id','<>',$id)->get());
 		return Theme::view('admin.images.show');
 	}
 
 	public function update($id, imagesRequest $request) {
-		$rules['slug'] = "required|unique:images,slug,{$id}";
 	    $data = Input::all();
 	    array_forget($data, '_token');
 	    array_forget($data, '_wysihtml5_mode');
 	    $data['user_id'] = Auth::user()->id;
 	    $db = images::find($id);
 		$db->update($data);
-	    return redirect('/admin/images')->with('message', Lang::get('admin.category').' '.Lang::get('admin.update_success'));
+	    return redirect('/admin/images')->with('message', Lang::get('admin.image').' '.Lang::get('admin.update_success'));
 	}
 
 	public function actions() {
 		foreach(Request::input('id') as $id) {
 				$db = images::find($id);
-				$items = App\Items::where('category_id',$id)->get();
+				$items = App\Items::where('image_id',$id)->get();
 			if (Request::input('customActionName') == "delete") {
 				foreach($items as $item) {
-					$item->status = 0;
+					$item->image_id = null;
 					$item->save();
 				};
 				$db->delete();
-			}
-			if (Request::input('customActionName') == "activate") {
-				foreach($items as $item) {
-					$item->status = 1;
-					$item->save();
-				};
-				$db->status = 1;
-				$db->save();
-			}
-			if (Request::input('customActionName') == "deactivate") {
-				foreach($items as $item) {
-					$item->status = 0;
-					$item->save();
-				};
-				$db->status = 0;
-				$db->save();
 			}
 		}
 	}

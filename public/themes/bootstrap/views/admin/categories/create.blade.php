@@ -103,7 +103,7 @@
 							* </span>
 							</label>
 							<div class="col-md-4">
-								<select class="form-control select2me" name="language" id="selectLanguage">
+								<select class="form-control select2me" name="language" id="selectLanguage" required data-required="1">
 									@foreach($languages as $language)
 									<option value="{{$language->language}}">{{$language->name}}</option>
 									@endforeach
@@ -132,7 +132,7 @@
 									<span class="input-group-addon">
 									<i class="fa fa-unlock-alt"></i>
 									</span>
-									<select class="form-control" name="status" id="selectStatus">
+									<select class="form-control" name="status" id="selectStatus" required data-required="1">
 										<option value="1">{{ucwords(Lang::get('admin.activated'))}}</option>
 										<option value="0">{{ucwords(Lang::get('admin.deactivated'))}}</option>
 									</select>

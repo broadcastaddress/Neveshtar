@@ -175,6 +175,8 @@ class ItemsController extends Controller {
 				$db = Items::find($id);
 			if (Request::input('customActionName') == "delete") {
 	        	App\ItemTag::where('item_id',$id)->delete();
+	        	App\ItemMedia::where('item_id',$id)->delete();
+	        	App\Comments::where('item_id',$id)->delete();
 				$db->delete();
 			}
 			if (Request::input('customActionName') == "activate") {

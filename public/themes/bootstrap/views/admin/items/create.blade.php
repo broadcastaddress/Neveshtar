@@ -83,7 +83,7 @@
 							* </span>
 							</label>
 							<div class="col-md-4">
-								<input type="hidden" id="tags" name="tags" class="form-control select2" value="" data-required="1">
+								<input type="hidden" id="tags" name="tags" class="form-control select2" value="" required data-required="1">
 							</div>
 						</div>
 						<div class="form-group">
@@ -91,7 +91,7 @@
 							* </span>
 							</label>
 							<div class="col-md-4">
-								<input type="hidden" id="category_id" name="category_id" class="form-control select2" value="" data-required="1">
+								<input type="hidden" id="category_id" name="category_id" class="form-control select2" value="" required data-required="1">
 							</div>
 						</div>
 						<div class="form-group">
@@ -107,7 +107,7 @@
 							* </span>
 							</label>
 							<div class="col-md-4">
-								<select class="form-control select2me" name="language" id="selectLanguage" aria-required="true">
+								<select class="form-control select2me" name="language" id="selectLanguage" required data-required="1">
 									@foreach($languages as $language)
 									<option value="{{$language->language}}">{{$language->name}}</option>
 									@endforeach
@@ -123,7 +123,7 @@
 									<span class="input-group-addon">
 									<i class="fa fa-unlock-alt"></i>
 									</span>
-									<select class="form-control" name="status" id="selectStatus">
+									<select class="form-control" name="status" id="selectStatus" required data-required="1">
 										<option value="1">{{ucwords(Lang::get('admin.activated'))}}</option>
 										<option value="0">{{ucwords(Lang::get('admin.deactivated'))}}</option>
 									</select>

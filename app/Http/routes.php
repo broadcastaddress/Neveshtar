@@ -36,6 +36,11 @@ function()
 	    Route::resource('items', 'Admin\Items\ItemsController');
 	    Route::post('items/ajax_table', 'Admin\Items\ItemsController@ajax_table');
 	    Route::post('items/actions', 'Admin\Items\ItemsController@actions');
+
+	    // Images
+	    Route::resource('images', 'Admin\Images\ImagesController');
+	    Route::post('images/ajax_table', 'Admin\Images\ImagesController@ajax_table');
+	    Route::post('images/actions', 'Admin\Images\ImagesController@actions');
 	});
 
 	Route::get('/', [

@@ -11,6 +11,11 @@ class Items extends Model {
 		return $this->belongsToMany('App\Tags', 'item_tag', 'item_id', 'tag_id');
 	}
 
+	public function media()
+	{
+		return $this->belongsToMany('App\Media', 'item_media', 'item_id', 'media_id');
+	}
+
     public function comments()
     {
         return $this->hasMany('App\Comments', 'item_id', 'id')->where('status',1)->where('parent_id',null);
