@@ -8,4 +8,9 @@ class Images extends Model {
 
     protected $table = 'media';
 
+    public function user()
+    {
+        return $this->hasOne('App\Http\Controllers\Admin\Users\Users', 'id', 'user_id');
+    }
+
 }

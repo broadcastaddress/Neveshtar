@@ -13,7 +13,7 @@
 					<li class="heading">
 						<h3>MENU</h3>
 					</li>
-					<li id="side-dashboard" class="">
+					<li id="side-dashboard">
 						<a href="/admin">
 						<i class="icon-home"></i>
 						<span class="title">Dashboard</span>
@@ -25,13 +25,13 @@
 						<span class="title">Categories</span>
 						</a>
 					</li>
-					<li id="side-categories">
+					<li id="side-items">
 						<a href="/admin/items">
 						<i class="icon-note"></i>
 						<span class="title">Items</span>
 						</a>
 					</li>
-					<li id="side-categories">
+					<li id="side-images">
 						<a href="/admin/images">
 						<i class="icon-picture"></i>
 						<span class="title">Images</span>

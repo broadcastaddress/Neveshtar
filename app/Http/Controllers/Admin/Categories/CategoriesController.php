@@ -121,6 +121,17 @@ class CategoriesController extends Controller {
 	    $data['user_id'] = Auth::user()->id;
 	    $db = new Categories($data);
 	    $db->save();
+
+        if (Input::get('gallery') !== NULL) {
+            $gallery = explode(',', Input::get('gallery'));
+            foreach($gallery as $image) {
+				$item_image = new App\CategoriesMedia;
+				$item_image->category_id = $db->id;
+				$item_image->media_id = $image;
+				$item_image->save();
+            }
+        }
+
 	    return redirect('/admin/categories')->with('message', Lang::get('admin.category').' '.Lang::get('admin.create_success'));
 	}
 
@@ -143,6 +154,18 @@ class CategoriesController extends Controller {
 	    $data['user_id'] = Auth::user()->id;
 	    $db = Categories::find($id);
 		$db->update($data);
+
+    	App\CategoriesMedia::where('category_id',$id)->delete();
+        if (Input::get('gallery') !== NULL) {
+            $gallery = explode(',', Input::get('gallery'));
+            foreach($gallery as $image) {
+				$item_image = new App\CategoriesMedia;
+				$item_image->category_id = $db->id;
+				$item_image->media_id = $image;
+				$item_image->save();
+            }
+        }
+
 	    return redirect('/admin/categories')->with('message', Lang::get('admin.category').' '.Lang::get('admin.update_success'));
 	}
 
@@ -151,6 +174,7 @@ class CategoriesController extends Controller {
 				$db = Categories::find($id);
 				$items = App\Items::where('category_id',$id)->get();
 			if (Request::input('customActionName') == "delete") {
+				$media = App\CategoriesMedia::where('category_id',$id)->delete();
 				foreach($items as $item) {
 					$item->status = 0;
 					$item->save();

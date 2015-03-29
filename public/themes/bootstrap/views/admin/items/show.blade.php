@@ -78,6 +78,19 @@
 								</div>
 							</div>
 						</div>
+						<h3 class="form-section"><i class="fa fa-image"></i> {{Lang::get('admin.media')}}</h3>
+						<div class="form-group">
+							<label class="control-label col-md-3">{{Lang::get('admin.main')}} {{Lang::get('admin.image')}}</label>
+							<div class="col-md-4">
+								<input type="hidden" id="main_image" name="image_id" class="form-control select2" value="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3">{{Lang::get('admin.gallery')}} {{Lang::get('admin.images')}}</label>
+							<div class="col-md-4">
+								<input type="hidden" id="gallery" name="gallery" class="form-control select2" value="">
+							</div>
+						</div>
 						<h3 class="form-section"><i class="fa fa-wrench"></i> {{Lang::get('admin.settings')}}</h3>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.tags')}} <span class="required">
@@ -238,6 +251,112 @@ $('input[name=title]').on('input', function() {
 	    $(this).select2('data', [
 	    	<?php foreach($item->tags as $tag) { ?>
 	        { id: '<?php echo $tag->tag; ?>', text: '<?php echo $tag->tag; ?>' },
+	        <?php }; ?>
+	    ]);
+	});
+</script>
+<script>
+	$('#main_image').select2({
+	minimumInputLength: 2,
+    tags: false,
+    showSearchBox: true,
+    maximumSelectionSize: 1,
+    closeOnSelect: true,
+    multiple: false,
+	ajax: {
+	    url: '/admin/images/images',
+	    dataType: 'json',
+	    quietMillis: 100,
+	    data: function (term) {
+	        return {
+	            term: term
+	        };
+	    },
+	    results: function (data) {
+	        var myResults = [];
+	        $.each(data, function (index, item) {
+	            myResults.push({
+	                'id': item.id,
+	                'text': item.text,
+	                'url': item.url,
+	            });
+	        });
+	        return {
+	            results: myResults,
+	        };
+	    }
+	},
+    formatResult : function(results)
+    {
+        this.description =
+            '<img height="40" src="/uploads/images/c3_'+results.url+'"> '+results.text+''
+        ;
+        return this.description;
+    },
+    formatSelection : function(results)
+    {
+        this.description =
+            '<img height="40" src="/uploads/images/c3_'+results.url+'"> '+results.text+''
+        ;
+        return this.description;
+    }
+	});
+</script>
+<script>
+	$('#gallery').select2({
+	minimumInputLength: 2,
+	tags: true,
+	tokenSeparators: [","],
+	multiple: true,
+	ajax: {
+	    url: '/admin/images/images',
+	    dataType: 'json',
+	    quietMillis: 100,
+	    data: function (term) {
+	        return {
+	            term: term
+	        };
+	    },
+	    results: function (data) {
+	        var myResults = [];
+	        $.each(data, function (index, item) {
+	            myResults.push({
+	                'id': item.id,
+	                'text': item.text,
+	                'url': item.url,
+	            });
+	        });
+	        return {
+	            results: myResults,
+	        };
+	    }
+	},
+    formatResult : function(results)
+    {
+        this.description =
+            '<img height="40" src="/uploads/images/c3_'+results.url+'"> '+results.text+''
+        ;
+        return this.description;
+    },
+    formatSelection : function(results)
+    {
+        this.description =
+            '<img height="40" src="/uploads/images/c3_'+results.url+'"> '+results.text+''
+        ;
+        return this.description;
+    }
+	});
+</script>
+@if($item->image_id)
+<script>
+    $("#main_image").select2("data", { id: "{{$item->image->id}}", text: "{{$item->image->title}}", url: "{{$item->image->url}}" });
+</script>
+@endif
+<script>
+	$('#gallery').each(function() {
+	    $(this).select2('data', [
+	    	<?php foreach($item->gallery as $gallery) { ?>
+	        { id: '<?php echo $gallery->id; ?>', text: '<?php echo $gallery->title; ?>', url: '<?php echo $gallery->url; ?>' },
 	        <?php }; ?>
 	    ]);
 	});

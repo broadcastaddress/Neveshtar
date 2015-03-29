@@ -63,10 +63,10 @@ return [
 	'yes'						=> 'yes',
 	'no'						=> 'no',
 	'watermark'					=> 'watermark',
-	''				=> '',
-	''				=> '',
-	''				=> '',
-	''				=> '',
-	''				=> '',
+	'crop'						=> 'crop',
+	'select_crop'				=> 'Please select a crop region then press submit.',
+	'media'						=> 'media',
+	'main'						=> 'main',
+	'gallery'					=> 'gallery',
 
 ];

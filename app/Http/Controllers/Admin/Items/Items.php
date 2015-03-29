@@ -19,4 +19,14 @@ class Items extends Model {
 		return $this->belongsToMany('App\Tags', 'item_tag', 'item_id', 'tag_id');
 	}
 
+    public function image()
+    {
+        return $this->hasOne('App\Media', 'id', 'image_id');
+    }
+
+	public function gallery()
+	{
+		return $this->belongsToMany('App\Media', 'item_media', 'item_id', 'media_id');
+	}
+
 }

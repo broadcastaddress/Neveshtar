@@ -133,6 +133,16 @@ class ItemsController extends Controller {
             }
         }
 
+        if (Input::get('gallery') !== NULL) {
+            $gallery = explode(',', Input::get('gallery'));
+            foreach($gallery as $image) {
+				$item_image = new App\ItemMedia;
+				$item_image->item_id = $db->id;
+				$item_image->media_id = $image;
+				$item_image->save();
+            }
+        }
+
 	    return redirect('/admin/items')->with('message', Lang::get('admin.item').' '.Lang::get('admin.create_success'));
 	}
 
@@ -155,15 +165,27 @@ class ItemsController extends Controller {
 	    $db = Items::find($id);
 		$db->update($data);
 
+    	App\ItemTag::where('item_id',$id)->delete();
         if (Input::get('tags') !== NULL) {
             $tags = explode(',', Input::get('tags'));
-        	App\ItemTag::where('item_id',$id)->delete();
             foreach($tags as $tag) {
 	            $new_tag = App\Tags::firstOrCreate(array('tag' => $tag, 'user_id' => Auth::user()->id));
 				$item_tag = new App\ItemTag;
 				$item_tag->item_id = $db->id;
 				$item_tag->tag_id = $new_tag->id;
 				$item_tag->save();
+            }
+        }
+
+
+    	App\ItemMedia::where('item_id',$id)->delete();
+        if (Input::get('gallery') !== NULL) {
+            $gallery = explode(',', Input::get('gallery'));
+            foreach($gallery as $image) {
+				$item_image = new App\ItemMedia;
+				$item_image->item_id = $db->id;
+				$item_image->media_id = $image;
+				$item_image->save();
             }
         }
 

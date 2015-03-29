@@ -40,100 +40,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.subtitle')}}
+							<label class="control-label col-md-3">{{Lang::get('admin.image')}}
 							</label>
 							<div class="col-md-8">
-								<input type="text" name="subtitle" value="{{$item->subtitle}}" class="form-control"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.intro')}}
-							</label>
-							<div class="col-md-8">
-								<textarea name="intro" class="form-control">{{$item->intro}}</textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.quote')}}
-							</label>
-							<div class="col-md-8">
-								<textarea name="quote" class="form-control">{{$item->quote}}</textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.quote_author')}}
-							</label>
-							<div class="col-md-8">
-								<input type="text" name="quote_author" value="{{$item->quote_author}}" class="form-control"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.description')}}
-							</label>
-							<div class="col-md-8">
-								<textarea class="wysihtml5 form-control" rows="10" name="description" data-error-container="#editor1_error">
-									{{$item->description}}
-								</textarea>
-								<div id="editor1_error">
-								</div>
-							</div>
-						</div>
-						<h3 class="form-section"><i class="fa fa-wrench"></i> {{Lang::get('admin.settings')}}</h3>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.tags')}} <span class="required">
-							* </span>
-							</label>
-							<div class="col-md-4">
-								<input type="hidden" id="tags" name="tags" class="form-control select2" value="">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.parent')}} {{Lang::get('admin.category')}} <span class="required">
-							* </span>
-							</label>
-							<div class="col-md-4">
-								<select class="form-control select2me" name="category_id" id="selectParent">
-									<option value="">{{Lang::get('admin.none')}}</option>
-									@foreach($categories as $category)
-									<option value="{{$category->id}}">{{$category->title}}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.slug')}} <span class="required">
-							* </span>
-							</label>
-							<div class="col-md-8">
-								<input type="text" name="slug" value="{{$item->slug}}" data-required="1" class="form-control" required/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.language')}} <span class="required">
-							* </span>
-							</label>
-							<div class="col-md-4">
-								<select class="form-control select2me" name="language" id="selectLanguage">
-									@foreach($languages as $language)
-									<option value="{{$language->language}}">{{$language->name}}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.status')}} <span class="required">
-							* </span>
-							</label>
-							<div class="col-md-4">
-								<div class="input-group">
-									<span class="input-group-addon">
-									<i class="fa fa-unlock-alt"></i>
-									</span>
-									<select class="form-control" name="status" id="selectStatus">
-										<option value="1">{{ucwords(Lang::get('admin.activated'))}}</option>
-										<option value="0">{{ucwords(Lang::get('admin.deactivated'))}}</option>
-									</select>
-								</div>
+								<img src="/uploads/images/4_{{$item->url}}" alt="{{$item->title}}" >
+								<input type="hidden" name="file" value="{{$item->url}}">
 							</div>
 						</div>
 					</div>
@@ -177,71 +88,6 @@
 <script src="/themes/bootstrap/assets/admin/layout4/scripts/layout.js" type="text/javascript"></script>
 <script src="/themes/bootstrap/assets/admin/layout4/scripts/demo.js" type="text/javascript"></script>
 <script src="/themes/bootstrap/assets/admin/pages/scripts/form-validation.js"></script>
-
-<script>
-$('input[name=title]').on('input', function() {
-	var inputString = $(this).val();
-    outputString = inputString.replace(/([â€Œ~Ù¬Ù«ï·¼ÙªÃ—ØŒÙ€Ø›ØŸØ¡!@#$%^&*"()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '-').replace(/^(-)+|(-)+$/g,'');
-	var words = outputString.replace(/\s+/gi, '-').split('-');
-    $('input[name=slug]').val(words.slice(0,9).join('-'));
-});
-</script>
-<script>
-    $("#selectStatus").val("{{$item->status}}");
-</script>
-<script>
-    $("#selectParent").val("{{$item->category_id}}");
-</script>
-<script>
-    $("#selectLanguage").val("{{$item->language}}");
-</script>
-<script>
-	$('#tags').select2({
-	minimumInputLength: 2,
-	tags: true,
-	tokenSeparators: [",", " "],
-	createSearchChoice: function(term, data) {
-	if ($(data).filter(function() {
-	  return this.text.localeCompare(term) === 0;
-	}).length === 0) {
-	  return {
-	    id: term,
-	    text: term
-	  };
-	}
-	},
-	multiple: true,
-	ajax: {
-	    url: '/admin/items/tags',
-	    dataType: 'json',
-	    quietMillis: 100,
-	    data: function (term) {
-	        return {
-	            term: term
-	        };
-	    },
-	    results: function (data) {
-	        var myResults = [];
-	        $.each(data, function (index, item) {
-	            myResults.push({
-	                'id': item.text,
-	                'text': item.text
-	            });
-	        });
-	        return {
-	            results: myResults
-	        };
-	    }
-	}
-	});
-	$('#tags').each(function() {
-	    $(this).select2('data', [
-	    	<?php foreach($item->tags as $tag) { ?>
-	        { id: '<?php echo $tag->tag; ?>', text: '<?php echo $tag->tag; ?>' },
-	        <?php }; ?>
-	    ]);
-	});
-</script>
 @endsection
 
 @section('inits')

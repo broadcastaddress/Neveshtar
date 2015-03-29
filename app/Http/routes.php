@@ -38,6 +38,8 @@ function()
 	    Route::post('items/actions', 'Admin\Items\ItemsController@actions');
 
 	    // Images
+	    Route::get('images/images', 'Admin\Images\ImagesController@images');
+	    Route::post('images/crop', 'Admin\Images\ImagesController@crop');
 	    Route::resource('images', 'Admin\Images\ImagesController');
 	    Route::post('images/ajax_table', 'Admin\Images\ImagesController@ajax_table');
 	    Route::post('images/actions', 'Admin\Images\ImagesController@actions');

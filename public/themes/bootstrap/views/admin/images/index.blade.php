@@ -60,9 +60,6 @@
 						<th width="23%">
 							 {{Lang::get('admin.owner')}}
 						</th>
-						<th width="5%">
-							 {{Lang::get('admin.status')}}
-						</th>
 						<th width="5%" class="no-sort">
 							 {{Lang::get('admin.actions')}}
 						</th>
@@ -77,9 +74,8 @@
 								<td>{{$item->id}}</td>
 								<td>{{$item->created_at}}</td>
 								<td>{{$item->title}}</td>
-								<td>{{$item->type}}</td>
+								<td>{{strtoupper($item->type)}}</td>
 								<td>{{$item->user->name}}</td>
-								<td>{{$item->status}}</td>
 								<td>actions</td>
 							</tr>
 						@endforeach

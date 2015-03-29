@@ -77,26 +77,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.status')}} <span class="required">
-							* </span>
-							</label>
-							<div class="col-md-4">
-								<div class="input-group">
-									<span class="input-group-addon">
-									<i class="fa fa-unlock-alt"></i>
-									</span>
-									<select class="form-control" name="status" id="selectStatus" required data-required="1">
-										<option value="1">{{ucwords(Lang::get('admin.activated'))}}</option>
-										<option value="0">{{ucwords(Lang::get('admin.deactivated'))}}</option>
-									</select>
-								</div>
-							</div>
-						</div>
 					</div>
 					<div class="form-actions">
 						<div class="row">
-							<div class="col-md-offset-3 col-md-9">
+							<div class="col-md-12">
 								<button type="submit" class="btn green">Submit</button>
 								<button type="button" onclick="history.go(-1);" class="btn default">Cancel</button>
 							</div>
@@ -119,6 +103,7 @@
 @endsection
 
 @section('footerPlugins')
+<script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/select2/select2.min.js"></script>
 <script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
 <script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
