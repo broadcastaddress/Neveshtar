@@ -169,6 +169,24 @@ class BelongsToMany extends Relation {
 	}
 
 	/**
+	 * Get a paginator for the "select" statement.
+	 *
+	 * @param  int    $perPage
+	 * @param  array  $columns
+	 * @return \Illuminate\Pagination\Paginator
+	 */
+	public function paginate($perPage = null, $columns = array('*'))
+	{
+		$this->query->addSelect($this->getSelectColumns($columns));
+
+		$paginator = $this->query->paginate($perPage, $columns);
+
+		$this->hydratePivotRelation($paginator->items());
+
+		return $paginator;
+	}
+
+	/**
 	 * Hydrate the pivot table relationship on the models.
 	 *
 	 * @param  array  $models
@@ -635,7 +653,7 @@ class BelongsToMany extends Relation {
 	public function sync($ids, $detaching = true)
 	{
 		$changes = array(
-			'attached' => array(), 'detached' => array(), 'updated' => array()
+			'attached' => array(), 'detached' => array(), 'updated' => array(),
 		);
 
 		if ($ids instanceof Collection) $ids = $ids->modelKeys();

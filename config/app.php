@@ -149,6 +149,7 @@ return [
 		/* Custom service Providers */
 		'Caffeinated\Themes\ThemesServiceProvider',
 	    'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
+	    'Intervention\Image\ImageServiceProvider',
 
 
 	],
@@ -200,7 +201,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Theme'     => 'Caffeinated\Themes\Facades\Theme',
 		'Component' => 'Caffeinated\Themes\Facades\Component',
-	    'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization'
+	    'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization',
+	    'Image' => 'Intervention\Image\Facades\Image'
 
 	],
 

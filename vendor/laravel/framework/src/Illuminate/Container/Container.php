@@ -1013,14 +1013,14 @@ class Container implements ArrayAccess, ContainerContract {
 
 		if ($function->getNumberOfParameters() == 0)
 		{
-			return null;
+			return;
 		}
 
 		$expected = $function->getParameters()[0];
 
 		if ( ! $expected->getClass())
 		{
-			return null;
+			return;
 		}
 
 		return $expected->getClass()->name;
@@ -1262,7 +1262,7 @@ class Container implements ArrayAccess, ContainerContract {
 	 */
 	public function offsetUnset($key)
 	{
-		unset($this->bindings[$key], $this->instances[$key]);
+		unset($this->bindings[$key], $this->instances[$key], $this->resolved[$key]);
 	}
 
 	/**

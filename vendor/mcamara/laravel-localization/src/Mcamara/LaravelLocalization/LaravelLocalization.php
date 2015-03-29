@@ -9,9 +9,6 @@ use Illuminate\Routing\Router;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\URL;
-use Session;
-use Cookie;
-
 
 class LaravelLocalization {
 
@@ -100,13 +97,6 @@ class LaravelLocalization {
     protected $routeName;
 
     /**
-     * Name of the locale variable for the session and cookie storages
-     *
-     * @var string
-     */
-    protected $cookieSessionName = 'locale';
-
-    /**
      * Creates new instance.
      * @throws UnsupportedLocaleException
      */
@@ -114,10 +104,10 @@ class LaravelLocalization {
     {
         $this->app = app();
 
-        $this->configRepository = $this->app['config'];
-        $this->view = $this->app['view'];
-        $this->translator = $this->app['translator'];
-        $this->router = $this->app['router'];
+        $this->configRepository = $this->app[ 'config' ];
+        $this->view = $this->app[ 'view' ];
+        $this->translator = $this->app[ 'translator' ];
+        $this->router = $this->app[ 'router' ];
         $this->request = $this->app[ 'request' ];
 
         // set default locale
@@ -153,7 +143,7 @@ class LaravelLocalization {
         {
             // if the first segment/locale passed is not valid
             // the system would ask which locale have to take
-            // it could be taken by session, browser or app default
+            // it could be taken by the browser
             // depending on your configuration
 
             $locale = null;
@@ -165,7 +155,7 @@ class LaravelLocalization {
                 $this->currentLocale = $this->defaultLocale;
             }
             // but if hideDefaultLocaleInURL is false, we have
-            // to retrieve it from the session/cookie/browser...
+            // to retrieve it from the browser...
             else
             {
                 $this->currentLocale = $this->getCurrentLocale();
@@ -173,10 +163,6 @@ class LaravelLocalization {
         }
 
         $this->app->setLocale($this->currentLocale);
-
-        $this->storeSession($this->currentLocale);
-
-        $this->storeCookie($this->currentLocale);
 
         return $locale;
     }
@@ -222,7 +208,7 @@ class LaravelLocalization {
      */
     public function getLocalizedURL( $locale = null, $url = null, $attributes = array() )
     {
-        if ( is_null($locale) )
+        if ( $locale === null )
         {
             $locale = $this->getCurrentLocale();
         }
@@ -343,7 +329,6 @@ class LaravelLocalization {
         {
             $route = '/' . $locale;
         }
-
         if ( is_string($locale) && $this->translator->has($transKeyName, $locale) )
         {
             $translation = $this->translator->trans($transKeyName, [ ], "", $locale);
@@ -482,19 +467,6 @@ class LaravelLocalization {
             return $this->currentLocale;
         }
 
-        // get session language...
-        if ( $locale = $this->getSessionLocale() )
-        {
-            return $locale;
-        }
-
-        // or get cookie language...
-        if ( $locale = $this->getCookieLocale() )
-        {
-            return $locale;
-        }
-
-        // or get browser language...
         if ( $this->useAcceptLanguageHeader() )
         {
             $negotiator = new LanguageNegotiator($this->defaultLocale, $this->getSupportedLocales(), $this->request);
@@ -516,60 +488,6 @@ class LaravelLocalization {
         return array_keys($this->supportedLocales);
     }
 
-
-    /**
-     * Returns the locale stored on the session (if available)
-     *
-     * @return string|false Locale stored in session - False if it doesn't exist
-     */
-    protected function getSessionLocale()
-    {
-        if ( $this->useSessionLocale() && Session::has($this->cookieSessionName) )
-        {
-            return Session::get($this->cookieSessionName);
-        }
-
-        return false;
-    }
-
-    /**
-     * Store the locale on a session variable
-     * @param $locale string Locale to save on session variable
-     */
-    protected function storeSession( $locale )
-    {
-        if ( $this->useSessionLocale() )
-        {
-            Session::put($this->cookieSessionName, $locale);
-        }
-    }
-
-    /**
-     * Returns the locale stored on the cookies (if available)
-     *
-     * @return string|false Locale stored in cookies - False if it doesn't exist
-     */
-    protected function getCookieLocale()
-    {
-        if ( $this->useCookieLocale() )
-        {
-            return cookie($this->cookieSessionName)->getValue();
-        }
-
-        return false;
-    }
-
-    /**
-     * Store the locale on a cookie variable
-     * @param $locale String Locale to store on Cookie variable
-     */
-    protected function storeCookie( $locale )
-    {
-        if ( $this->useCookieLocale() )
-        {
-            cookie($this->cookieSessionName, $locale);
-        }
-    }
 
     /**
      * Check if Locale exists on the supported locales array
@@ -642,6 +560,7 @@ class LaravelLocalization {
         {
             $this->translatedRoutes[ ] = $routeName;
         }
+
         return $this->translator->trans($routeName);
     }
 
@@ -654,6 +573,8 @@ class LaravelLocalization {
      */
     public function getRouteNameFromAPath( $path )
     {
+        $attributes = $this->extractAttributes($path);
+
         $path = str_replace(url(), "", $path);
         if ( $path[ 0 ] !== '/' )
         {
@@ -664,7 +585,7 @@ class LaravelLocalization {
 
         foreach ( $this->translatedRoutes as $route )
         {
-            if ( $this->translator->trans($route) == $path )
+            if ( $this->substituteAttributesInRoute($attributes, $this->translator->trans($route)) === $path )
             {
                 return $route;
             }
@@ -686,7 +607,7 @@ class LaravelLocalization {
         // check if this url is a translated url
         foreach ( $this->translatedRoutes as $translatedRoute )
         {
-            if ( $this->translator->trans($translatedRoute, [ ], "", $url_locale) == $path )
+            if ( $this->translator->trans($translatedRoute, [ ], "", $url_locale) == rawurldecode($path) )
             {
                 return $translatedRoute;
             }
@@ -753,25 +674,6 @@ class LaravelLocalization {
         return $this->configRepository;
     }
 
-    /**
-     * Returns the translation key for a given path
-     *
-     * @return boolean       Returns value of useSessionLocale in config.
-     */
-    protected function useSessionLocale()
-    {
-        return $this->configRepository->get('laravellocalization.useSessionLocale');
-    }
-
-    /**
-     * Returns the translation key for a given path
-     *
-     * @return boolean       Returns value of useCookieLocale in config.
-     */
-    protected function useCookieLocale()
-    {
-        return $this->configRepository->get('laravellocalization.useCookieLocale');
-    }
 
     /**
      * Returns the translation key for a given path
@@ -801,12 +703,14 @@ class LaravelLocalization {
      */
     public function createUrlFromUri( $uri )
     {
+        $uri = ltrim($uri, "/");
+
         if ( empty( $this->baseUrl ) )
         {
-            return URL::to($uri);
+            return app('url')->to($uri);
         }
 
-        return $this->baseUrl . ltrim($uri, "/");
+        return $this->baseUrl . $uri;
     }
 
     /**
@@ -836,7 +740,12 @@ class LaravelLocalization {
         {
             $attributes = [ ];
             $parse = parse_url($url);
-            $parse = explode("/", $parse[ 'path' ]);
+            if ( isset( $parse[ 'path' ] ) ) {
+                $parse = explode("/", $parse[ 'path' ]);
+            }
+            else {
+                $parse = [];
+            }
             $url = [ ];
             foreach ( $parse as $segment )
             {
@@ -906,8 +815,7 @@ class LaravelLocalization {
                 }
             }
 
-        }
-        else
+        } else
         {
             if ( !$this->router->current() )
             {
@@ -927,7 +835,6 @@ class LaravelLocalization {
                 $attributes = array_merge($attributes, $response);
             }
         }
-
 
 
         return $attributes;
@@ -968,5 +875,4 @@ class LaravelLocalization {
 
         return $url;
     }
-
 }

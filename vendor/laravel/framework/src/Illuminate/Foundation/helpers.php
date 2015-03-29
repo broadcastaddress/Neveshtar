@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Str;
+use Illuminate\Container\Container;
+
 if ( ! function_exists('abort'))
 {
 	/**
@@ -40,16 +43,14 @@ if ( ! function_exists('app'))
 	 * Get the available container instance.
 	 *
 	 * @param  string  $make
-	 * @return mixed
+	 * @param  array   $parameters
+	 * @return mixed|\Illuminate\Foundation\Application
 	 */
-	function app($make = null)
+	function app($make = null, $parameters = [])
 	{
-		if ( ! is_null($make))
-		{
-			return app()->make($make);
-		}
+		if (is_null($make)) return Container::getInstance();
 
-		return Illuminate\Container\Container::getInstance();
+		return Container::getInstance()->make($make, $parameters);
 	}
 }
 
@@ -213,6 +214,20 @@ if ( ! function_exists('csrf_token'))
 	}
 }
 
+if ( ! function_exists('database_path'))
+{
+	/**
+	 * Get the database path.
+	 *
+	 * @param  string  $path
+	 * @return string
+	 */
+	function database_path($path = '')
+	{
+		return app()->make('path.database').($path ? '/'.$path : $path);
+	}
+}
+
 if ( ! function_exists('delete'))
 {
 	/**
@@ -365,6 +380,22 @@ if ( ! function_exists('redirect'))
 		if (is_null($to)) return app('redirect');
 
 		return app('redirect')->to($to, $status, $headers, $secure);
+	}
+}
+
+if ( ! function_exists('resource'))
+{
+	/**
+	 * Route a resource to a controller.
+	 *
+	 * @param  string  $name
+	 * @param  string  $controller
+	 * @param  array   $options
+	 * @return void
+	 */
+	function resource($name, $controller, array $options = [])
+	{
+		return app('router')->resource($name, $controller, $options);
 	}
 }
 
@@ -573,13 +604,18 @@ if ( ! function_exists('env'))
 			case '(false)':
 				return false;
 
-			case 'null':
-			case '(null)':
-				return null;
-
 			case 'empty':
 			case '(empty)':
 				return '';
+
+			case 'null':
+			case '(null)':
+				return;
+		}
+
+		if (Str::startsWith($value, '"') && Str::endsWith($value, '"'))
+		{
+			return substr($value, 1, -1);
 		}
 
 		return $value;
