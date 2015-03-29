@@ -12,7 +12,7 @@
 			</div>
 			<div class="portlet-body form">
 				<!-- BEGIN FORM-->
-				<form action="/admin/{{$active}}" method="post" id="admin_form" class="form-horizontal">
+				<form action="/admin/{{$active}}" method="post" id="admin_form" class="form-horizontal" enctype="multipart/form-data">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="form-body">
 						<h3 class="form-section"><i class="fa fa-edit"></i> {{Lang::get('admin.content')}}</h3>
@@ -52,7 +52,7 @@
 										{{Lang::get('admin.select')}} {{Lang::get('admin.image')}}</span>
 										<span class="fileinput-exists">
 										{{Lang::get('admin.change')}} </span>
-										<input type="file" name="..." required data-required="1">
+										<input type="file" name="file" required data-required="1">
 										</span>
 										<a href="#" class="btn red fileinput-exists" data-dismiss="fileinput">
 										{{Lang::get('admin.remove')}} </a>
@@ -61,6 +61,22 @@
 							</div>
 						</div>
 						<h3 class="form-section"><i class="fa fa-wrench"></i> {{Lang::get('admin.settings')}}</h3>
+						<div class="form-group">
+							<label class="control-label col-md-3">{{Lang::get('admin.watermark')}} <span class="required">
+							* </span>
+							</label>
+							<div class="col-md-4">
+								<div class="input-group">
+									<span class="input-group-addon">
+									<i class="fa fa-unlock-alt"></i>
+									</span>
+									<select class="form-control" name="watermark" id="selectWatermark" required data-required="1">
+										<option value="1">{{ucwords(Lang::get('admin.yes'))}}</option>
+										<option value="0">{{ucwords(Lang::get('admin.no'))}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
 						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.status')}} <span class="required">
 							* </span>
@@ -116,6 +132,9 @@
 
 <script>
     $("#selectStatus").val("{{old('status')}}");
+</script>
+<script>
+    $("#selectWatermark").val("{{old('watermark')}}");
 </script>
 @endsection
 

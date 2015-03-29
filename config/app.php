@@ -202,7 +202,7 @@ return [
 		'Theme'     => 'Caffeinated\Themes\Facades\Theme',
 		'Component' => 'Caffeinated\Themes\Facades\Component',
 	    'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization',
-	    'Image' => 'Intervention\Image\Facades\Image'
+	    'Image' 	=> 'Intervention\Image\Facades\Image'
 
 	],
 

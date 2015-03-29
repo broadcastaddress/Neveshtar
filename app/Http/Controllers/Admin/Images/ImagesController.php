@@ -10,6 +10,7 @@ use Input;
 use Model;
 use Auth;
 use Request;
+use Image;
 
 class ImagesController extends Controller {
 
@@ -103,13 +104,58 @@ class ImagesController extends Controller {
 	}
 
 	public function store(imagesRequest $request) {
-	    $data = Input::all();
-	    array_forget($data, '_token');
-	    array_forget($data, '_wysihtml5_mode');
-	    $data['user_id'] = Auth::user()->id;
-	    $db = new images($data);
-	    $db->save();
-	    return redirect('/admin/images')->with('message', Lang::get('admin.image').' '.Lang::get('admin.create_success'));
+
+		$title = Input::get('title');
+		$file = Input::file('file');
+
+		$filename = rand(1000,9999).time().substr($file->getClientOriginalName(), -4);
+
+		// Manual crop & save
+		$destinationPath = 'precrop/';
+		Input::file('file')->move($destinationPath, $filename);
+
+		$img = Image::make($destinationPath.$filename);
+		if(Input::get('watermark') == 1) {
+			$img->insert('themes/'.Theme::getActive().'/assets/logo.png', 'bottom-left', 20, 20);
+		};
+		$img->save($destinationPath.$filename);
+
+		if(Input::get('watermark') == 1) {
+			Image::make($destinationPath.$filename)->resize(1024, null, function ($constraint) {
+				$constraint->aspectRatio();
+				$constraint->upsize();
+				$constraint->insert('themes/'.Theme::getActive().'/assets/logo.png', 'bottom-left', 20, 20);
+			})->save($destinationPath.'1_'.$filename, 90);
+		} else {
+			Image::make($destinationPath.$filename)->resize(1024, null, function ($constraint) {
+				$constraint->aspectRatio();
+				$constraint->upsize();
+			})->save($destinationPath.'1_'.$filename, 90);
+		};
+
+		Image::make($destinationPath.$filename)->resize(640, null, function ($constraint) {
+			$constraint->aspectRatio();
+			$constraint->upsize();
+		})->save($destinationPath.'2_'.$filename, 90);
+
+		Image::make($destinationPath.$filename)->resize(320, null, function ($constraint) {
+			$constraint->aspectRatio();
+			$constraint->upsize();
+		})->save($destinationPath.'3_'.$filename, 90);
+
+		Image::make($destinationPath.$filename)->resize(200, null, function ($constraint) {
+			$constraint->aspectRatio();
+			$constraint->upsize();
+		})->save($destinationPath.'4_'.$filename, 90);
+
+		$resized = '2_'.$filename;
+
+		View::share('resized', $resized);
+		View::share('title', $title);
+		View::share('filename', $filename);
+		return Theme::view('admin.images.crop');
+		// End manual crop & save
+
 	}
 
 	public function show($id) {
