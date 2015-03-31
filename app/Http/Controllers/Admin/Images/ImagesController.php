@@ -128,7 +128,7 @@ class ImagesController extends Controller {
 			$constraint->upsize();
 		})->save($destinationPath.'2_'.$filename, 90);
 
-		Image::make($destinationPath.$filename)->resize(800, null, function ($constraint) {
+		Image::make($destinationPath.$filename)->resize(840, null, function ($constraint) {
 			$constraint->aspectRatio();
 			$constraint->upsize();
 		})->save($destinationPath.'3_'.$filename, 90);

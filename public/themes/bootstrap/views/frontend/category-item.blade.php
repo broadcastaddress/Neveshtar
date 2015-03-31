@@ -18,41 +18,63 @@
                 <!-- BEGIN LEFT SIDEBAR -->
                 <div class="col-md-9 col-sm-9 blog-item">
                   <div class="blog-item-img">
-                    <!-- BEGIN CAROUSEL -->
-                    <div class="front-carousel">
-                      <div id="myCarousel" class="carousel slide">
-                        <!-- Carousel items -->
-                        <div class="carousel-inner">
-                          <div class="item">
-                            <img src="/themes/bootstrap/assets/frontend/pages/img/posts/img1.jpg" alt="">
-                          </div>
-                          <div class="item">
-                            <!-- BEGIN VIDEO -->
-                            <iframe src="http://player.vimeo.com/video/56974716?portrait=0" style="width:100%; border:0" allowfullscreen="" height="259"></iframe>
-                            <!-- END VIDEO -->
-                          </div>
-                          <div class="item active">
-                            <img src="/themes/bootstrap/assets/frontend/pages/img/posts/img3.jpg" alt="">
-                          </div>
-                        </div>
-                        <!-- Carousel nav -->
-                        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-                          <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a class="carousel-control right" href="#myCarousel" data-slide="next">
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </div>
-                    <!-- END CAROUSEL -->
+	                  <!-- BEGIN CAROUSEL -->
+					  @if(($item->main_image <> NULL) || (count($item->gallery) > 0))
+	                  <div class="front-carousel">
+	                    <div class="carousel slide" id="myCarousel" data-interval="false">
+	                      <!-- Carousel items -->
+	                      <div class="carousel-inner">
+	                      	<?php $i = 0; ?>
+	                      	@if(isset($item->main_image))
+	                      	<?php $i++; ?>
+	                        <div class="item active">
+	                          <img alt="{{$item->main_image->title}}" src="/uploads/images/3_{{$item->main_image->url}}">
+								<span class="carousel-caption row-fluid">
+									<a class="fancybox-button btn btn-sm pull-right red" title="{{$item->main_image->title}}" rel="group" href="/uploads/images/{{$item->main_image->url}}"><i class="fa fa-arrows-alt"></i> {{ucwords(Lang::get('site.zoom'))}}</a>
+									<p>{{$item->main_image->title}}</p>
+								</span>
+	                        </div>
+	                        @endif
+	                        @if(count($item->gallery) > 0)
+	                        @foreach($item->gallery as $gallery)
+	                        @if(!isset($item->main_image->url) || ($gallery->url !== $item->main_image->url))
+	                        @if($i == 0)
+	                        <div class="item active">
+	                        @else
+	                        <div class="item">
+	                        @endif
+	                          <img alt="{{$gallery->title}}" src="/uploads/images/3_{{$gallery->url}}">
+								<span class="carousel-caption row-fluid">
+									<a class="fancybox-button btn btn-sm pull-right red" title="{{$gallery->title}}" rel="group" href="/uploads/images/{{$gallery->url}}"><i class="fa fa-arrows-alt"></i> {{ucwords(Lang::get('site.zoom'))}}</a>
+									<p>{{$gallery->title}}</p>
+								</span>
+	                        </div>
+	                        <?php $i++; ?>
+	                        @endif
+	                        @endforeach
+	                        @endif
+	                      </div>
+	                      <!-- Carousel nav -->
+	                      @if($i > 1)
+	                      <a data-slide="prev" href="#myCarousel" class="carousel-control left">
+	                        <i class="fa fa-angle-left"></i>
+	                      </a>
+	                      <a data-slide="next" href="#myCarousel" class="carousel-control right">
+	                        <i class="fa fa-angle-right"></i>
+	                      </a>
+	                      @endif
+	                    </div>
+	                  </div>
+	                  @endif
+	                  <!-- END CAROUSEL -->
                   </div>
                   <h2>{{ucfirst($item->subtitle)}}</h2>
-                  <p><strong>{{ucfirst($item->intro)}}</strong></p>
+                  <p><strong>{!!ucfirst($item->intro)!!}</strong></p>
                   <blockquote>
                     <p>{{ucfirst($item->quote)}}</p>
                     <small>{{ucwords($item->quote_author)}}</small>
                   </blockquote>
-                  <p>{{ucfirst($item->description)}}</p>
+                  <p>{!!ucfirst($item->description)!!}</p>
                   <ul class="blog-info">
                     <li><i class="fa fa-user"></i> {{$item->user->name}}</li>
                     <li><i class="fa fa-clock-o"></i> {{$item->created_at->diffForHumans()}}</li>
@@ -97,7 +119,7 @@
                   </div>
                   @endif
 
-                  <div class="post-comment padding-top-40">
+                  <div class="post-comment">
                     <h3>Leave a Comment</h3>
                     <form role="form">
                       <div class="form-group">

@@ -16,8 +16,57 @@
               <div class="row">
                 <!-- BEGIN LEFT SIDEBAR -->
                 <div class="col-md-9 col-sm-9 blog-posts">
-
 				@if((!Request::Get('page')) || (Request::Get('page') < 2))
+	              <!-- BEGIN CAROUSEL -->
+				  @if(($item->main_image <> NULL) || (count($item->gallery) > 0))
+	              <div class="front-carousel">
+	                <div class="carousel slide" id="myCarousel" data-interval="false">
+	                  <!-- Carousel items -->
+	                  <div class="carousel-inner">
+	                  	<?php $i = 0; ?>
+	                  	@if(isset($item->main_image))
+	                  	<?php $i++; ?>
+	                    <div class="item active">
+	                      <img alt="{{$item->main_image->title}}" src="/uploads/images/3_{{$item->main_image->url}}">
+							<span class="carousel-caption row-fluid">
+								<a class="fancybox-button btn btn-sm pull-right red" title="{{$item->main_image->title}}" rel="group" href="/uploads/images/{{$item->main_image->url}}"><i class="fa fa-arrows-alt"></i> {{ucwords(Lang::get('site.zoom'))}}</a>
+								<p>{{$item->main_image->title}}</p>
+							</span>
+	                    </div>
+	                    @endif
+	                    @if(count($item->gallery) > 0)
+	                    @foreach($item->gallery as $gallery)
+	                    @if(!isset($item->main_image->url) || ($gallery->url !== $item->main_image->url))
+	                    @if($i == 0)
+	                    <div class="item active">
+	                    @else
+	                    <div class="item">
+	                    @endif
+	                      <img alt="{{$gallery->title}}" src="/uploads/images/3_{{$gallery->url}}">
+							<span class="carousel-caption row-fluid">
+								<a class="fancybox-button btn btn-sm pull-right red" title="{{$gallery->title}}" rel="group" href="/uploads/images/{{$gallery->url}}"><i class="fa fa-arrows-alt"></i> {{ucwords(Lang::get('site.zoom'))}}</a>
+								<p>{{$gallery->title}}</p>
+							</span>
+	                    </div>
+	                    <?php $i++; ?>
+	                    @endif
+	                    @endforeach
+	                    @endif
+	                  </div>
+	                  <!-- Carousel nav -->
+	                  @if($i > 1)
+	                  <a data-slide="prev" href="#myCarousel" class="carousel-control left">
+	                    <i class="fa fa-angle-left"></i>
+	                  </a>
+	                  <a data-slide="next" href="#myCarousel" class="carousel-control right">
+	                    <i class="fa fa-angle-right"></i>
+	                  </a>
+	                  @endif
+	                </div>
+	              </div>
+	              <br/>
+	              @endif
+	              <!-- END CAROUSEL -->
 	            @if(isset($item->subtitle) && ($item->subtitle <> ""))
 		            <h2>{{ucfirst($item->subtitle)}}</h2>
 		            <br/>
@@ -63,32 +112,52 @@
                   <div class="row">
                     <div class="col-md-4 col-sm-4">
                       <!-- BEGIN CAROUSEL -->
+                      @if(($post->main_image <> NULL) || (count($post->gallery) > 0))
                       <div class="front-carousel">
-                        <div class="carousel slide" id="myCarousel">
+                        <div class="carousel slide" id="myCarousel-{{$post->id}}">
                           <!-- Carousel items -->
                           <div class="carousel-inner">
-                            <div class="item">
-                              <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img1.jpg">
-                            </div>
-                            <div class="item">
-                              <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img2.jpg">
-                            </div>
+                          	<?php $i = 0; ?>
+                          	@if(isset($post->main_image))
+                          	<?php $i++; ?>
                             <div class="item active">
-                              <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img3.jpg">
+                              <img alt="{{$post->main_image->title}}" src="/uploads/images/c_{{$post->main_image->url}}">
                             </div>
+                            @endif
+                            @if(count($post->gallery) > 0)
+                            @foreach($post->gallery as $gallery)
+                            @if(!isset($post->main_image->url) || ($gallery->url !== $post->main_image->url))
+                            @if($i == 0)
+                            <div class="item active">
+                            @else
+                            <div class="item">
+                            @endif
+                              <img alt="{{$gallery->title}}" src="/uploads/images/c_{{$gallery->url}}">
+                            </div>
+                            <?php $i++; ?>
+                            @endif
+                            @endforeach
+                            @endif
                           </div>
                           <!-- Carousel nav -->
-                          <a data-slide="prev" href="#myCarousel" class="carousel-control left">
+                          @if($i > 1)
+                          <a data-slide="prev" href="#myCarousel-{{$post->id}}" class="carousel-control left">
                             <i class="fa fa-angle-left"></i>
                           </a>
-                          <a data-slide="next" href="#myCarousel" class="carousel-control right">
+                          <a data-slide="next" href="#myCarousel-{{$post->id}}" class="carousel-control right">
                             <i class="fa fa-angle-right"></i>
                           </a>
+                          @endif
                         </div>
                       </div>
+                      @endif
                       <!-- END CAROUSEL -->
                     </div>
+                    @if(($post->main_image <> NULL) || (count($post->gallery) > 0))
                     <div class="col-md-8 col-sm-8">
+                    @else
+                    <div class="col-md-12 col-sm-12">
+                    @endif
                       <h2><a href="/{{Lang::getLocale()}}/{{$post->slug}}">{{ucwords($post->title)}}</a></h2>
                       <ul class="blog-info">
                         <li><i class="fa fa-clock-o"></i> {{$post->created_at->diffForHumans()}}</li>
@@ -183,93 +252,90 @@
                   <!-- CATEGORIES END -->
 
                   <!-- BEGIN RECENT NEWS -->
+                  @if(count($recent) > 0)
                   @if(count($categories) < 2)
-                  <h2 class="no-top-space">Recent News</h2>
+                  <h2 class="no-top-space">{{ucwords(Lang::get('site.recent_items'))}}</h2>
                   @else
-                  <h2>Recent News</h2>
+                  <h2>{{ucwords(Lang::get('site.recent_items'))}}</h2>
                   @endif
                   <div class="recent-news margin-bottom-10">
+                    @foreach($recent as $ritem)
                     <div class="row margin-bottom-10">
                       <div class="col-md-3">
-                        <img class="img-responsive" alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img2-large.jpg">
+                        <img class="img-responsive" alt="{{$ritem->title}}" src="/uploads/images/c3_{{$ritem->main_image->url}}">
                       </div>
                       <div class="col-md-9 recent-news-inner">
-                        <h3><a href="#">Letiusto gnissimos</a></h3>
-                        <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
+                        <h3><a href="/{{Lang::getLocale()}}/{{$ritem->slug}}">{{$ritem->title}}</a></h3>
+                        <p>{{Illuminate\Support\Str::Words($ritem->intro,10)}}</p>
                       </div>
                     </div>
-                    <div class="row margin-bottom-10">
-                      <div class="col-md-3">
-                        <img class="img-responsive" alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img1-large.jpg">
-                      </div>
-                      <div class="col-md-9 recent-news-inner">
-                        <h3><a href="#">Deiusto anissimos</a></h3>
-                        <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
-                      </div>
-                    </div>
-                    <div class="row margin-bottom-10">
-                      <div class="col-md-3">
-                        <img class="img-responsive" alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img3-large.jpg">
-                      </div>
-                      <div class="col-md-9 recent-news-inner">
-                        <h3><a href="#">Tesiusto baissimos</a></h3>
-                        <p>Decusamus tiusto odiodig nis simos ducimus qui sint</p>
-                      </div>
-                    </div>
+                    @endforeach
                   </div>
+                  @endif
                   <!-- END RECENT NEWS -->
 
                   <!-- BEGIN BLOG TALKS -->
+                  @if((count($viewed) > 0) || (count($commented) > 0))
                   <div class="blog-talks margin-bottom-30">
-                    <h2>Popular Talks</h2>
+                    <h2>{{ucwords(Lang::get('site.most'))}}</h2>
                     <div class="tab-style-1">
                       <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#tab-1">Multipurpose</a></li>
-                        <li><a data-toggle="tab" href="#tab-2">Documented</a></li>
+                      	@if(count($viewed) > 0)
+                        <li class="active"><a data-toggle="tab" href="#tab-1">{{ucwords(Lang::get('site.viewed'))}}</a></li>
+                        @endif
+                        @if(count($commented) > 0)
+                        <li><a data-toggle="tab" href="#tab-2">{{ucwords(Lang::get('site.commented'))}}</a></li>
+                        @endif
                       </ul>
                       <div class="tab-content">
+                      	@if(count($viewed) > 0)
                         <div id="tab-1" class="tab-pane row-fluid fade in active">
-                          <p class="margin-bottom-10">Raw denim you probably haven't heard of them jean shorts Austin. eu banh mi, qui irure terry richardson ex squid Aliquip placeat salvia cillum iphone.</p>
-                          <p><a class="more" href="#">Read more</a></p>
+                      		<ol class="row">
+	                        @foreach($viewed as $vitem)
+	                        	<li><a href="/{{Lang::getLocale()}}/{{$vitem->slug}}">{{$vitem->title}}</a></li>
+	                        @endforeach
+	                        <ol>
                         </div>
+                        @endif
+                        @if(count($commented) > 0)
                         <div id="tab-2" class="tab-pane fade">
-                          <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. aliquip jean shorts ullamco ad vinyl aesthetic magna delectus mollit. Keytar helvetica VHS salvia..</p>
+                      		<ol class="row">
+	                        @foreach($commented as $citem)
+	                        	<li><a href="/{{Lang::getLocale()}}/{{$citem->slug}}">{{$citem->title}}</a></li>
+	                        @endforeach
+	                        <ol>
                         </div>
+                        @endif
                       </div>
                     </div>
                   </div>
+                  @endif
                   <!-- END BLOG TALKS -->
 
                   <!-- BEGIN BLOG PHOTOS STREAM -->
+                  @if(count($photos_stream) > 0)
                   <div class="blog-photo-stream margin-bottom-20">
                     <h2>Photos Stream</h2>
                     <ul class="list-unstyled">
-                      <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img5-small.jpg"></a></li>
-                      <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img1.jpg"></a></li>
-                      <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img4-large.jpg"></a></li>
-                      <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img6.jpg"></a></li>
-                      <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/pics/img1-large.jpg"></a></li>
-                      <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/pics/img2-large.jpg"></a></li>
-                      <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img3.jpg"></a></li>
-                      <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img2-large.jpg"></a></li>
+                      @foreach($photos_stream as $stream)
+                      <li><a class="fancybox-button" rel="stream" title="{{$stream->main_image->title}}" href="/uploads/images/{{$stream->main_image->url}}"><img alt="" src="/uploads/images/c3_{{$stream->main_image->url}}"></a></li>
+                      @endforeach
                     </ul>
                   </div>
+                  @endif
                   <!-- END BLOG PHOTOS STREAM -->
 
                   <!-- BEGIN BLOG TAGS -->
+                  @if(count($tags) > 0)
                   <div class="blog-tags margin-bottom-20">
-                    <h2>Tags</h2>
+                    <h2>{{ucwords(Lang::get('site.recent_tags'))}}</h2>
                     <ul>
-                      <li><a href="#"><i class="fa fa-tags"></i>OS</a></li>
-                      <li><a href="#"><i class="fa fa-tags"></i>Metronic</a></li>
-                      <li><a href="#"><i class="fa fa-tags"></i>Dell</a></li>
-                      <li><a href="#"><i class="fa fa-tags"></i>Conquer</a></li>
-                      <li><a href="#"><i class="fa fa-tags"></i>MS</a></li>
-                      <li><a href="#"><i class="fa fa-tags"></i>Google</a></li>
-                      <li><a href="#"><i class="fa fa-tags"></i>Keenthemes</a></li>
-                      <li><a href="#"><i class="fa fa-tags"></i>Twitter</a></li>
+                      @foreach($tags as $tag)
+                      <li><a href="/{{Lang::getLocale()}}/tag/{{$tag->tag}}"><i class="fa fa-tags"></i>{{ucwords($tag->tag)}}</a></li>
+                      @endforeach
                     </ul>
                   </div>
+                  @endif
                   <!-- END BLOG TAGS -->
                 </div>
                 <!-- END RIGHT SIDEBAR -->
