@@ -32,7 +32,9 @@ class CategoryController extends Controller {
 		$itemtags = App\Items::with(['tags' => function ($q) use (&$tags) {
 		  $tags = $q->orderBy('id','DESC')->get();
 		}])->get();
-		$tags = $tags->unique(20);
+		if($tags) {
+			$tags = $tags->unique(20);
+		};
 		View::share('tags',$tags);
 
 		if($item->parent_id) {
