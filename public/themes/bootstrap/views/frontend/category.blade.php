@@ -18,13 +18,13 @@
                 <div class="col-md-9 col-sm-9 blog-posts">
 				@if((!Request::Get('page')) || (Request::Get('page') < 2))
 	              <!-- BEGIN CAROUSEL -->
-				  @if(($item->main_image <> NULL) || (count($item->gallery) > 0))
+				  @if((isset($item->main_image->url)) || (count($item->gallery) > 0))
 	              <div class="front-carousel">
 	                <div class="carousel slide" id="myCarousel" data-interval="false">
 	                  <!-- Carousel items -->
 	                  <div class="carousel-inner">
 	                  	<?php $i = 0; ?>
-	                  	@if(isset($item->main_image))
+	                  	@if(isset($item->main_image->url))
 	                  	<?php $i++; ?>
 	                    <div class="item active">
 	                      <img alt="{{$item->main_image->title}}" src="/uploads/images/3_{{$item->main_image->url}}">
@@ -261,6 +261,7 @@
                   <div class="recent-news margin-bottom-10">
                     @foreach($recent as $ritem)
                     <div class="row margin-bottom-10">
+                      @if(isset($ritem->main_image->url))
                       <div class="col-md-3">
                         <img class="img-responsive" alt="{{$ritem->title}}" src="/uploads/images/c3_{{$ritem->main_image->url}}">
                       </div>
@@ -268,6 +269,14 @@
                         <h3><a href="/{{Lang::getLocale()}}/{{$ritem->slug}}">{{$ritem->title}}</a></h3>
                         <p>{{Illuminate\Support\Str::Words($ritem->intro,10)}}</p>
                       </div>
+                      @else
+                      <div class="col-md-3">
+                      </div>
+                      <div class="col-md-9 recent-news-inner">
+                        <h3><a href="/{{Lang::getLocale()}}/{{$ritem->slug}}">{{$ritem->title}}</a></h3>
+                        <p>{{Illuminate\Support\Str::Words($ritem->intro,10)}}</p>
+                      </div>
+                      @endif
                     </div>
                     @endforeach
                   </div>
@@ -318,7 +327,9 @@
                     <h2>Photos Stream</h2>
                     <ul class="list-unstyled">
                       @foreach($photos_stream as $stream)
+                      @if($stream->main_image)
                       <li><a class="fancybox-button" rel="stream" title="{{$stream->main_image->title}}" href="/uploads/images/{{$stream->main_image->url}}"><img alt="" src="/uploads/images/c3_{{$stream->main_image->url}}"></a></li>
+                      @endif
                       @endforeach
                     </ul>
                   </div>

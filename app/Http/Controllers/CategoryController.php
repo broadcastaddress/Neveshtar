@@ -14,6 +14,8 @@ class CategoryController extends Controller {
 		View::share('item',$item);
 		$posts = App\Category::find($item->id)->items()->paginate(10);
 		View::share('posts',$posts);
+
+		//Sidebar Stuff
 		$categories = App\Category::where('parent_id',$item->parent_id)->where('status',1)->get();
 		View::share('categories',$categories);
 		$subcategories = App\Category::where('parent_id',$item->id)->where('status',1)->get();
@@ -42,6 +44,8 @@ class CategoryController extends Controller {
 			$parentcategories = App\Category::where('parent_id',$parent_category->parent_id)->where('status',1)->get();
 			View::share('parentcategories',$parentcategories);
 		};
+		//End Sidebar stuff
+
 		Theme::setLayout('frontend.app');
 		View::share('title',$item->title);
 		return Theme::view('frontend/category');

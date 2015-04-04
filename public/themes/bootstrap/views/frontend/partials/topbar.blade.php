@@ -67,7 +67,7 @@
             @endif
             @endif
             	@if(count($menu['children']) > 0)
-	            	<a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">
+	            	<a class="dropdown-toggle disabled" data-toggle="dropdown" data-target="#" href="/{{Lang::getLocale()}}/c/{{$menu->slug}}">
 	            		{{ucwords($menu->title)}}
             		</a>
 	            	<ul class="dropdown-menu">
