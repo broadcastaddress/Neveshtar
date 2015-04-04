@@ -24,7 +24,7 @@ class CategoryItemController extends Controller {
 		View::share('viewed',$viewed);
 		$commented = App\Items::where('status',1)->where('language',Lang::getLocale())->orderBy('id','desc')->take(4)->get();
 		View::share('commented',$commented);
-		$photos_stream = App\Items::where('status',1)->where('language',Lang::getLocale())->orderBy('id','desc')->groupBy('image_id')->take(8)->get();
+		$photos_stream = App\Items::where('status',1)->where('image_id','<>','null')->where('language',Lang::getLocale())->orderBy('id','desc')->groupBy('image_id')->take(8)->get();
 		View::share('photos_stream',$photos_stream);
 		$tags = App\Items::where('status',1)->where('language',Lang::getLocale())->orderBy('id','desc')->take(8)->get();
 

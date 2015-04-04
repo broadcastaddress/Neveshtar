@@ -7,27 +7,19 @@
             <h2>About us</h2>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam sit nonummy nibh euismod tincidunt ut laoreet dolore magna aliquarm erat sit volutpat.</p>
 
+            @if(count($footer_photos_stream) > 0)
             <div class="photo-stream">
               <h2>Photos Stream</h2>
               <ul class="list-unstyled">
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img5-small.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img1.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img4-large.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img6.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img3.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img2-large.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img2.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img5.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img5-small.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img1.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img4-large.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img6.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img3.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img2-large.jpg"></a></li>
-                <li><a href="#"><img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img2.jpg"></a></li>
+              	@foreach($footer_photos_stream as $footer_photo)
+              	@if($footer_photo->main_image)
+                <li><a class="fancybox-button" rel="footer_stream" href="/uploads/images/{{$footer_photo->main_image->url}}"><img title="{{$footer_photo->main_image->title}}" src="/uploads/images/c3_{{$footer_photo->main_image->url}}"></a></li>
+                @endif
+                @endforeach
               </ul>
             </div>
           </div>
+          @endif
           <!-- END BOTTOM ABOUT BLOCK -->
 
           <!-- BEGIN BOTTOM CONTACTS -->

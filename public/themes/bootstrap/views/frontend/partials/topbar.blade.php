@@ -20,8 +20,9 @@
 							<li><a href="/{{Lang::getLocale()}}/auth/login?register">Register</a></li>
 						@else
                         <li class="langs-block dropdown">
-                            <a href="/profile" class="current"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a>
+                            <a href="/{{Lang::getLocale()}}/profile" class="current"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a>
                             <div class="langs-block-others-wrapper"><div class="langs-block-others">
+                              <a href="/{{Lang::getLocale()}}/profile"><i class="fa fa-user"></i> Profile</a>
                               <a href="/{{Lang::getLocale()}}/auth/logout"><i class="fa fa-times-circle-o"></i> Logout</a>
                             </div></div>
                         </li>

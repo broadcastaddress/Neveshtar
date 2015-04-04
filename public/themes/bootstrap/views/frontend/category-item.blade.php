@@ -130,24 +130,22 @@
                   @endif
 
                   <div class="post-comment">
-                    <h3>Leave a Comment</h3>
+                    <h3>{{ucwords(Lang::get('site.leave_comment'))}}</h3>
+                    <hr/>
+                    @if (Auth::guest())
+                    <div class="note note-info">
+	                    <h4 class="block">{!!Lang::get('site.login_register', ['login' => '/'.Lang::getLocale().'/auth/login', 'register' => '/'.Lang::getLocale().'/auth/login?register'])!!}.</h4>
+	                    <p>{!!Lang::get('site.login_register_comment', ['login' => '/'.Lang::getLocale().'/auth/login', 'register' => '/'.Lang::getLocale().'/auth/login?register'])!!}.</p>
+                    </div>
+                    @else
                     <form role="form">
                       <div class="form-group">
-                        <label>Name</label>
-                        <input class="form-control" type="text">
-                      </div>
-
-                      <div class="form-group">
-                        <label>Email <span class="color-red">*</span></label>
-                        <input class="form-control" type="text">
-                      </div>
-
-                      <div class="form-group">
-                        <label>Message</label>
+                        <label>{{ucwords(Lang::get('site.comment'))}}</label>
                         <textarea class="form-control" rows="8"></textarea>
                       </div>
-                      <p><button class="btn btn-primary" type="submit">Post a Comment</button></p>
+                      <p><button class="btn btn-primary" type="submit">{{ucwords(Lang::get('site.post_comment'))}}</button></p>
                     </form>
+                    @endif
                   </div>
                 </div>
                 <!-- END LEFT SIDEBAR -->
