@@ -3,5 +3,8 @@
 	padding: 0;
 }
 .media .media-body {
-width: 10000px;
+	width: 10000px;
+}
+.front-carousel .carousel-control {
+	z-index: 100000;
 }

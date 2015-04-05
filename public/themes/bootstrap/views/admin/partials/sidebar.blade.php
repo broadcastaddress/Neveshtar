@@ -37,6 +37,15 @@
 						<span class="title">Images</span>
 						</a>
 					</li>
+					<li id="side-comments">
+						<a href="/admin/comments">
+						<i class="icon-bubbles"></i>
+						<span class="title">Comments</span>
+						@if(count($new_comments) > 0)
+						<span class="badge badge-success">{{count($new_comments)}}</span>
+						@endif
+						</a>
+					</li>
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>

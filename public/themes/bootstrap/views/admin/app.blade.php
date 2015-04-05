@@ -43,7 +43,6 @@
 				<!-- BEGIN PAGE TOOLBAR -->
 				<div class="page-toolbar">
 					<!-- BEGIN THEME PANEL -->
-					@component_adminStyleCustomizer('')
 					<!-- END THEME PANEL -->
 				</div>
 				<!-- END PAGE TOOLBAR -->

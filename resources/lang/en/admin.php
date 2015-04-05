@@ -68,5 +68,7 @@ return [
 	'media'						=> 'media',
 	'main'						=> 'main',
 	'gallery'					=> 'gallery',
+	'comments'					=> 'comments',
+	'comments'					=> 'comment',
 
 ];

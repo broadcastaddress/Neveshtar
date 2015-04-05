@@ -37,14 +37,16 @@
 						</li>
 						<li class="divider">
 						</li>
+						@if(count($new_comments)>0)
 						<li>
-							<a href="#">
-							<i class="icon-flag"></i> Comments <span class="badge badge-success">4</span>
+							<a href="/admin/comments">
+							<i class="icon-bubbles"></i> Comments <span class="badge badge-success">{{count($new_comments)}}</span>
 							</a>
 						</li>
+						@endif
 						<li>
 							<a href="#">
-							<i class="icon-users"></i> Feedbacks <span class="badge badge-danger">2</span>
+							<i class="icon-flag"></i> Feedbacks <span class="badge badge-danger">2</span>
 							</a>
 						</li>
 					</ul>

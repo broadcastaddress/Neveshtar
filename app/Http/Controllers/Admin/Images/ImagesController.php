@@ -13,13 +13,7 @@ use Request;
 use Image;
 use File;
 
-class ImagesController extends Controller {
-
-	public function __construct()
-	{
-		$this->middleware('auth');
-		$this->middleware('checkInputs');
-	}
+class ImagesController extends \App\Http\Controllers\Admin\AdminController {
 
 	public function index() {
 		View::share('active','images');

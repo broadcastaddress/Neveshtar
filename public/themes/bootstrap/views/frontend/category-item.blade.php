@@ -32,28 +32,32 @@
 	                      	<?php $i = 0; ?>
 	                      	@if(isset($item->main_image->url))
 	                      	<?php $i++; ?>
-	                        <div class="item active">
-	                          <img alt="{{$item->main_image->title}}" src="/uploads/images/3_{{$item->main_image->url}}">
-								<span class="carousel-caption row-fluid">
-									<a class="fancybox-button btn btn-sm pull-right red" title="{{$item->main_image->title}}" rel="group" href="/uploads/images/{{$item->main_image->url}}"><i class="fa fa-arrows-alt"></i> {{ucwords(Lang::get('site.zoom'))}}</a>
-									<p>{{$item->main_image->title}}</p>
-								</span>
-	                        </div>
+							<div class="gallery-item item active">
+								<a class="fancybox-button" title="{{$item->main_image->title}}" rel="group" href="/uploads/images/{{$item->main_image->url}}">
+									<img alt="{{$item->main_image->title}}" src="/uploads/images/3_{{$item->main_image->url}}">
+									<span class="carousel-caption row-fluid">
+										<p>{{$item->main_image->title}}</p>
+									</span>
+									<div class="zoomix"><i class="fa fa-search"></i></div>
+								</a>
+							</div>
 	                        @endif
 	                        @if(count($item->gallery) > 0)
 	                        @foreach($item->gallery as $gallery)
 	                        @if(!isset($item->main_image->url) || ($gallery->url !== $item->main_image->url))
 	                        @if($i == 0)
-	                        <div class="item active">
+	                        <div class="gallery-item item active">
 	                        @else
-	                        <div class="item">
+	                        <div class="gallery-item item">
 	                        @endif
-	                          <img alt="{{$gallery->title}}" src="/uploads/images/3_{{$gallery->url}}">
-								<span class="carousel-caption row-fluid">
-									<a class="fancybox-button btn btn-sm pull-right red" title="{{$gallery->title}}" rel="group" href="/uploads/images/{{$gallery->url}}"><i class="fa fa-arrows-alt"></i> {{ucwords(Lang::get('site.zoom'))}}</a>
-									<p>{{$gallery->title}}</p>
-								</span>
-	                        </div>
+								<a class="fancybox-button" title="{{$gallery->title}}" rel="group" href="/uploads/images/{{$gallery->url}}">
+									<img alt="{{$gallery->title}}" src="/uploads/images/3_{{$gallery->url}}">
+									<span class="carousel-caption row-fluid">
+										<p>{{$gallery->title}}</p>
+									</span>
+									<div class="zoomix"><i class="fa fa-search"></i></div>
+								</a>
+							</div>
 	                        <?php $i++; ?>
 	                        @endif
 	                        @endforeach
@@ -113,7 +117,13 @@
                       <img src="/themes/bootstrap/assets/frontend/pages/img/people/img1-small.jpg" alt="" class="media-object">
                       </a>
                       <div class="media-body">
-                        <h4 class="media-heading">{{$comment->user->name}} <span><i class="fa fa-clock-o"></i> {{$comment->created_at->diffForHumans()}} / <a href="#"><strong>{{ucfirst(Lang::get('site.reply'))}}</strong></a></span></h4>
+                        <h4 class="media-heading">{{$comment->user->name}} <span><i class="fa fa-clock-o"></i> {{$comment->created_at->diffForHumans()}}
+                        @if (!Auth::guest())
+                        <!--
+                        / <a href="#"><strong>{{ucfirst(Lang::get('site.reply'))}}</strong></a>
+                        -->
+                        @endif
+                        </span></h4>
                         <p> {{$comment->description}} </p>
                         @foreach($comment->replies as $reply)
                         <!-- Nested media object -->
@@ -122,7 +132,7 @@
                           <img src="/themes/bootstrap/assets/frontend/pages/img/people/img2-small.jpg" alt="" class="media-object">
                           </a>
                           <div class="media-body">
-                            <h4 class="media-heading">{{$reply->user->name}} <span><i class="fa fa-clock-o"></i> {{$reply->created_at->diffForHumans()}} <i class="fa fa-calendar"></i> {{$reply->created_at->toDayDateTimeString()}}</span></h4>
+                            <h4 class="media-heading">{{$reply->user->name}} <span><i class="fa fa-clock-o"></i> {{$reply->created_at->diffForHumans()}} </span></h4>
                             <p> {{$reply->description}}</p>
                           </div>
                         </div>
@@ -330,6 +340,7 @@
 
 @section('headerPlugins')
 <link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+<link href="/themes/bootstrap/assets/frontend/pages/css/gallery.css" rel="stylesheet">
 @endsection
 
 @section('footerPlugins')

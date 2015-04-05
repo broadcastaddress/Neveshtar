@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use View;
 use Theme;
+use App;
 
 class AdminController extends Controller {
 
@@ -16,9 +17,15 @@ class AdminController extends Controller {
 	| a simple trait to add these behaviors. Why don't you explore it?
 	|
 	*/
+
+    protected $new_comments;
+
 	public function __construct()
 	{
 		$this->middleware('auth');
+		$this->middleware('checkInputs');
+        $this->new_comments = App\Comments::where('status',0)->select(array('id'))->get();
+        View::share('new_comments', $this->new_comments);
 	}
 
 	public function index() {

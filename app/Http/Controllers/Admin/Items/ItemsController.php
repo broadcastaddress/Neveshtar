@@ -11,23 +11,7 @@ use Model;
 use Auth;
 use Request;
 
-class ItemsController extends Controller {
-
-	/*
-	|--------------------------------------------------------------------------
-	| Registration & Login Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller handles the registration of new users, as well as the
-	| authentication of existing users. By default, this controller uses
-	| a simple trait to add these behaviors. Why don't you explore it?
-	|
-	*/
-	public function __construct()
-	{
-		$this->middleware('auth');
-		$this->middleware('checkInputs');
-	}
+class ItemsController extends \App\Http\Controllers\Admin\AdminController {
 
 	public function index() {
 		View::share('active','items');

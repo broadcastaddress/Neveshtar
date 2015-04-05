@@ -43,6 +43,12 @@ function()
 	    Route::resource('images', 'Admin\Images\ImagesController');
 	    Route::post('images/ajax_table', 'Admin\Images\ImagesController@ajax_table');
 	    Route::post('images/actions', 'Admin\Images\ImagesController@actions');
+
+	    // Comments
+	    Route::resource('comments', 'Admin\Comments\CommentsController');
+	    Route::post('comments/ajax_table', 'Admin\Comments\CommentsController@ajax_table');
+	    Route::post('comments/actions', 'Admin\Comments\CommentsController@actions');
+
 	});
 
 	Route::get('/', [
