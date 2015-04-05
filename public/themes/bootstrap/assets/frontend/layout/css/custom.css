@@ -2,3 +2,6 @@
 .padding-0 {
 	padding: 0;
 }
+.media .media-body {
+width: 10000px;
+}

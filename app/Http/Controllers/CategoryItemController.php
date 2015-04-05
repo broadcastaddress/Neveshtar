@@ -4,6 +4,9 @@ use Theme;
 use View;
 use App;
 use Lang;
+use Input;
+use Redirect;
+use Auth;
 
 class CategoryItemController extends Controller {
 
@@ -47,6 +50,23 @@ class CategoryItemController extends Controller {
 		View::share('item',$item);
 		View::share('title',$item->title);
 		return Theme::view('frontend/category-item');
+	}
+
+	public function comment($slug)
+	{
+
+		if(Input::get('comment') <> '') {
+			$item = App\Items::where('slug', $slug)->where('status',1)->select(array('id'))->first();
+			$comment = new App\Comments;
+			$comment->description = Input::get('comment');
+			$comment->item_id = $item->id;
+			$comment->parent_id = null;
+			$comment->status = 0;
+			$comment->user_id = Auth::user()->id;
+			$comment->save();
+		};
+		return Redirect::back()->with('message', Lang::get('site.comment_submitted'));
+
 	}
 
 }

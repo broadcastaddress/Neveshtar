@@ -28,7 +28,7 @@ return [
 	'comment'					=> 'comment',
 	'post_comment'				=> 'post a comment',
 	'leave_comment'				=> 'leave a comment',
-	''				=> '',
+	'comment_submitted'			=> 'your comment has been submitted and will be shown after approved.',
 	''				=> '',
 	''				=> '',
 

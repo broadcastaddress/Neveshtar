@@ -17,6 +17,11 @@
               <div class="row">
                 <!-- BEGIN LEFT SIDEBAR -->
                 <div class="col-md-9 col-sm-9 blog-item">
+				@if(Session::has('message'))
+	            <div class="note note-success">
+	                <h4 class="block">{{ucfirst(Session::get('message'))}}</h4>
+	            </div>
+				@endif
                   <div class="blog-item-img">
 	                  <!-- BEGIN CAROUSEL -->
 					  @if((isset($item->main_image->url)) || (count($item->gallery) > 0))
@@ -108,7 +113,7 @@
                       <img src="/themes/bootstrap/assets/frontend/pages/img/people/img1-small.jpg" alt="" class="media-object">
                       </a>
                       <div class="media-body">
-                        <h4 class="media-heading">{{$comment->user->name}} <span><i class="fa fa-clock-o"></i> {{$comment->created_at->diffForHumans()}} <i class="fa fa-calendar"></i> {{$comment->created_at->toDayDateTimeString()}} / <a href="#"><strong>{{ucfirst(Lang::get('site.reply'))}}</strong></a></span></h4>
+                        <h4 class="media-heading">{{$comment->user->name}} <span><i class="fa fa-clock-o"></i> {{$comment->created_at->diffForHumans()}} / <a href="#"><strong>{{ucfirst(Lang::get('site.reply'))}}</strong></a></span></h4>
                         <p> {{$comment->description}} </p>
                         @foreach($comment->replies as $reply)
                         <!-- Nested media object -->
@@ -138,10 +143,11 @@
 	                    <p>{!!Lang::get('site.login_register_comment', ['login' => '/'.Lang::getLocale().'/auth/login', 'register' => '/'.Lang::getLocale().'/auth/login?register'])!!}.</p>
                     </div>
                     @else
-                    <form role="form">
+                    <form role="form" method="post">
                       <div class="form-group">
                         <label>{{ucwords(Lang::get('site.comment'))}}</label>
-                        <textarea class="form-control" rows="8"></textarea>
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <textarea name="comment" class="form-control" rows="8"></textarea>
                       </div>
                       <p><button class="btn btn-primary" type="submit">{{ucwords(Lang::get('site.post_comment'))}}</button></p>
                     </form>

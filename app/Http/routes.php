@@ -50,6 +50,7 @@ function()
 	]);
     Route::resource('c', 'CategoryController');
 	Route::get('categoryItem', 'CategoryItemController@index');
+	Route::post('categoryItem', 'CategoryItemController@comment');
 	Route::get('about', 'AboutController@index');
 	Route::get('services', 'ServicesController@index');
 	Route::get('portfolio', 'PortfolioController@index');
