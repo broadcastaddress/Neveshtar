@@ -5,6 +5,7 @@ use View;
 use Lang;
 use App;
 use Auth;
+use Request;
 
 class ProfileController extends Controller {
 
@@ -22,9 +23,19 @@ class ProfileController extends Controller {
 	public function index()
 	{
 		Theme::setLayout('frontend.app');
-		View::share('title',Lang::get('site.profile'));
+		View::share('title',Lang::get('site.my_profile'));
 		View::share('user',App\User::find(Auth::user()->id));
 		return Theme::view('frontend/profile');
+	}
+
+	public function store()
+	{
+		if(Request::get('name') <> null) {
+			$profile = App\User::find(Auth::user()->id);
+			$profile->name = Request::get('name');
+			$profile->update();
+			return redirect()->back()->with('message',ucfirst(Lang::get('site.info_updated')));
+		}
 	}
 
 }
