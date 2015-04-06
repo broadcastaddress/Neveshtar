@@ -23,9 +23,9 @@ class CategoryItemController extends Controller {
 		View::share('subcategories',$subcategories);
 		$recent = App\Items::where('status',1)->where('language',Lang::getLocale())->orderBy('id','desc')->take(4)->get();
 		View::share('recent',$recent);
-		$viewed = App\Items::where('status',1)->where('language',Lang::getLocale())->orderBy('id','desc')->take(4)->get();
+		$viewed = App\ItemView::difference(30,5);
 		View::share('viewed',$viewed);
-		$commented = App\Items::where('status',1)->where('language',Lang::getLocale())->orderBy('id','desc')->take(4)->get();
+		$commented = App\Comments::difference(30,5);
 		View::share('commented',$commented);
 		$photos_stream = App\Items::where('status',1)->where('image_id','<>','null')->where('language',Lang::getLocale())->orderBy('id','desc')->groupBy('image_id')->take(8)->get();
 		View::share('photos_stream',$photos_stream);
@@ -46,6 +46,13 @@ class CategoryItemController extends Controller {
 			View::share('parentcategories',$parentcategories);
 		};
 		//End Sidebar stuff
+
+		$itemView = new App\ItemView();
+		$itemView->item_id = $item->id;
+		if(!Auth::guest()) {
+			$itemView->user_id = Auth::user()->id;
+		};
+		$itemView->save();
 
 		View::share('item',$item);
 		View::share('title',$item->title);

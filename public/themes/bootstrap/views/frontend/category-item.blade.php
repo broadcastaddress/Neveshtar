@@ -279,7 +279,7 @@
                         <div id="tab-1" class="tab-pane row-fluid fade in active">
                       		<ol class="row">
 	                        @foreach($viewed as $vitem)
-	                        	<li><a href="/{{Lang::getLocale()}}/{{$vitem->slug}}">{{$vitem->title}}</a></li>
+	                        	<li><a href="/{{Lang::getLocale()}}/{{$vitem->slug}}">{{$vitem->item->title}}</a></li>
 	                        @endforeach
 	                        <ol>
                         </div>
@@ -288,7 +288,7 @@
                         <div id="tab-2" class="tab-pane fade">
                       		<ol class="row">
 	                        @foreach($commented as $citem)
-	                        	<li><a href="/{{Lang::getLocale()}}/{{$citem->slug}}">{{$citem->title}}</a></li>
+	                        	<li><a href="/{{Lang::getLocale()}}/{{$citem->slug}}">{{$citem->item->title}}</a></li>
 	                        @endforeach
 	                        <ol>
                         </div>
