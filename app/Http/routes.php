@@ -54,6 +54,7 @@ function()
 	Route::get('/', [
 	    'as' => 'WelcomeController', 'uses' => 'WelcomeController@index'
 	]);
+    Route::resource('profile', 'ProfileController');
     Route::resource('c', 'CategoryController');
 	Route::get('categoryItem', 'CategoryItemController@index');
 	Route::post('categoryItem', 'CategoryItemController@comment');

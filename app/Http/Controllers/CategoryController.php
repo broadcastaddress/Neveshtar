@@ -12,7 +12,7 @@ class CategoryController extends Controller {
 	{
 		$item = App\Category::where('slug',$slug)->where('status',1)->first();
 		View::share('item',$item);
-		$posts = App\Category::find($item->id)->items()->paginate(10);
+		$posts = App\Category::latestTopic($item->id,20,0);
 		View::share('posts',$posts);
 
 		//Sidebar Stuff

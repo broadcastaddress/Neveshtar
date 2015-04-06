@@ -29,7 +29,14 @@ return [
 	'post_comment'				=> 'post a comment',
 	'leave_comment'				=> 'leave a comment',
 	'comment_submitted'			=> 'your comment has been submitted and will be shown after approved.',
-	''				=> '',
+	'profile'					=> 'profile',
+	'change_password'			=> 'change password',
+	'personal_details'			=> 'your personal details',
+	'full_name'					=> 'full name',
+	'email'						=> 'email',
+	'update_info'				=> 'update info',
+	'created_on'				=> 'created on',
+	'last_update'				=> 'last update',
 	''				=> '',
 
 ];

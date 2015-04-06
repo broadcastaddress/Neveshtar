@@ -184,7 +184,6 @@
                   <hr class="blog-post-sep">
                   @endif
 
-
                 </div>
                 <!-- END LEFT SIDEBAR -->
 
