@@ -21,6 +21,11 @@ class Items extends Model {
         return $this->hasOne('App\Media', 'id', 'image_id');
     }
 
+    public function category()
+    {
+	    return $this->belongsTo('App\Category');
+    }
+
 	public function gallery()
 	{
 		return $this->belongsToMany('App\Media', 'item_media', 'item_id', 'media_id')->where('type','img');

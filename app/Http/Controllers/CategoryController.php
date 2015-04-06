@@ -48,7 +48,12 @@ class CategoryController extends Controller {
 
 		Theme::setLayout('frontend.app');
 		View::share('title',$item->title);
-		return Theme::view('frontend/category');
+		if($item->type == "category") {
+			return Theme::view('frontend/category');
+		};
+		if($item->type == "portfolio") {
+			return Theme::view('frontend/portfolio');
+		};
 	}
 
 }

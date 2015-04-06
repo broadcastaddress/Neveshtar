@@ -4,50 +4,68 @@
     <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li class="active">Portfolio Item</li>
+            <li><a href="/">Home</a></li>
+            <li class="active">{{$title}}</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
           <!-- BEGIN CONTENT -->
           <div class="col-md-12 col-sm-12">
-            <h1>Portfolio Item</h1>
+            <h1>{{$title}}</h1>
             <div class="content-page">
               <div class="row margin-bottom-30">
                 <!-- BEGIN CAROUSEL -->
-                <div class="col-md-5 front-carousel">
-                  <div class="carousel slide" id="myCarousel">
-                    <!-- Carousel items -->
-                    <div class="carousel-inner">
-                      <div class="item">
-                        <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img1.jpg">
-                        <div class="carousel-caption">
-                          <p>Excepturi sint occaecati cupiditate non provident</p>
-                        </div>
+				  @if((isset($item->main_image->url)) || (count($item->gallery) > 0))
+                  <div class="col-md-5 front-carousel">
+                    <div class="carousel slide" id="myCarousel" data-interval="false">
+                      <!-- Carousel items -->
+                      <div class="carousel-inner">
+                      	<?php $i = 0; ?>
+                      	@if(isset($item->main_image->url))
+                      	<?php $i++; ?>
+						<div class="gallery-item item active">
+							<a class="fancybox-button" title="{{$item->main_image->title}}" rel="group" href="/uploads/images/{{$item->main_image->url}}">
+								<img alt="{{$item->main_image->title}}" src="/uploads/images/3_{{$item->main_image->url}}">
+								<span class="carousel-caption row-fluid">
+									<p>{{$item->main_image->title}}</p>
+								</span>
+								<div class="zoomix"><i class="fa fa-search"></i></div>
+							</a>
+						</div>
+                        @endif
+                        @if(count($item->gallery) > 0)
+                        @foreach($item->gallery as $gallery)
+                        @if(!isset($item->main_image->url) || ($gallery->url !== $item->main_image->url))
+                        @if($i == 0)
+                        <div class="gallery-item item active">
+                        @else
+                        <div class="gallery-item item">
+                        @endif
+							<a class="fancybox-button" title="{{$gallery->title}}" rel="group" href="/uploads/images/{{$gallery->url}}">
+								<img alt="{{$gallery->title}}" src="/uploads/images/3_{{$gallery->url}}">
+								<span class="carousel-caption row-fluid">
+									<p>{{$gallery->title}}</p>
+								</span>
+								<div class="zoomix"><i class="fa fa-search"></i></div>
+							</a>
+						</div>
+                        <?php $i++; ?>
+                        @endif
+                        @endforeach
+                        @endif
                       </div>
-                      <div class="item active">
-                        <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img2.jpg">
-                        <div class="carousel-caption">
-                          <p>Ducimus qui blanditiis praesentium voluptatum</p>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/works/img3.jpg">
-                        <div class="carousel-caption">
-                          <p>Ut non libero consectetur adipiscing elit magna</p>
-                        </div>
-                      </div>
+                      <!-- Carousel nav -->
+                      @if($i > 1)
+                      <a data-slide="prev" href="#myCarousel" class="carousel-control left">
+                        <i class="fa fa-angle-left"></i>
+                      </a>
+                      <a data-slide="next" href="#myCarousel" class="carousel-control right">
+                        <i class="fa fa-angle-right"></i>
+                      </a>
+                      @endif
                     </div>
-                    <!-- Carousel nav -->
-                    <a data-slide="prev" href="#myCarousel" class="carousel-control left">
-                      <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a data-slide="next" href="#myCarousel" class="carousel-control right">
-                      <i class="fa fa-angle-right"></i>
-                    </a>
                   </div>
-                </div>
+                  @endif
                 <!-- END CAROUSEL -->
 
                 <!-- BEGIN PORTFOLIO DESCRIPTION -->
@@ -203,6 +221,7 @@
 <link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
 <link href="/themes/bootstrap/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
 <link href="/themes/bootstrap/assets/frontend/pages/css/portfolio.css" rel="stylesheet">
+<link href="/themes/bootstrap/assets/frontend/pages/css/gallery.css" rel="stylesheet">
 @endsection
 
 @section('footerPlugins')

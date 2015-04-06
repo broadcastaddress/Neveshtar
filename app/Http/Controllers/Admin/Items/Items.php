@@ -5,7 +5,7 @@ use App;
 
 class Items extends Model {
 
-	protected $fillable = array('title', 'subtitle', 'intro', 'quote', 'quote_author', 'description', 'image_id', 'video_id', 'category_id', 'slug', 'language', 'status', 'access_level', 'user_id');
+	protected $fillable = array('title', 'subtitle', 'intro', 'quote', 'quote_author', 'description', 'image_id', 'video_id', 'category_id', 'slug', 'language', 'status', 'access_level', 'user_id', 'type');
 
     protected $table = 'items';
 

@@ -70,5 +70,8 @@ return [
 	'gallery'					=> 'gallery',
 	'comments'					=> 'comments',
 	'comments'					=> 'comment',
+	'portfolio'					=> 'portfolio',
+	'normal'					=> 'normal',
+
 
 ];

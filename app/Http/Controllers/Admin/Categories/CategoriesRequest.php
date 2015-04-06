@@ -29,6 +29,7 @@ class CategoriesRequest extends Request {
 			'language' => 'required',
 			'order' => 'required',
 			'status' => 'required',
+			'type' => 'required',
 		];
 	}
 

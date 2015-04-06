@@ -116,6 +116,22 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label class="control-label col-md-3">{{Lang::get('admin.type')}} <span class="required">
+							* </span>
+							</label>
+							<div class="col-md-4">
+								<div class="input-group">
+									<span class="input-group-addon">
+									<i class="fa fa-unlock-alt"></i>
+									</span>
+									<select class="form-control" name="type" id="selectType" required data-required="1">
+										<option value="item">{{ucwords(Lang::get('admin.normal'))}}</option>
+										<option value="portfolio">{{ucwords(Lang::get('admin.portfolio'))}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
 							<label class="control-label col-md-3">{{Lang::get('admin.language')}} <span class="required">
 							* </span>
 							</label>
@@ -186,23 +202,18 @@
 <script src="/themes/bootstrap/assets/admin/pages/scripts/form-validation.js"></script>
 
 <script>
-$('input[name=title]').on('input', function() {
-	var inputString = $(this).val();
-    outputString = inputString.replace(/([â€Œ~Ù¬Ù«ï·¼ÙªÃ—ØŒÙ€Ø›ØŸØ¡!@#$%^&*"()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '-').replace(/^(-)+|(-)+$/g,'');
-	var words = outputString.replace(/\s+/gi, '-').split('-');
-    $('input[name=slug]').val(words.slice(0,9).join('-'));
-});
-</script>
-<script>
+	$('input[name=title]').on('input', function() {
+		var inputString = $(this).val();
+	    outputString = inputString.replace(/([â€Œ~Ù¬Ù«ï·¼ÙªÃ—ØŒÙ€Ø›ØŸØ¡!@#$%^&*"()_+=`{}\[\]\|\\:;'<>,.\/? ])+/g, '-').replace(/^(-)+|(-)+$/g,'');
+		var words = outputString.replace(/\s+/gi, '-').split('-');
+	    $('input[name=slug]').val(words.slice(0,9).join('-'));
+	});
+
     $("#selectParent").val("{{old('parent_id')}}");
-</script>
-<script>
     $("#selectStatus").val("{{old('status')}}");
-</script>
-<script>
     $("#selectLanguage").val("{{old('language')}}");
-</script>
-<script>
+    $("#selectType").val("{{old('type')}}");
+
 	$('#tags').select2({
 	minimumInputLength: 2,
 	tags: true,
@@ -241,8 +252,7 @@ $('input[name=title]').on('input', function() {
 	    }
 	}
 	});
-</script>
-<script>
+
 	$('#category_id').select2({
 	minimumInputLength: 1,
 	multiple: false,
@@ -269,8 +279,7 @@ $('input[name=title]').on('input', function() {
 	    }
 	}
 	});
-</script>
-<script>
+
 	$('#main_image').select2({
 	minimumInputLength: 2,
     tags: false,
@@ -316,8 +325,7 @@ $('input[name=title]').on('input', function() {
         return this.description;
     }
 	});
-</script>
-<script>
+
 	$('#gallery').select2({
 	minimumInputLength: 2,
 	tags: true,

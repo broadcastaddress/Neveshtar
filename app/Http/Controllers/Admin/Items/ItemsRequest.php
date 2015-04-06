@@ -28,6 +28,7 @@ class ItemsRequest extends Request {
 			'category_id' => 'required|integer',
 			'tags' => 'required',
 			'status' => 'required',
+			'type' => 'required',
 		];
 	}
 

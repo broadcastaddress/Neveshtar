@@ -55,19 +55,19 @@
             </li>
             @foreach($navigation as $menu)
             @if((Request::segment(2)) == $menu->slug)
-            @if(count($menu['children']) > 0)
+            @if((count($menu['children']) > 0) && ($menu->type == "category"))
             <li class="dropdown active">
             @else
             <li class="active">
             @endif
             @else
-            @if(count($menu['children']) > 0)
+            @if((count($menu['children']) > 0) && ($menu->type == "category"))
             <li class="dropdown">
             @else
             <li>
             @endif
             @endif
-            	@if(count($menu['children']) > 0)
+            	@if((count($menu['children']) > 0) && ($menu->type == "category"))
 	            	<a class="dropdown-toggle disabled" data-toggle="dropdown" data-target="#" href="/{{Lang::getLocale()}}/c/{{$menu->slug}}">
 	            		{{ucwords($menu->title)}}
             		</a>

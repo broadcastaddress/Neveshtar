@@ -56,7 +56,12 @@ class CategoryItemController extends Controller {
 
 		View::share('item',$item);
 		View::share('title',$item->title);
-		return Theme::view('frontend/category-item');
+		if($item->type == "item") {
+			return Theme::view('frontend/category-item');
+		};
+		if($item->type == "portfolio") {
+			return Theme::view('frontend/category-portfolio');
+		};
 	}
 
 	public function comment($slug)
