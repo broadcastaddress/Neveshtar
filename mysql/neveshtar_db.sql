@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2015 at 12:40 PM
+-- Generation Time: Apr 07, 2015 at 09:31 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.14
 
@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `order` varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT '1',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `type` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'category',
   `status` int(1) NOT NULL DEFAULT '0',
   `access_level` int(2) NOT NULL DEFAULT '0',
   `user_id` int(11) NOT NULL
@@ -110,6 +111,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `language` varchar(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'fa',
+  `type` varchar(20) COLLATE utf8_unicode_ci DEFAULT 'item',
   `status` int(1) NOT NULL DEFAULT '0',
   `access_level` int(2) NOT NULL DEFAULT '1',
   `category_id` int(11) NOT NULL,
@@ -140,6 +142,20 @@ CREATE TABLE IF NOT EXISTS `item_tag` (
 `id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
   `tag_id` int(11) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_view`
+--
+
+CREATE TABLE IF NOT EXISTS `item_view` (
+`id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
@@ -218,13 +234,6 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
---
--- Dumping data for table `sessions`
---
-
-INSERT INTO `sessions` (`id`, `payload`, `last_activity`) VALUES
-('313d38a6e94458d997ffc891d84186436903932e', 'ZXlKcGRpSTZJa05uWkd0Wk5HZzNSazFHUkhaNWNGWlBiVFZYWVhjOVBTSXNJblpoYkhWbElqb2lPRW95WEM5RWVrcFJWMDFCYVVGM1VIVkhNMXd2YVhjeWNIRnRhV1JpU1ZkTE9WSXdhVEIyVm1SM1kzVmtaamRuT1UxRWFsd3ZjWGxOUWxoMlRVNDNjM0IxUTJ0QlNVRXlZM2htZGpWY0wwOVZORnd2WVRWMWEzbHRVREpZVWxZd1hDOXdURzRyWkVkdFFrNHhiVTF2VkZ3dlZYcGxkM1Z3V0dweFltaFVUMU5PWWpCNWJsVTNWamhEZDFSU1JtazVlbTQ0YVV3eGRHczNUR013TlVVeU5sUmFVRk5LU25NM2RYRTFLMGhCUW1OTlJXSmhTMUU1YXpaMGFGRnFSamhFYUVSUlpsUlVSMXd2U21SY0wweEdNbWxvVUVORWNrbFJkM2hIY2xCd1JrTTJablJGTUcxdVoycExNbXBsVFRsMVJUWmlTV0pXZG5oa2RtNU1TMUZzU1dwa2MxZHNXREZqTnpkbGVsSk5ORmg2WTFwMFJGWTNVMVF6Ym1RM2JtVjNWRFZEY1hoSWVsRk5PRGRxVURScWQyeDRVa1F4VEcxcWNuWlVSSGxTYUhSeWF6WkxTMlpUVVU0MVltUllWbEZIYTJzcmJ6WXdjQ3R4VFVveGMwdE5TemxhUlZoSlVWSktWbmR0ZGpFMmJETnROR1ZrWjNSbVRVdG1ORFZDWjBwQ2FVWjNRVGQzWEM5NFFVMXZSWG95WWxSRU1FbFhORlpsUlhwUlVVaENOMlIwWjNBMk9GZ3hTSFJSYW00d05HRktSVGxXZFdOMlJXOUVNV3RVU0U1cmJXUkVjR2xPU0VKMWJVb2lMQ0p0WVdNaU9pSXhPVGMzTXpWa09USXpOMll3WkRjeU56RmtNVFk1TTJJeE1UY3hZekE1TWpBM1pEVmlPVEpsWkdRMk5tVTFOMkprWWpNME9HWmtObU5oWmpFMk5URmpJbjA9', 1428064712);
-
 -- --------------------------------------------------------
 
 --
@@ -260,7 +269,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Hossein Jabbari', 'mr.hhkj@gmail.com', '$2y$10$snzoiPWn.PqZKOKIa99OlOju.4sPlS.kdTA0fvO6h.HowBh6xPSG.', 'ekYk0ZqiCpcOWd0wDhEtHViZJHKWjuD1NwpYdvizRxjTlZgO2xt85vu7CVa1', '2015-01-31 21:19:07', '2015-01-31 21:19:07');
+(1, 'Hossein Jabbari', 'mr.hhkj@gmail.com', '$2y$10$snzoiPWn.PqZKOKIa99OlOju.4sPlS.kdTA0fvO6h.HowBh6xPSG.', 'qJYGBqzpnfK52lrtZKjgQhhG3pEgQldhdr2JmJkirKf6tWM1YHUokFpz5hiD', '2015-01-31 21:19:07', '2015-04-06 03:41:06');
 
 --
 -- Indexes for dumped tables
@@ -306,6 +315,12 @@ ALTER TABLE `item_media`
 -- Indexes for table `item_tag`
 --
 ALTER TABLE `item_tag`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `item_view`
+--
+ALTER TABLE `item_view`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
 
 --
@@ -377,6 +392,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `item_tag`
 --
 ALTER TABLE `item_tag`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `item_view`
+--
+ALTER TABLE `item_view`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `languages`

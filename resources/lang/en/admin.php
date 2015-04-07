@@ -72,6 +72,7 @@ return [
 	'comments'					=> 'comment',
 	'portfolio'					=> 'portfolio',
 	'normal'					=> 'normal',
+	'comment'					=> 'comment',
 
 
 ];

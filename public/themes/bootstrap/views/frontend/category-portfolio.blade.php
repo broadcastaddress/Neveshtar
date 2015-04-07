@@ -70,29 +70,13 @@
 
                 <!-- BEGIN PORTFOLIO DESCRIPTION -->
                 <div class="col-md-7">
-                  <h2>Quis tempor incididunt</h2>
-                  <p>Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa quis tempor incididunt ut et dolore et dolorum fuga. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus.</p>
-                  <p>Lorem ipsum dolor sit amet, dolore eiusmod quis tempor incididunt ut et dolore Ut veniam unde nostrudlaboris. Sed unde omnis iste natus error sit voluptatem.</p>
+                  @if($item->subtitle)
+                  <h2>{{$item->subtitle}}</h2>
+                  @endif
+                  @if($item->description)
+                  <p>{{$item->description}}</p>
+                  @endif
                   <br>
-                  <div class="row front-lists-v2 margin-bottom-15">
-                    <div class="col-md-6">
-                      <ul class="list-unstyled">
-                        <li><i class="fa fa-html5"></i> HTML5/CSS3</li>
-                        <li><i class="fa fa-bell"></i> Web Deisgn</li>
-                        <li><i class="fa fa-globe"></i> Web Development</li>
-                        <li><i class="fa fa-shopping-cart"></i> Shoping Cart</li>
-                      </ul>
-                    </div>
-                    <div class="col-md-6">
-                      <ul class="list-unstyled">
-                        <li><i class="fa fa-dropbox"></i> Free Storage</li>
-                        <li><i class="fa fa-cloud"></i> Cloud Hosting</li>
-                        <li><i class="fa fa-comments"></i> Free Support</li>
-                        <li><i class="fa fa-star"></i> Awesome UI</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <a class="btn btn-primary" href="#"> VISIT THE PROJECT</a>
                 </div>
                 <!-- END PORTFOLIO DESCRIPTION -->
               </div>
@@ -110,14 +94,14 @@
         <!-- BEGIN RECENT WORKS -->
         <div class="row recent-work margin-bottom-40">
           <div class="col-md-3">
-            <h2><a href="portfolio.html">Recent Works</a></h2>
-            <p>Lorem ipsum dolor sit amet, dolore eiusmod quis tempor incididunt ut et dolore Ut veniam unde voluptatem. Sed unde omnis iste natus error sit voluptatem.</p>
+            <h2><a href="portfolio.html">{{ucwords(Lang::get('site.recent_works'))}}</a></h2>
           </div>
           <div class="col-md-9">
             <div class="owl-carousel owl-carousel3">
+              @foreach($recent as $ritem)
               <div class="recent-work-item">
                 <em>
-                  <img src="/themes/bootstrap/assets/frontend/pages/img/works/img1.jpg" alt="Amazing Project" class="img-responsive">
+                  <img src="/uploads/images/3_{{$ritem->main_image->url}}" alt="Amazing Project" class="img-responsive">
                   <a href="portfolio-item.html"><i class="fa fa-link"></i></a>
                   <a href="/themes/bootstrap/assets/frontend/pages/img/works/img1.jpg" class="fancybox-button" title="Project Name #1" data-rel="fancybox-button"><i class="fa fa-search"></i></a>
                 </em>
@@ -126,6 +110,7 @@
                   <b>Agenda corp.</b>
                 </a>
               </div>
+              @endforeach
               <div class="recent-work-item">
                 <em>
                   <img src="/themes/bootstrap/assets/frontend/pages/img/works/img2.jpg" alt="Amazing Project" class="img-responsive">
