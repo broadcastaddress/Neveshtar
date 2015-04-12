@@ -58,9 +58,6 @@
 						<th width="5%">
 							 {{Lang::get('admin.status')}}
 						</th>
-						<th width="5%" class="no-sort">
-							 {{Lang::get('admin.actions')}}
-						</th>
 					</tr>
 					<input type="hidden" class="form-control form-filter input-sm" name="_token" value="{{ csrf_token() }}">
 					</thead>
@@ -75,7 +72,6 @@
 								<td>{{$item->item->title}}</td>
 								<td>{{$item->user->name}}</td>
 								<td>{{$item->status}}</td>
-								<td>actions</td>
 							</tr>
 						@endforeach
 					</tbody>

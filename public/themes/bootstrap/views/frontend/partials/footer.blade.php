@@ -4,12 +4,12 @@
         <div class="row">
           <!-- BEGIN BOTTOM ABOUT BLOCK -->
           <div class="col-md-4 col-sm-6 pre-footer-col">
-            <h2>About us</h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam sit nonummy nibh euismod tincidunt ut laoreet dolore magna aliquarm erat sit volutpat.</p>
+            <h2>{{ucwords(Lang::get('site.about_us'))}}</h2>
+            <p>{{$site_settings->short_about_us}}</p>
 
             @if(count($footer_photos_stream) > 0)
             <div class="photo-stream">
-              <h2>Photos Stream</h2>
+              <h2>{{ucwords(Lang::get('site.photos_stream'))}}</h2>
               <ul class="list-unstyled">
               	@foreach($footer_photos_stream as $footer_photo)
               	@if($footer_photo->main_image)
@@ -24,14 +24,20 @@
 
           <!-- BEGIN BOTTOM CONTACTS -->
           <div class="col-md-4 col-sm-6 pre-footer-col">
-            <h2>Our Contacts</h2>
+            <h2>{{ucwords(Lang::get('site.our_contacts'))}}</h2>
             <address class="margin-bottom-40">
-              35, Lorem Lis Street, Park Ave<br>
-              California, US<br>
-              Phone: 300 323 3456<br>
-              Fax: 300 323 1456<br>
-              Email: <a href="mailto:info@neveshtar.com">info@neveshtar.com</a><br>
-              Skype: <a href="skype:neveshtar">neveshtar</a>
+              @if(isset($site_settings->main_address))
+              {{$site_settings->main_address}}<br>
+              @endif
+              @if(isset($site_settings->main_telephone))
+              Phone: <a href="tel:{{$site_settings->main_telephone}}">{{$site_settings->main_telephone}}</a><br>
+              @endif
+              @if(isset($site_settings->main_fax))
+              Fax: {{$site_settings->main_fax}}<br>
+              @endif
+              @if(isset($site_settings->main_email))
+              Email: <a href="mailto:{{$site_settings->main_email}}">{{$site_settings->main_email}}</a><br>
+              @endif
             </address>
 
             <div class="pre-footer-subscribe-box pre-footer-subscribe-box-vertical">
@@ -66,21 +72,39 @@
         <div class="row">
           <!-- BEGIN COPYRIGHT -->
           <div class="col-md-6 col-sm-6 padding-top-10">
-            2014 © Neveshtar.com | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+            2014 © {{$site_settings->site_title}} | <a href="/{{Lang::getLocale()}}/privacy_policy">{{ucwords(Lang::get('site.privacy_policy'))}}</a> | <a href="/{{Lang::getLocale()}}/terms_of_service">{{ucwords(Lang::get('site.terms_of_service'))}}</a>
           </div>
           <!-- END COPYRIGHT -->
           <!-- BEGIN PAYMENTS -->
           <div class="col-md-6 col-sm-6">
             <ul class="social-footer list-unstyled list-inline pull-right">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-              <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-skype"></i></a></li>
-              <li><a href="#"><i class="fa fa-github"></i></a></li>
-              <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-              <li><a href="#"><i class="fa fa-dropbox"></i></a></li>
+              @if(isset($site_settings->social_facebook))
+              <li><a target="_blank" href="{{$site_settings->social_facebook}}"><i class="fa fa-facebook"></i></a></li>
+              @endif
+              @if(isset($site_settings->social_google_plus))
+              <li><a target="_blank" href="{{$site_settings->social_google_plus}}"><i class="fa fa-google-plus"></i></a></li>
+              @endif
+              @if(isset($site_settings->social_dribble))
+              <li><a target="_blank" href="{{$site_settings->social_dribble}}"><i class="fa fa-dribbble"></i></a></li>
+              @endif
+              @if(isset($site_settings->social_linkedin))
+              <li><a target="_blank" href="{{$site_settings->social_linkedin}}"><i class="fa fa-linkedin"></i></a></li>
+              @endif
+              @if(isset($site_settings->social_twitter))
+              <li><a target="_blank" href="{{$site_settings->social_twitter}}"><i class="fa fa-twitter"></i></a></li>
+              @endif
+              @if(isset($site_settings->social_skype))
+              <li><a target="_blank" href="{{$site_settings->social_skype}}"><i class="fa fa-skype"></i></a></li>
+              @endif
+              @if(isset($site_settings->social_github))
+              <li><a target="_blank" href="{{$site_settings->social_github}}"><i class="fa fa-github"></i></a></li>
+              @endif
+              @if(isset($site_settings->social_youtube))
+              <li><a target="_blank" href="{{$site_settings->social_youtube}}"><i class="fa fa-youtube"></i></a></li>
+              @endif
+              @if(isset($site_settings->social_dropbox))
+              <li><a target="_blank" href="{{$site_settings->social_dropbox}}"><i class="fa fa-dropbox"></i></a></li>
+              @endif
             </ul>
           </div>
           <!-- END PAYMENTS -->

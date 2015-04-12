@@ -7,18 +7,26 @@
 <!-- Head BEGIN -->
 <head>
   <meta charset="utf-8">
-  <title>{{ucwords($title)}} -  {{Config::get('settings.name')}}</title>
+  <title>{{ucwords($title)}} -  {{$site_settings->site_title}}</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta content="{{Config::get('settings.description')}}" name="description">
-  <meta content="{{Config::get('settings.keywords')}}" name="keywords">
-  <meta content="{{Config::get('settings.author')}}" name="author">
-  <meta property="og:site_name" content="{{Config::get('settings.name')}}">
+  <meta content="{{$site_settings->site_description}}" name="description">
+  <meta content="{{$site_settings->site_keywords}}" name="keywords">
+  <meta content="{{$site_settings->site_author}}" name="author">
+  <meta property="og:site_name" content="{{$site_settings->site_title}}">
   <meta property="og:title" content="{{$title}}">
-  <meta property="og:description" content="{{Config::get('settings.description')}}">
+  @if(!isset($main_description))
+  <meta property="og:description" content="{{$site_settings->site_description}}">
+  @else
+  <meta property="og:description" content="{{$main_description}}">
+  @endif
   <meta property="og:type" content="website">
-  <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
-  <meta property="og:url" content="-CUSTOMER VALUE-">
+  @if(!isset($main_image_url))
+  <meta property="og:image" content="{{$site_settings->site_image}}">
+  @else
+  <meta property="og:image" content="{{$main_image_url}}">
+  @endif
+  <meta property="og:url" content="{{$_SERVER['SERVER_NAME']}}{{$_SERVER['REQUEST_URI']}}">
   <link rel="shortcut icon" href="favicon.ico">
   <!-- Fonts START -->
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">

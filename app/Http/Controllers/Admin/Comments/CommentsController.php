@@ -78,7 +78,6 @@ class CommentsController extends \App\Http\Controllers\Admin\AdminController {
 		      '<a href="/'.$comment->item->language.'/'.$comment->item->slug.'" target="_blank">'.$comment->item->title.'</a>',
 		      $comment->user->name,
 		      '<span class="label label-sm label-'.($status).'">'.($status2).'</span>',
-		      '<a href="/admin/Comments/'.$comment->id.'" class="btn blue btn-xs default"><i class="fa fa-pencil"></i> '.Lang::get('admin.edit').'</a>',
 		   );
 		  }
 

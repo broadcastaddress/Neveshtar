@@ -7,8 +7,12 @@
                 <!-- BEGIN TOP BAR LEFT PART -->
                 <div class="col-md-6 col-sm-6 additional-shop-info">
                     <ul class="list-unstyled list-inline">
-                        <li><i class="fa fa-phone"></i><span>+98(935)402-402-1</span></li>
-                        <li><i class="fa fa-envelope-o"></i><span>info@neveshtar.com</span></li>
+                    	@if(isset($site_settings->main_telephone))
+                        <li><i class="fa fa-phone"></i><span><a href="tel:{{$site_settings->main_telephone}}">{{$site_settings->main_telephone}}</a></span></li>
+                        @endif
+                    	@if(isset($site_settings->main_email))
+                        <li><i class="fa fa-envelope-o"></i><span><a href="mailto:{{$site_settings->main_email}}">{{$site_settings->main_email}}</a></span></li>
+                        @endif
                     </ul>
                 </div>
                 <!-- END TOP BAR LEFT PART -->
@@ -37,7 +41,7 @@
     <!-- BEGIN HEADER -->
     <div class="header">
       <div class="container">
-        <a class="site-logo" href="/{{Lang::getLocale()}}">Neveshtar.com</a>
+        <a class="site-logo" href="/{{Lang::getLocale()}}">{{$site_settings->site_title}}</a>
 
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
@@ -53,7 +57,7 @@
                 Home
               </a>
             </li>
-            @foreach($navigation as $menu)
+            @foreach($site_navigation as $menu)
             @if((Request::segment(2)) == $menu->slug)
             @if((count($menu['children']) > 0) && ($menu->type == "category"))
             <li class="dropdown active">
@@ -88,7 +92,6 @@
               <ul class="dropdown-menu">
                 <li><a href="/about">About Us</a></li>
                 <li><a href="/services">Services</a></li>
-                <li><a href="/portfolio">Portfolio</a></li>
                 <li><a href="/prices">Prices</a></li>
                 <li><a href="/faq">FAQ</a></li>
                 <li><a href="/gallery">Gallery</a></li>

@@ -25,7 +25,7 @@ class WelcomeController extends Controller {
 	public function index()
 	{
 		Theme::setLayout('frontend.app');
-		View::share('title','Open Source Laravel 5 CMS / Portal');
+		View::share('title',$this->site_settings->site_slogan);
 		return Theme::view('frontend/index-header-fix');
 	}
 

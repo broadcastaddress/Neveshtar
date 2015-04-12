@@ -59,6 +59,8 @@ function()
 	Route::get('/', [
 	    'as' => 'WelcomeController', 'uses' => 'WelcomeController@index'
 	]);
+	Route::get('privacy_policy', 'StaticController@privacy_policy');
+	Route::get('terms_of_service', 'StaticController@terms_of_service');
     Route::resource('c', 'CategoryController');
 	Route::get('categoryItem', 'CategoryItemController@index');
 	Route::post('categoryItem', 'CategoryItemController@comment');
