@@ -18,8 +18,8 @@
                 @endforeach
               </ul>
             </div>
+            @endif
           </div>
-          @endif
           <!-- END BOTTOM ABOUT BLOCK -->
 
           <!-- BEGIN BOTTOM CONTACTS -->
