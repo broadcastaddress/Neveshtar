@@ -45,10 +45,10 @@ return [
 	'our_contacts'				=> 'our contacts',
 	'privacy_policy'			=> 'privacy policy',
 	'terms_of_service'			=> 'terms of service',
-	''				=> '',
-	''				=> '',
-	''				=> '',
-	''				=> '',
-	''				=> '',
+	'contact'					=> 'contact',
+	'phone'						=> 'phone',
+	'fax'						=> 'fax',
+	'contact_form'				=> 'contact form',
+	'contact_form_text'			=> 'please fill the form below, and we will contact you as soon as possible.',
 
 ];

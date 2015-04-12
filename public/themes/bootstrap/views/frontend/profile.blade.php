@@ -113,7 +113,6 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();
-        Layout.initTwitter();
         FormValidation.init();
     });
 </script>

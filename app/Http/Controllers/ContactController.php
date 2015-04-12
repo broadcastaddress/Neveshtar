@@ -2,6 +2,7 @@
 
 use Theme;
 use View;
+use Lang;
 
 class ContactController extends Controller {
 
@@ -19,7 +20,7 @@ class ContactController extends Controller {
 	public function index()
 	{
 		Theme::setLayout('frontend.app');
-		View::share('title','Neveshtar - Open Source Laravel CMS');
+		View::share('title',Lang::get('site.contact'));
 		return Theme::view('frontend/contact');
 	}
 

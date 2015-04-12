@@ -220,7 +220,6 @@
     jQuery(document).ready(function() {
         Layout.init();
         Layout.initUniform();
-        Layout.initTwitter();
     });
 </script>
 @endsection
