@@ -15,8 +15,7 @@
             <div class="content-page">
                 <div class="filter-v1">
                   <ul class="mix-filter">
-                    <li data-filter="all" class="filter active">All</li>
-                    <li data-filter="{{$item->slug}}" class="filter">{{$item->title}}</li>
+                    <li data-filter="all" class="filter active">{{$item->title}} ({{ucwords(Lang::get('site.all'))}})</li>
                     @foreach($subcategories as $sub)
                     <li data-filter="{{$sub->slug}}" class="filter">{{$sub->title}}</li>
                     @endforeach
@@ -27,7 +26,7 @@
                         <div class="mix-inner">
                            <img alt="" src="/uploads/images/4_{{$post->main_image->url}}" class="img-responsive">
                            <div class="mix-details">
-                              <h4>{{$post->title}}</h4>
+                              <h4>{{Illuminate\Support\Str::Words($post->title,8)}}</h4>
                               <a class="mix-link" href="/{{$post->language}}/{{$post->slug}}"><i class="fa fa-link"></i></a>
                               <a data-rel="fancybox-button" title="{{$post->title}}" href="/uploads/images/{{$post->main_image->url}}" class="mix-preview fancybox-button"><i class="fa fa-search"></i></a>
                            </div>

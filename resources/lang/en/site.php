@@ -38,7 +38,11 @@ return [
 	'created_on'				=> 'created on',
 	'last_update'				=> 'last update',
 	'info_updated'				=> 'your information has been updated',
-	'recent_works'				=> 'recent works',
+	'recent_works'				=> 'recent portfolio',
+	'all'						=> 'all',
+	''				=> '',
+	''				=> '',
+	''				=> '',
 	''				=> '',
 
 ];

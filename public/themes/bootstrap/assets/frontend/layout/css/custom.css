@@ -8,3 +8,9 @@
 .front-carousel .carousel-control {
 	z-index: 100000;
 }
+.owl-carousel img {
+	min-width: 100%;
+}
+.blog-photo-stream li img, .pre-footer .photo-stream img {
+	height: auto;
+}

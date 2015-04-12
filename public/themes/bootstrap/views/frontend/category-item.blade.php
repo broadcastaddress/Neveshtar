@@ -102,7 +102,7 @@
                     	<?php $i = 0; ?>
                         @foreach($item->tags as $tag)
                         	<?php $i++; ?>
-                        	{{ucwords($tag->tag)}}@if($i < count($item->tags)){{","}}@endif
+                        	<a href="/{{Lang::getLocale()}}/tag/{{$tag->tag}}">{{ucwords($tag->tag)}}</a>@if($i < count($item->tags)){{","}}@endif
                         @endforeach
                     </li>
                     @endif

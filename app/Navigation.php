@@ -13,6 +13,7 @@ class Navigation extends Model {
         return $this->hasOne('App\Navigation', 'id', 'parent_id')
         			->select('id','title','slug','parent_id','type')
 					->where('status',1)
+        			->orderBy('order','asc')
         			->where('language',Lang::getLocale());
     }
 
@@ -21,6 +22,7 @@ class Navigation extends Model {
         return $this->hasMany('App\Navigation', 'parent_id', 'id')
         			->select('id','title','slug','parent_id','type')
 					->where('status',1)
+        			->orderBy('order','asc')
         			->where('language',Lang::getLocale());
     }
 
@@ -30,6 +32,7 @@ class Navigation extends Model {
 			        ->select('id','title','slug','parent_id','type')
         			->where('parent_id', '=', NULL)
         			->where('status',1)
+        			->orderBy('order','asc')
         			->where('language',Lang::getLocale())->get();
     }
 

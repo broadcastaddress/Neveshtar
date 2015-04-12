@@ -70,7 +70,7 @@ class CategoryItemController extends Controller {
 			return Theme::view('frontend/category-item');
 		};
 		if($item->type == "portfolio") {
-			return Theme::view('frontend/category-portfolio');
+			return Theme::view('frontend/portfolio-item');
 		};
 	}
 
