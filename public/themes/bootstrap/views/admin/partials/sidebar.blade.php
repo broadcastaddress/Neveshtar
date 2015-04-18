@@ -19,6 +19,13 @@
 						<span class="title">Dashboard</span>
 						</a>
 					</li>
+					<li id="side-settings">
+						<a href="/admin/settings">
+						<i class="icon-wrench"></i>
+						<span class="title">Settings</span>
+						</a>
+					</li>
+
 					<li id="side-categories">
 						<a href="/admin/categories">
 						<i class="icon-list"></i>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use View;
 use Theme;
 use App;
+use Lang;
 
 class AdminController extends Controller {
 
@@ -26,6 +27,8 @@ class AdminController extends Controller {
 		$this->middleware('checkInputs');
         $this->new_comments = App\Comments::where('status',0)->select(array('id'))->get();
         View::share('new_comments', $this->new_comments);
+        $this->site_settings = App\Settings::where('language',Lang::getLocale())->first();
+        View::share('site_settings', $this->site_settings);
 	}
 
 	public function index() {

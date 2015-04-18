@@ -49,6 +49,9 @@ function()
 	    Route::post('comments/ajax_table', 'Admin\Comments\CommentsController@ajax_table');
 	    Route::post('comments/actions', 'Admin\Comments\CommentsController@actions');
 
+	    // Settings
+	    Route::resource('settings', 'Admin\Settings\SettingsController');
+
 	});
 
 	Route::group(array('middleware' => 'auth'), function()
