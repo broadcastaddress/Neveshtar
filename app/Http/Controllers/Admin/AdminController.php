@@ -27,6 +27,8 @@ class AdminController extends Controller {
 		$this->middleware('checkInputs');
         $this->new_comments = App\Comments::where('status',0)->select(array('id'))->get();
         View::share('new_comments', $this->new_comments);
+        $this->new_feedbacks = App\Feedbacks::where('status',0)->select(array('id'))->get();
+        View::share('new_feedbacks', $this->new_feedbacks);
         $this->site_settings = App\Settings::where('language',Lang::getLocale())->first();
         View::share('site_settings', $this->site_settings);
 	}

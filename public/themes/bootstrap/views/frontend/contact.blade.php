@@ -11,6 +11,26 @@
           <!-- BEGIN CONTENT -->
           <div class="col-md-12">
             <h1>{{ucwords($title)}}</h1>
+			@if(Session::has('message'))
+            <div class="note note-success">
+                <h4 class="block">{{ucfirst(Session::get('message'))}}</h4>
+            </div>
+			@endif
+			@foreach($errors->all() as $error)
+			<div class="alert alert-danger">
+				<button class="close" data-close="alert"></button>
+				{{$error}}
+			</div>
+			@endforeach
+			<div class="alert alert-danger display-hide">
+				<button class="close" data-close="alert"></button>
+				salam
+			</div>
+			<div class="alert alert-success display-hide">
+				<button class="close" data-close="alert"></button>
+				khoobi
+			</div>
+
             <div class="content-page">
               <div class="row">
                 <div class="col-md-12">
@@ -21,21 +41,21 @@
                   <p>{{ucfirst(Lang::get('site.contact_form_text'))}}</p>
 
                   <!-- BEGIN FORM-->
-                  <form action="#" role="form">
+                  <form action="" method="post" id="site_form">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                       <label for="contacts-name">Name</label>
-                      <input type="text" class="form-control" id="contacts-name">
+                      <input type="text" class="form-control" name="name" id="name" data-required="1" required>
                     </div>
                     <div class="form-group">
                       <label for="contacts-email">Email</label>
-                      <input type="email" class="form-control" id="contacts-email">
+                      <input type="email" class="form-control" name="email" id="email" data-required="1" required>
                     </div>
                     <div class="form-group">
                       <label for="contacts-message">Message</label>
-                      <textarea class="form-control" rows="5" id="contacts-message"></textarea>
+                      <textarea class="form-control" rows="5" name="message" id="message" data-required="1" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary"><i class="icon-ok"></i> Send</button>
-                    <button type="button" class="btn btn-default">Cancel</button>
                   </form>
                   <!-- END FORM-->
                 </div>
@@ -106,6 +126,12 @@
 <script src="/themes/bootstrap/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
 <script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>
 <script src="/themes/bootstrap/assets/global/plugins/gmaps/gmaps.js" type="text/javascript"></script>
+<script src="/themes/bootstrap/assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
+<script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/select2/select2.min.js"></script>
+<script src="/themes/bootstrap/assets/frontend/pages/scripts/form-validation.js"></script>
 <script type="text/javascript">
 	var ContactUs = function () {
 
@@ -141,6 +167,7 @@
         Layout.init();
         Layout.initUniform();
         ContactUs.init();
+        FormValidation.init();
     });
 </script>
 @endsection

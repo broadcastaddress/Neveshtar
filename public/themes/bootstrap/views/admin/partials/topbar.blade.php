@@ -44,11 +44,13 @@
 							</a>
 						</li>
 						@endif
+						@if(count($new_feedbacks)>0)
 						<li>
-							<a href="#">
-							<i class="icon-flag"></i> Feedbacks <span class="badge badge-danger">2</span>
+							<a href="/admin/feedbacks">
+							<i class="icon-bubbles"></i> Feedbacks <span class="badge badge-danger">{{count($new_feedbacks)}}</span>
 							</a>
 						</li>
+						@endif
 					</ul>
 				</div>
 			</div>

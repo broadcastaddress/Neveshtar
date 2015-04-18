@@ -49,6 +49,11 @@ function()
 	    Route::post('comments/ajax_table', 'Admin\Comments\CommentsController@ajax_table');
 	    Route::post('comments/actions', 'Admin\Comments\CommentsController@actions');
 
+	    // Feedbacks
+	    Route::resource('feedbacks', 'Admin\Feedbacks\FeedbacksController');
+	    Route::post('feedbacks/ajax_table', 'Admin\Feedbacks\FeedbacksController@ajax_table');
+	    Route::post('feedbacks/actions', 'Admin\Feedbacks\FeedbacksController@actions');
+
 	    // Settings
 	    Route::resource('settings', 'Admin\Settings\SettingsController');
 
@@ -78,6 +83,7 @@ function()
 	Route::get('careers', 'CareersController@index');
 	Route::get('sitemap', 'SitemapController@index');
 	Route::get('contact', 'ContactController@index');
+	Route::post('contact', 'ContactController@feedback');
 
 	Route::get('/{slug}', 'CategoryItemController@index');
 	Route::post('/{slug}', 'CategoryItemController@comment');

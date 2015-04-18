@@ -53,6 +53,15 @@
 						@endif
 						</a>
 					</li>
+					<li id="side-comments">
+						<a href="/admin/feedbacks">
+						<i class="icon-bubbles"></i>
+						<span class="title">Feedbacks</span>
+						@if(count($new_feedbacks) > 0)
+						<span class="badge badge-danger">{{count($new_feedbacks)}}</span>
+						@endif
+						</a>
+					</li>
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>

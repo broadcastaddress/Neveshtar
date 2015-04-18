@@ -50,5 +50,6 @@ return [
 	'fax'						=> 'fax',
 	'contact_form'				=> 'contact form',
 	'contact_form_text'			=> 'please fill the form below, and we will contact you as soon as possible.',
+	'feedback_submitted'		=> 'your feedback has been submitted and will be reviewed as soon as possible. If required we will contact you.'
 
 ];
