@@ -15,7 +15,7 @@
 				<form action="/admin/{{$active}}" method="post" id="admin_form" class="form-horizontal">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="form-body">
-						<h3 class="form-section"><i class="fa fa-edit"></i> {{Lang::get('admin.content')}}</h3>
+						<h3 class="form-section category-type"><i class="fa fa-edit"></i> {{Lang::get('admin.content')}}</h3>
 						@foreach($errors->all() as $error)
 						<div class="alert alert-danger">
 							<button class="close" data-close="alert"></button>
@@ -30,88 +30,7 @@
 							<button class="close" data-close="alert"></button>
 							{{Lang::get('admin.form_success')}}
 						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.title')}} <span class="required">
-							* </span>
-							</label>
-							<div class="col-md-8">
-								<input type="text" name="title" value="{{old('title')}}" data-required="1" class="form-control" required/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.subtitle')}}
-							</label>
-							<div class="col-md-8">
-								<input type="text" name="subtitle" value="{{old('subtitle')}}" class="form-control"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.intro')}}
-							</label>
-							<div class="col-md-8">
-								<textarea name="intro" class="form-control">{{old('intro')}}</textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.quote')}}
-							</label>
-							<div class="col-md-8">
-								<textarea name="quote" class="form-control">{{old('quote')}}</textarea>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.quote_author')}}
-							</label>
-							<div class="col-md-8">
-								<input type="text" name="quote_author" value="{{old('quote_author')}}" class="form-control"/>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.description')}}
-							</label>
-							<div class="col-md-8">
-								<textarea class="wysihtml5 form-control" rows="10" name="description" data-error-container="#editor1_error">
-									{{old('description')}}
-								</textarea>
-								<div id="editor1_error">
-								</div>
-							</div>
-						</div>
-						<h3 class="form-section"><i class="fa fa-image"></i> {{Lang::get('admin.media')}}</h3>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.main')}} {{Lang::get('admin.image')}}</label>
-							<div class="col-md-4">
-								<input type="hidden" id="main_image" name="image_id" class="form-control select2" value="">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.gallery')}} {{Lang::get('admin.images')}}</label>
-							<div class="col-md-4">
-								<input type="hidden" id="gallery" name="gallery" class="form-control select2" value="">
-							</div>
-						</div>
-						<h3 class="form-section"><i class="fa fa-wrench"></i> {{Lang::get('admin.settings')}}</h3>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.parent')}} {{Lang::get('admin.category')}}
-							</label>
-							<div class="col-md-4">
-								<select class="form-control select2me" name="parent_id" id="selectParent">
-									<option value="">{{Lang::get('admin.none')}}</option>
-									@foreach($categories as $category)
-									<option value="{{$category->id}}">{{$category->title}}</option>
-									@endforeach
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-md-3">{{Lang::get('admin.slug')}} <span class="required">
-							* </span>
-							</label>
-							<div class="col-md-8">
-								<input type="text" name="slug" value="{{old('slug')}}" data-required="1" class="form-control" required/>
-							</div>
-						</div>
-						<div class="form-group">
+						<div class="form-group category category-type">
 							<label class="control-label col-md-3">{{Lang::get('admin.type')}} <span class="required">
 							* </span>
 							</label>
@@ -123,11 +42,97 @@
 									<select class="form-control" name="type" id="selectType" required data-required="1">
 										<option value="category">{{ucwords(Lang::get('admin.normal'))}}</option>
 										<option value="portfolio">{{ucwords(Lang::get('admin.portfolio'))}}</option>
+										<option value="about_us">{{ucwords(Lang::get('admin.about_us'))}}</option>
+										<option value="services">{{ucwords(Lang::get('admin.services'))}}</option>
+										<option value="faq">{{ucwords(Lang::get('admin.faq'))}}</option>
+										<option value="gallery">{{ucwords(Lang::get('admin.gallery'))}}</option>
+										<option value="careers">{{ucwords(Lang::get('admin.careers'))}}</option>
 									</select>
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group category portfolio faq gallery careers">
+							<label class="control-label col-md-3">{{Lang::get('admin.title')}} <span class="required">
+							* </span>
+							</label>
+							<div class="col-md-8">
+								<input type="text" name="title" value="{{old('title')}}" data-required="1" class="form-control" required/>
+							</div>
+						</div>
+						<div class="form-group category gallery careers">
+							<label class="control-label col-md-3">{{Lang::get('admin.subtitle')}}
+							</label>
+							<div class="col-md-8">
+								<input type="text" name="subtitle" value="{{old('subtitle')}}" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group category gallery careers">
+							<label class="control-label col-md-3">{{Lang::get('admin.intro')}}
+							</label>
+							<div class="col-md-8">
+								<textarea name="intro" class="form-control">{{old('intro')}}</textarea>
+							</div>
+						</div>
+						<div class="form-group category">
+							<label class="control-label col-md-3">{{Lang::get('admin.quote')}}
+							</label>
+							<div class="col-md-8">
+								<textarea name="quote" class="form-control">{{old('quote')}}</textarea>
+							</div>
+						</div>
+						<div class="form-group category">
+							<label class="control-label col-md-3">{{Lang::get('admin.quote_author')}}
+							</label>
+							<div class="col-md-8">
+								<input type="text" name="quote_author" value="{{old('quote_author')}}" class="form-control"/>
+							</div>
+						</div>
+						<div class="form-group category careers">
+							<label class="control-label col-md-3">{{Lang::get('admin.description')}}
+							</label>
+							<div class="col-md-8">
+								<textarea class="wysihtml5 form-control" rows="10" name="description" data-error-container="#editor1_error">
+									{{old('description')}}
+								</textarea>
+								<div id="editor1_error">
+								</div>
+							</div>
+						</div>
+						<h3 class="form-section section-media category careers"><i class="fa fa-image"></i> {{Lang::get('admin.media')}}</h3>
+						<div class="form-group category careers">
+							<label class="control-label col-md-3">{{Lang::get('admin.main')}} {{Lang::get('admin.image')}}</label>
+							<div class="col-md-4">
+								<input type="hidden" id="main_image" name="image_id" class="form-control select2" value="">
+							</div>
+						</div>
+						<div class="form-group category careers">
+							<label class="control-label col-md-3">{{Lang::get('admin.gallery')}} {{Lang::get('admin.images')}}</label>
+							<div class="col-md-4">
+								<input type="hidden" id="gallery" name="gallery" class="form-control select2" value="">
+							</div>
+						</div>
+						<h3 class="form-section section-settings"><i class="fa fa-wrench"></i> {{Lang::get('admin.settings')}}</h3>
+						<div class="form-group section-settings">
+							<label class="control-label col-md-3">{{Lang::get('admin.parent')}} {{Lang::get('admin.category')}}
+							</label>
+							<div class="col-md-4">
+								<select class="form-control select2me" name="parent_id" id="selectParent">
+									<option value="">{{Lang::get('admin.none')}}</option>
+									@foreach($categories as $category)
+									<option value="{{$category->id}}">{{$category->title}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group section-settings">
+							<label class="control-label col-md-3">{{Lang::get('admin.slug')}} <span class="required">
+							* </span>
+							</label>
+							<div class="col-md-8">
+								<input type="text" name="slug" value="{{old('slug')}}" data-required="1" class="form-control" required/>
+							</div>
+						</div>
+						<div class="form-group section-settings">
 							<label class="control-label col-md-3">{{Lang::get('admin.language')}} <span class="required">
 							* </span>
 							</label>
@@ -139,7 +144,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group section-settings">
 							<label class="control-label col-md-3">{{Lang::get('admin.order')}} <span class="required">
 							* </span>
 							</label>
@@ -152,7 +157,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group section-settings">
 							<label class="control-label col-md-3">{{Lang::get('admin.status')}} <span class="required">
 							* </span>
 							</label>
@@ -317,4 +322,20 @@
 
 @section('inits')
 FormValidation.init();
+$('.form-group').hide();
+$('.section-media').hide();
+$('.section-settings').hide();
+$('.category-type').show();
+$('#selectType').on('change', function() {
+  var selected = $(this).val();
+  if(selected == "about_us" || selected == "services") {
+  	var selected = "category";
+  }
+  var shown = '.'+selected+'';
+  $('.form-group').hide();
+  $('.section-media').hide();
+  $('.section-settings').show();
+  $('.category-type').show();
+  $(shown).show();
+});
 @endsection

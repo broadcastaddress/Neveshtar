@@ -133,6 +133,7 @@
 									<select class="form-control" name="type" id="selectType" required data-required="1">
 										<option value="item">{{ucwords(Lang::get('admin.normal'))}}</option>
 										<option value="portfolio">{{ucwords(Lang::get('admin.portfolio'))}}</option>
+										<option value="faq">{{ucwords(Lang::get('admin.faq'))}}</option>
 									</select>
 								</div>
 							</div>

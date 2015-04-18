@@ -54,6 +54,21 @@ class CategoryController extends Controller {
 		if($item->type == "portfolio") {
 			return Theme::view('frontend/portfolio');
 		};
+		if($item->type == "about_us") {
+			return Theme::view('frontend/about');
+		};
+		if($item->type == "services") {
+			return Theme::view('frontend/services');
+		};
+		if($item->type == "faq") {
+			return Theme::view('frontend/faq');
+		};
+		if($item->type == "gallery") {
+			return Theme::view('frontend/gallery');
+		};
+		if($item->type == "careers") {
+			return Theme::view('frontend/careers');
+		};
 	}
 
 }

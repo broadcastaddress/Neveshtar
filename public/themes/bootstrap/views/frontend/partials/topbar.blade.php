@@ -90,10 +90,7 @@
                 Pages
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/about">About Us</a></li>
-                <li><a href="/services">Services</a></li>
                 <li><a href="/prices">Prices</a></li>
-                <li><a href="/faq">FAQ</a></li>
                 <li><a href="/gallery">Gallery</a></li>
                 <li><a href="/search">Search Result</a></li>
                 <li><a href="/careers">Careers</a></li>

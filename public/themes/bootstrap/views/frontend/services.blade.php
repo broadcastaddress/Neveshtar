@@ -4,16 +4,15 @@
     <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Pages</a></li>
-            <li class="active">Services</li>
+            <li><a href="/">Home</a></li>
+            <li class="active">{{$title}}</li>
         </ul>
 
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
           <!-- BEGIN CONTENT -->
           <div class="col-md-12 col-sm-12">
-            <h1>About Us</h1>
+            <h1>{{$title}}</h1>
             <div class="content-page">
               <div class="row">
                 <!-- BEGIN SERVICE BLOCKS -->
@@ -69,14 +68,63 @@
                 </div>
                 <!-- END SERVICE BLOCKS -->
 
-                <!-- BEGIN VIDEO AND TESTIMONIALS -->
+                <!-- BEGIN CAROUSEL AND TESTIMONIALS -->
                 <div class="col-md-5">
-                  <!-- BEGIN VIDEO -->
-                  <iframe height="270" allowfullscreen="" style="width:100%; border:0" src="http://player.vimeo.com/video/56974716?portrait=0" class="margin-bottom-10"></iframe>
-                  <!-- END VIDEO -->
+				  @if((isset($item->main_image->url)) || (count($item->gallery) > 0))
+                  <div class="front-carousel">
+                    <div class="carousel slide" id="myCarousel" data-interval="false">
+                      <!-- Carousel items -->
+                      <div class="carousel-inner">
+                      	<?php $i = 0; ?>
+                      	@if(isset($item->main_image->url))
+                      	<?php $i++; ?>
+						<div class="gallery-item item active">
+							<a class="fancybox-button" title="{{$item->main_image->title}}" rel="group" href="/uploads/images/{{$item->main_image->url}}">
+								<img alt="{{$item->main_image->title}}" src="/uploads/images/3_{{$item->main_image->url}}">
+								<span class="carousel-caption row-fluid">
+									<p>{{$item->main_image->title}}</p>
+								</span>
+								<div class="zoomix"><i class="fa fa-search"></i></div>
+							</a>
+						</div>
+                        @endif
+                        @if(count($item->gallery) > 0)
+                        @foreach($item->gallery as $gallery)
+                        @if(!isset($item->main_image->url) || ($gallery->url !== $item->main_image->url))
+                        @if($i == 0)
+                        <div class="gallery-item item active">
+                        @else
+                        <div class="gallery-item item">
+                        @endif
+							<a class="fancybox-button" title="{{$gallery->title}}" rel="group" href="/uploads/images/{{$gallery->url}}">
+								<img alt="{{$gallery->title}}" src="/uploads/images/3_{{$gallery->url}}">
+								<span class="carousel-caption row-fluid">
+									<p>{{$gallery->title}}</p>
+								</span>
+								<div class="zoomix"><i class="fa fa-search"></i></div>
+							</a>
+						</div>
+                        <?php $i++; ?>
+                        @endif
+                        @endforeach
+                        @endif
+                      </div>
+                      <!-- Carousel nav -->
+                      @if($i > 1)
+                      <a data-slide="prev" href="#myCarousel" class="carousel-control left">
+                        <i class="fa fa-angle-left"></i>
+                      </a>
+                      <a data-slide="next" href="#myCarousel" class="carousel-control right">
+                        <i class="fa fa-angle-right"></i>
+                      </a>
+                      @endif
+                    </div>
+                  </div>
+                  @endif
 
                 <!-- BEGIN TESTIMONIALS -->
                 <div class="testimonials-v1 testimonials-v1-another-color">
+                <br/>
                   <h2>Clients Testimonials</h2>
                   <div id="myCarousel1" class="carousel slide">
                     <!-- Carousel items -->
@@ -123,63 +171,29 @@
               </div>
 
               <!-- BEGIN BLOCKQUOTE BLOCK -->
-              <div class="row quote-v1 margin-bottom-30">
-                <div class="col-md-9">
-                  <span>Metronic - The Most Complete &amp; Popular Admin &amp; Frontend Theme</span>
-                </div>
-                <div class="col-md-3 text-right">
-                  <a class="btn-transparent" href="http://www.keenthemes.com/preview/index.php?theme=metronic_admin" target="_blank"><i class="fa fa-rocket margin-right-10"></i>Preview Admin</a>
-                </div>
-              </div>
+              <hr/>
               <!-- END BLOCKQUOTE BLOCK -->
 
               <div class="row">
-                <!-- TABS -->
                 <div class="col-md-7 tab-style-1">
-                  <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab-1">Multipurpose</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-2">Documented</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-3">Responsive</a></li>
-                  </ul>
-                  <div class="tab-content">
-                    <div id="tab-1" class="tab-pane row fade active in">
-                      <div class="col-md-3">
-                        <a data-rel="fancybox-button" title="Image Title" class="fancybox-button" href="assets/temp/pics/img1-large.jpg">
-                          <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/pics/img1-large.jpg" class="img-responsive">
-                        </a>
-                      </div>
-                      <div class="col-md-9">
-                        <p class="margin-bottom-10">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid Aliquip placeat salvia cillum iphone.</p>
-                        <p><a class="read-more" href="#">Read more</a></p>
-                      </div>
-                    </div>
-                    <div id="tab-2" class="tab-pane row fade">
-                      <div class="col-md-9">
-                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia..</p>
-                      </div>
-                      <div class="col-md-3">
-                        <a data-rel="fancybox-button" title="Image Title" class="fancybox-button" href="assets/temp/pics/img2-large.jpg">
-                          <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/pics/img2-large.jpg" class="img-responsive">
-                        </a>
-                      </div>
-                    </div>
-                    <div id="tab-3" class="tab-pane fade">
-                      <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
-                    </div>
-                  </div>
+                	{!!$item->description!!}
                 </div>
-                <!-- END TABS -->
 
                 <!-- BEGIN BLOCKQUOTE -->
                 <div class="col-md-5">
-                  <h2>Harumquid rerumetde</h2>
-                  <p>Laborum et dolorum fuga. Et harum quidem rerum et quas molestias excepturi sint occaecati facilis est et expedita elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus dolores et quas</p>
-                  <p>Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.</p>
+                  @if($item->subtitle)
+                  <h2>{{$item->subtitle}}</h2>
+                  @endif
+                  @if($item->intro)
+                  <p>{{$item->intro}}</p>
                   <br>
+                  @endif
+                  @if($item->quote)
                   <blockquote>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+                    <p>{{$item->quote}}</p>
+                    <small>{{$item->quote_author}}</small>
                   </blockquote>
+                  @endif
                 </div>
                 <!-- END BLOCKQUOTE -->
               </div>
@@ -193,6 +207,7 @@
 
 @section('headerPlugins')
 <link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+<link href="/themes/bootstrap/assets/frontend/pages/css/gallery.css" rel="stylesheet">
 @endsection
 
 @section('footerPlugins')
