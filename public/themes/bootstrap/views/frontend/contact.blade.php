@@ -22,20 +22,13 @@
 				{{$error}}
 			</div>
 			@endforeach
-			<div class="alert alert-danger display-hide">
-				<button class="close" data-close="alert"></button>
-				salam
-			</div>
-			<div class="alert alert-success display-hide">
-				<button class="close" data-close="alert"></button>
-				khoobi
-			</div>
-
             <div class="content-page">
               <div class="row">
+              	@if($site_settings->map_latitude && $site_settings->map_longitude)
                 <div class="col-md-12">
                   <div id="map" class="gmaps margin-bottom-40" style="height:400px;"></div>
                 </div>
+                @endif
                 <div class="col-md-9 col-sm-9">
                   <h2>{{ucwords(Lang::get('site.contact_form'))}}</h2>
                   <p>{{ucfirst(Lang::get('site.contact_form_text'))}}</p>
@@ -64,17 +57,23 @@
                   <h2>{{ucwords(Lang::get('site.our_contacts'))}}</h2>
                   <address>
                     <strong>{{$site_settings->site_title}}</strong><br>
+                    @if(isset($site_settings->main_address))
                     {{$site_settings->main_address}}<br>
+                    @endif
+                    @if(isset($site_settings->main_telephone))
                     <abbr title="{{ucfirst(Lang::get('site.phone'))}}">P:</abbr> <a href="tel:{{$site_settings->main_telephone}}">{{$site_settings->main_telephone}}</a>
                     <br/>
+                    @endif
+                    @if(isset($site_settings->main_fax))
                     <abbr title="{{ucfirst(Lang::get('site.fax'))}}">F:</abbr> {{$site_settings->main_fax}}
-                  </address>
-                  <address>
-                    <strong>{{ucwords(Lang::get('site.email'))}}</strong><br>
-                    @if(isset($site_settings->main_email))
-                    <a href="mailto:{{$site_settings->main_email}}">{{$site_settings->main_email}}</a><br>
                     @endif
                   </address>
+                  @if(isset($site_settings->main_email))
+                  <address>
+                    <strong>{{ucwords(Lang::get('site.email'))}}</strong><br>
+                    <a href="mailto:{{$site_settings->main_email}}">{{$site_settings->main_email}}</a><br>
+                  </address>
+                  @endif
                   <ul class="social-icons margin-bottom-40">
 		              @if(isset($site_settings->social_facebook))
 		              <li><a target="_blank" data-original-title="Facebook" class="facebook" href="{{$site_settings->social_facebook}}"></a></li>
@@ -132,6 +131,7 @@
 <script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/select2/select2.min.js"></script>
 <script src="/themes/bootstrap/assets/frontend/pages/scripts/form-validation.js"></script>
+@if($site_settings->map_latitude && $site_settings->map_longitude)
 <script type="text/javascript">
 	var ContactUs = function () {
 
@@ -161,12 +161,17 @@
 
 	}();
 </script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        ContactUs.init();
+    });
+</script>
+@endif
 <script src="/themes/bootstrap/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();
         Layout.initUniform();
-        ContactUs.init();
         FormValidation.init();
     });
 </script>

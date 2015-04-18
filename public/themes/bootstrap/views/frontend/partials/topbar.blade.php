@@ -100,7 +100,7 @@
                 <li><a href="/sitemap">Site Map</a></li>
               </ul>
             </li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/{{Lang::getLocale()}}/contact">Contact</a></li>
             <li><a href="/admin" target="_blank">Admin</a></li>
 
             <!-- BEGIN TOP SEARCH -->
