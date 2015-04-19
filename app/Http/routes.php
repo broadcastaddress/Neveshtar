@@ -57,6 +57,11 @@ function()
 	    // Settings
 	    Route::resource('settings', 'Admin\Settings\SettingsController');
 
+	    // Users
+	    Route::resource('users', 'Admin\Users\UsersController');
+	    Route::post('users/ajax_table', 'Admin\Users\UsersController@ajax_table');
+	    Route::post('users/actions', 'Admin\Users\UsersController@actions');
+
 	});
 
 	Route::group(array('middleware' => 'auth'), function()

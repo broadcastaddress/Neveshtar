@@ -55,11 +55,17 @@
 					</li>
 					<li id="side-comments">
 						<a href="/admin/feedbacks">
-						<i class="icon-bubbles"></i>
+						<i class="icon-bubble"></i>
 						<span class="title">Feedbacks</span>
 						@if(count($new_feedbacks) > 0)
 						<span class="badge badge-danger">{{count($new_feedbacks)}}</span>
 						@endif
+						</a>
+					</li>
+					<li id="side-users">
+						<a href="/admin/users">
+						<i class="icon-user"></i>
+						<span class="title">Users</span>
 						</a>
 					</li>
 				</ul>
