@@ -15,56 +15,20 @@
             <h1>{{$title}}</h1>
             <div class="content-page">
               <div class="row">
-                <!-- BEGIN SERVICE BLOCKS -->
                 <div class="col-md-7">
-                  <div class="row margin-bottom-20">
-                    <div class="col-md-6">
-                      <div class="service-box-v1">
-                        <div><i class="fa fa-thumbs-up color-grey"></i></div>
-                        <h2>Harum quidem</h2>
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="service-box-v1">
-                        <div><i class="fa fa-cloud-download color-grey"></i></div>
-                        <h2>Denim robatl</h2>
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row margin-bottom-20">
-                    <div class="col-md-6">
-                      <div class="service-box-v1">
-                        <div><i class="fa fa-dropbox color-grey"></i></div>
-                        <h2>Solnh mateore</h2>
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="service-box-v1">
-                        <div><i class="fa fa-gift color-grey"></i></div>
-                        <h2>Molestia pore</h2>
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row margin-bottom-20">
-                    <div class="col-md-6">
-                      <div class="service-box-v1">
-                        <div><i class="fa fa-comments color-grey"></i></div>
-                        <h2>Harum quidem</h2>
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="service-box-v1">
-                        <div><i class="fa fa-globe color-grey"></i></div>
-                        <h2>Denim robatl</h2>
-                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
-                      </div>
-                    </div>
-                  </div>
+					@if($item->subtitle)
+					<h2>{{$item->subtitle}}</h2>
+					@endif
+					@if($item->intro)
+					<p><strong>{{$item->intro}}</strong></p>
+					@endif
+					@if($item->quote)
+					<blockquote>
+					<p>{{$item->quote}}</p>
+					<small>{{$item->quote_author}}</small>
+					</blockquote>
+					@endif
+					<p>{!!$item->description!!}</p>
                 </div>
                 <!-- END SERVICE BLOCKS -->
 
@@ -169,35 +133,6 @@
                 </div>
                 <!-- END BEGIN VIDEO AND TESTIMONIALS -->
               </div>
-
-              <!-- BEGIN BLOCKQUOTE BLOCK -->
-              <hr/>
-              <!-- END BLOCKQUOTE BLOCK -->
-
-              <div class="row">
-                <div class="col-md-7 tab-style-1">
-                	{!!$item->description!!}
-                </div>
-
-                <!-- BEGIN BLOCKQUOTE -->
-                <div class="col-md-5">
-                  @if($item->subtitle)
-                  <h2>{{$item->subtitle}}</h2>
-                  @endif
-                  @if($item->intro)
-                  <p>{{$item->intro}}</p>
-                  <br>
-                  @endif
-                  @if($item->quote)
-                  <blockquote>
-                    <p>{{$item->quote}}</p>
-                    <small>{{$item->quote_author}}</small>
-                  </blockquote>
-                  @endif
-                </div>
-                <!-- END BLOCKQUOTE -->
-              </div>
-
             </div>
           </div>
         </oiv>

@@ -20,7 +20,7 @@ class CategoryController extends Controller {
 		View::share('categories',$categories);
 		$subcategories = App\Category::where('parent_id',$item->id)->where('status',1)->get();
 		View::share('subcategories',$subcategories);
-		$recent = App\Items::where('status',1)->where('language',Lang::getLocale())->orderBy('id','desc')->take(4)->get();
+		$recent = App\Items::where('status',1)->where('type','item')->where('language',Lang::getLocale())->orderBy('id','desc')->take(4)->get();
 		View::share('recent',$recent);
 		$viewed = App\ItemView::difference(30,5);
 		View::share('viewed',$viewed);

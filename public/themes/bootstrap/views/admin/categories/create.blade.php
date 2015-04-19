@@ -228,6 +228,23 @@
     $("#selectLanguage").val("{{old('language')}}");
     $("#selectType").val("{{old('type')}}");
 
+	$('.form-group').hide();
+	$('.section-media').hide();
+	$('.section-settings').hide();
+	$('.category-type').show();
+	$('#selectType').on('change', function() {
+	  var selected = $(this).val();
+	  if(selected == "about_us" || selected == "services") {
+	  	var selected = "category";
+	  }
+	  var shown = '.'+selected+'';
+	  $('.form-group').hide();
+	  $('.section-media').hide();
+	  $('.section-settings').show();
+	  $('.category-type').show();
+	  $(shown).show();
+	});
+
 	$('#main_image').select2({
 	minimumInputLength: 2,
     tags: false,
@@ -322,20 +339,4 @@
 
 @section('inits')
 FormValidation.init();
-$('.form-group').hide();
-$('.section-media').hide();
-$('.section-settings').hide();
-$('.category-type').show();
-$('#selectType').on('change', function() {
-  var selected = $(this).val();
-  if(selected == "about_us" || selected == "services") {
-  	var selected = "category";
-  }
-  var shown = '.'+selected+'';
-  $('.form-group').hide();
-  $('.section-media').hide();
-  $('.section-settings').show();
-  $('.category-type').show();
-  $(shown).show();
-});
 @endsection

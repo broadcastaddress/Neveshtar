@@ -90,11 +90,7 @@
                 Pages
               </a>
               <ul class="dropdown-menu">
-                <li><a href="/prices">Prices</a></li>
-                <li><a href="/gallery">Gallery</a></li>
                 <li><a href="/search">Search Result</a></li>
-                <li><a href="/careers">Careers</a></li>
-                <li><a href="/sitemap">Site Map</a></li>
               </ul>
             </li>
             <li><a href="/{{Lang::getLocale()}}/contact">Contact</a></li>

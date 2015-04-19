@@ -4,60 +4,79 @@
     <div class="main">
       <div class="container">
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Pages</a></li>
-            <li class="active">Careers</li>
+            <li><a href="/">Home</a></li>
+            <li class="active">{{$title}}</li>
         </ul>
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40">
           <!-- BEGIN CONTENT -->
           <div class="col-md-9 col-sm-9">
-            <h1>Careers</h1>
+            <h1>{{$title}}</h1>
             <div class="content-page">
               <!-- BEGIN CAROUSEL -->
-              <div class="front-carousel margin-bottom-20">
-                <div id="myCarousel" class="carousel slide">
+			  @if((isset($item->main_image->url)) || (count($item->gallery) > 0))
+              <div class="front-carousel">
+                <div class="carousel slide" id="myCarousel" data-interval="false">
                   <!-- Carousel items -->
                   <div class="carousel-inner">
-                    <div class="item active">
-                      <img src="/themes/bootstrap/assets/frontend/pages/img/posts/img1.jpg" alt="">
-                    </div>
-                  <div class="item">
-                    <img src="/themes/bootstrap/assets/frontend/pages/img/posts/img3.jpg" alt="">
+                  	<?php $i = 0; ?>
+                  	@if(isset($item->main_image->url))
+                  	<?php $i++; ?>
+					<div class="gallery-item item active">
+						<a class="fancybox-button" title="{{$item->main_image->title}}" rel="group" href="/uploads/images/{{$item->main_image->url}}">
+							<img alt="{{$item->main_image->title}}" src="/uploads/images/3_{{$item->main_image->url}}">
+							<span class="carousel-caption row-fluid">
+								<p>{{$item->main_image->title}}</p>
+							</span>
+							<div class="zoomix"><i class="fa fa-search"></i></div>
+						</a>
+					</div>
+                    @endif
+                    @if(count($item->gallery) > 0)
+                    @foreach($item->gallery as $gallery)
+                    @if(!isset($item->main_image->url) || ($gallery->url !== $item->main_image->url))
+                    @if($i == 0)
+                    <div class="gallery-item item active">
+                    @else
+                    <div class="gallery-item item">
+                    @endif
+						<a class="fancybox-button" title="{{$gallery->title}}" rel="group" href="/uploads/images/{{$gallery->url}}">
+							<img alt="{{$gallery->title}}" src="/uploads/images/3_{{$gallery->url}}">
+							<span class="carousel-caption row-fluid">
+								<p>{{$gallery->title}}</p>
+							</span>
+							<div class="zoomix"><i class="fa fa-search"></i></div>
+						</a>
+					</div>
+                    <?php $i++; ?>
+                    @endif
+                    @endforeach
+                    @endif
                   </div>
+                  <!-- Carousel nav -->
+                  @if($i > 1)
+                  <a data-slide="prev" href="#myCarousel" class="carousel-control left">
+                    <i class="fa fa-angle-left"></i>
+                  </a>
+                  <a data-slide="next" href="#myCarousel" class="carousel-control right">
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                  @endif
                 </div>
-                <!-- Carousel nav -->
-                 <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-                  <i class="fa fa-angle-left"></i>
-                </a>
-                <a class="carousel-control right" href="#myCarousel" data-slide="next">
-                  <i class="fa fa-angle-right"></i>
-                </a>
               </div>
-            </div>
+              @endif
             <!-- END CAROUSEL -->
 
                     <!-- BEGIN INFO BLOCK -->
-                    <h2>Vero eos et accusamus</h2>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.</p>
-                    <!-- BEGIN LISTS -->
-                    <div class="row front-lists-v1">
-                        <div class="col-md-6">
-                            <ul class="list-unstyled margin-bottom-20">
-                                <li><i class="fa fa-check"></i> Officia deserunt molliti</li>
-                                <li><i class="fa fa-check"></i> Consectetur adipiscing </li>
-                                <li><i class="fa fa-check"></i> Deserunt fpicia</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="list-unstyled">
-                                <li><i class="fa fa-check"></i> Officia deserunt molliti</li>
-                                <li><i class="fa fa-check"></i> Consectetur adipiscing </li>
-                                <li><i class="fa fa-check"></i> Deserunt fpicia</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- END LISTS -->
+                    @if($item->subtitle)
+                    <h2>{{$item->subtitle}}</h2>
+                    @endif
+                    @if($item->intro)
+                    <p><strong>{{$item->intro}}</strong></p>
+                    @endif
+                    @if($item->description)
+                    <p>{!!$item->description!!}</p>
+                    @endif
                     <!-- END INFO BLOCK -->
 
                     <h2>Our positions</h2>
@@ -163,18 +182,27 @@
           </div>
 
           <div class="col-md-3 col-sm-3 sidebar2">
-            <h2 class="padding-top-30">Our Contacts</h2>
-            <address>
-              <strong>Loop, Inc.</strong><br>
-              795 Park Ave, Suite 120<br>
-              San Francisco, CA 94107<br>
-              <abbr title="Phone">P:</abbr> (234) 145-1810
-            </address>
-            <address>
-              <strong>Email</strong><br>
-              <a href="mailto:info@email.com">info@email.com</a><br>
-              <a href="mailto:support@example.com">support@example.com</a>
-            </address>
+			<h2 class="padding-top-30">{{ucwords(Lang::get('site.our_contacts'))}}</h2>
+	          <address>
+	            <strong>{{$site_settings->site_title}}</strong><br>
+	            @if(isset($site_settings->main_address))
+	            {{$site_settings->main_address}}<br>
+	            @endif
+	            @if(isset($site_settings->main_telephone))
+	            <abbr title="{{ucfirst(Lang::get('site.phone'))}}">P:</abbr> <a href="tel:{{$site_settings->main_telephone}}">{{$site_settings->main_telephone}}</a>
+	            <br/>
+	            @endif
+	            @if(isset($site_settings->main_fax))
+	            <abbr title="{{ucfirst(Lang::get('site.fax'))}}">F:</abbr> {{$site_settings->main_fax}}
+	            @endif
+	          </address>
+	          @if(isset($site_settings->main_email))
+	          <address>
+	            <strong>{{ucwords(Lang::get('site.email'))}}</strong><br>
+	            <a href="mailto:{{$site_settings->main_email}}">{{$site_settings->main_email}}</a><br>
+	          </address>
+	          @endif
+
 
             <h2 class="padding-top-20">Contact Form</h2>
             <!-- BEGIN FORM-->
@@ -209,6 +237,7 @@
 @section('headerPlugins')
 <link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
 <link href="/themes/bootstrap/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+<link href="/themes/bootstrap/assets/frontend/pages/css/gallery.css" rel="stylesheet">
 @endsection
 
 @section('footerPlugins')

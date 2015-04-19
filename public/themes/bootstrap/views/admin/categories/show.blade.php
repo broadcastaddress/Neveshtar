@@ -99,14 +99,14 @@
 								</div>
 							</div>
 						</div>
-						<h3 class="form-section section-media category careers"><i class="fa fa-image"></i> {{Lang::get('admin.media')}}</h3>
+						<h3 class="form-section section-media category careers gallery"><i class="fa fa-image"></i> {{Lang::get('admin.media')}}</h3>
 						<div class="form-group category careers">
 							<label class="control-label col-md-3">{{Lang::get('admin.main')}} {{Lang::get('admin.image')}}</label>
 							<div class="col-md-4">
 								<input type="hidden" id="main_image" name="image_id" class="form-control select2" value="">
 							</div>
 						</div>
-						<div class="form-group category careers">
+						<div class="form-group category careers gallery">
 							<label class="control-label col-md-3">{{Lang::get('admin.gallery')}} {{Lang::get('admin.images')}}</label>
 							<div class="col-md-4">
 								<input type="hidden" id="gallery" name="gallery" class="form-control select2" value="">
@@ -228,7 +228,25 @@
     $("#selectStatus").val("{{$item->status}}");
     $("#selectParent").val("{{$item->parent_id}}");
     $("#selectLanguage").val("{{$item->language}}");
-    $("#selectType").val("{{$item->type}}");
+
+	$('.form-group').hide();
+	$('.section-media').hide();
+	$('.section-settings').hide();
+	$('.category-type').show();
+	$('#selectType').change(selectChange);
+	function selectChange() {
+		var selected = $(this).val();
+		if(selected == "about_us" || selected == "services") {
+			var selected = "category";
+		};
+		var shown = '.'+selected+'';
+		$('.form-group').hide();
+		$('.section-media').hide();
+		$('.section-settings').show();
+		$('.category-type').show();
+		$(shown).show();
+	};
+	$("#selectType").val("{{$item->type}}").change();
 
 	$('#main_image').select2({
 	minimumInputLength: 2,
@@ -338,20 +356,4 @@
 
 @section('inits')
 FormValidation.init();
-$('.form-group').hide();
-$('.section-media').hide();
-$('.section-settings').hide();
-$('.category-type').show();
-$('#selectType').on('change', function() {
-  var selected = $(this).val();
-  if(selected == "about_us" || selected == "services") {
-  	var selected = "category";
-  }
-  var shown = '.'+selected+'';
-  $('.form-group').hide();
-  $('.section-media').hide();
-  $('.section-settings').show();
-  $('.category-type').show();
-  $(shown).show();
-});
 @endsection
