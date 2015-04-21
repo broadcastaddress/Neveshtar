@@ -152,4 +152,12 @@ class UsersController extends \App\Http\Controllers\Admin\AdminController {
 		}
 	}
 
+	public function staff() {
+
+		$query = Input::get('term');
+		$search = Users::where('name', 'LIKE', "%$query%")->select(array('id','name as text','profile_image'))->take(10)->get();
+		return json_encode($search);
+
+	}
+
 }

@@ -58,9 +58,16 @@ function()
 	    Route::resource('settings', 'Admin\Settings\SettingsController');
 
 	    // Users
+	    Route::get('users/staff', 'Admin\Users\UsersController@staff');
 	    Route::resource('users', 'Admin\Users\UsersController');
 	    Route::post('users/ajax_table', 'Admin\Users\UsersController@ajax_table');
 	    Route::post('users/actions', 'Admin\Users\UsersController@actions');
+
+	    // Testimonials
+	    Route::get('testimonials/testimonial', 'Admin\Testimonials\TestimonialsController@testimonial');
+	    Route::resource('testimonials', 'Admin\Testimonials\TestimonialsController');
+	    Route::post('testimonials/ajax_table', 'Admin\Testimonials\TestimonialsController@ajax_table');
+	    Route::post('testimonials/actions', 'Admin\Testimonials\TestimonialsController@actions');
 
 	});
 

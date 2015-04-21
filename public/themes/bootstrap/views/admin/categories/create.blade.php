@@ -30,7 +30,7 @@
 							<button class="close" data-close="alert"></button>
 							{{Lang::get('admin.form_success')}}
 						</div>
-						<div class="form-group category category-type">
+						<div class="form-group category category-type about_us services">
 							<label class="control-label col-md-3">{{Lang::get('admin.type')}} <span class="required">
 							* </span>
 							</label>
@@ -51,7 +51,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="form-group category portfolio faq gallery careers">
+						<div class="form-group category portfolio faq gallery careers about_us services">
 							<label class="control-label col-md-3">{{Lang::get('admin.title')}} <span class="required">
 							* </span>
 							</label>
@@ -59,35 +59,47 @@
 								<input type="text" name="title" value="{{old('title')}}" data-required="1" class="form-control" required/>
 							</div>
 						</div>
-						<div class="form-group category gallery careers">
+						<div class="form-group category gallery careers about_us services">
 							<label class="control-label col-md-3">{{Lang::get('admin.subtitle')}}
 							</label>
 							<div class="col-md-8">
 								<input type="text" name="subtitle" value="{{old('subtitle')}}" class="form-control"/>
 							</div>
 						</div>
-						<div class="form-group category gallery careers">
+						<div class="form-group category gallery careers about_us services">
 							<label class="control-label col-md-3">{{Lang::get('admin.intro')}}
 							</label>
 							<div class="col-md-8">
 								<textarea name="intro" class="form-control">{{old('intro')}}</textarea>
 							</div>
 						</div>
-						<div class="form-group category">
+						<div class="form-group category about_us services">
 							<label class="control-label col-md-3">{{Lang::get('admin.quote')}}
 							</label>
 							<div class="col-md-8">
 								<textarea name="quote" class="form-control">{{old('quote')}}</textarea>
 							</div>
 						</div>
-						<div class="form-group category">
+						<div class="form-group category about_us services">
 							<label class="control-label col-md-3">{{Lang::get('admin.quote_author')}}
 							</label>
 							<div class="col-md-8">
 								<input type="text" name="quote_author" value="{{old('quote_author')}}" class="form-control"/>
 							</div>
 						</div>
-						<div class="form-group category careers">
+						<div class="form-group about_us">
+							<label class="control-label col-md-3">{{Lang::get('admin.staff')}}</label>
+							<div class="col-md-4">
+								<input type="hidden" id="staff" name="staff" class="form-control select2" value="">
+							</div>
+						</div>
+						<div class="form-group about_us services">
+							<label class="control-label col-md-3">{{Lang::get('admin.testimonial')}}</label>
+							<div class="col-md-4">
+								<input type="hidden" id="testimonials" name="testimonials" class="form-control select2" value="">
+							</div>
+						</div>
+						<div class="form-group category careers about_us services">
 							<label class="control-label col-md-3">{{Lang::get('admin.description')}}
 							</label>
 							<div class="col-md-8">
@@ -98,14 +110,14 @@
 								</div>
 							</div>
 						</div>
-						<h3 class="form-section section-media category careers"><i class="fa fa-image"></i> {{Lang::get('admin.media')}}</h3>
-						<div class="form-group category careers">
+						<h3 class="form-section section-media category careers about_us services"><i class="fa fa-image"></i> {{Lang::get('admin.media')}}</h3>
+						<div class="form-group category careers about_us services">
 							<label class="control-label col-md-3">{{Lang::get('admin.main')}} {{Lang::get('admin.image')}}</label>
 							<div class="col-md-4">
 								<input type="hidden" id="main_image" name="image_id" class="form-control select2" value="">
 							</div>
 						</div>
-						<div class="form-group category careers">
+						<div class="form-group category careers about_us services">
 							<label class="control-label col-md-3">{{Lang::get('admin.gallery')}} {{Lang::get('admin.images')}}</label>
 							<div class="col-md-4">
 								<input type="hidden" id="gallery" name="gallery" class="form-control select2" value="">
@@ -234,9 +246,6 @@
 	$('.category-type').show();
 	$('#selectType').on('change', function() {
 	  var selected = $(this).val();
-	  if(selected == "about_us" || selected == "services") {
-	  	var selected = "category";
-	  }
 	  var shown = '.'+selected+'';
 	  $('.form-group').hide();
 	  $('.section-media').hide();
@@ -330,6 +339,94 @@
     {
         this.description =
             '<img height="40" src="/uploads/images/c3_'+results.url+'"> '+results.text+''
+        ;
+        return this.description;
+    }
+	});
+
+	$('#staff').select2({
+	minimumInputLength: 2,
+	tags: true,
+	tokenSeparators: [","],
+	multiple: true,
+	ajax: {
+	    url: '/admin/users/staff',
+	    dataType: 'json',
+	    quietMillis: 100,
+	    data: function (term) {
+	        return {
+	            term: term
+	        };
+	    },
+	    results: function (data) {
+	        var myResults = [];
+	        $.each(data, function (index, item) {
+	            myResults.push({
+	                'id': item.id,
+	                'text': item.text,
+	                'url': item.profile_image,
+	            });
+	        });
+	        return {
+	            results: myResults,
+	        };
+	    }
+	},
+    formatResult : function(results)
+    {
+        this.description =
+            ''+results.text+''
+        ;
+        return this.description;
+    },
+    formatSelection : function(results)
+    {
+        this.description =
+            ''+results.text+''
+        ;
+        return this.description;
+    }
+	});
+
+	$('#testimonials').select2({
+	minimumInputLength: 2,
+	tags: true,
+	tokenSeparators: [","],
+	multiple: true,
+	ajax: {
+	    url: '/admin/testimonials/testimonial',
+	    dataType: 'json',
+	    quietMillis: 100,
+	    data: function (term) {
+	        return {
+	            term: term
+	        };
+	    },
+	    results: function (data) {
+	        var myResults = [];
+	        $.each(data, function (index, item) {
+	            myResults.push({
+	                'id': item.id,
+	                'text': item.text,
+	                'url': item.author_image,
+	            });
+	        });
+	        return {
+	            results: myResults,
+	        };
+	    }
+	},
+    formatResult : function(results)
+    {
+        this.description =
+            ''+results.text+''
+        ;
+        return this.description;
+    },
+    formatSelection : function(results)
+    {
+        this.description =
+            ''+results.text+''
         ;
         return this.description;
     }

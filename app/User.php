@@ -31,4 +31,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+    public function image()
+    {
+        return $this->hasOne('App\Media', 'id', 'profile_image');
+    }
+
 }

@@ -14,3 +14,9 @@
 .blog-photo-stream li img, .pre-footer .photo-stream img {
 	height: auto;
 }
+.testimonials-v1 .carousel-info img {
+	height: auto;
+}
+.testimonials-v1 span.testimonials-name {
+	margin: 3px 0px 7px;
+}

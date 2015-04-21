@@ -28,6 +28,16 @@ class Category extends Model {
 		return $this->belongsToMany('App\Media', 'categories_media', 'category_id', 'media_id')->where('type','img');
 	}
 
+	public function staff()
+	{
+		return $this->belongsToMany('App\User', 'categories_user', 'category_id', 'user_id');
+	}
+
+	public function testimonials()
+	{
+		return $this->belongsToMany('App\Testimonial', 'categories_testimonial', 'category_id', 'testimonial_id');
+	}
+
 	public static function latestTopic($topic_id,$limit,$skip=0)
 	{
 

@@ -82,42 +82,31 @@
                   @endif
 
                <!-- BEGIN TESTIMONIALS -->
+               @if(count($item->testimonials) > 0)
                <div class="col-md-5">
 	                <div class="testimonials-v1">
 	                  <h2>Clients Testimonials</h2>
 	                  <div id="myCarousel1" class="carousel slide">
 	                    <!-- Carousel items -->
 	                    <div class="carousel-inner">
-	                      <div class="active item">
-	                        <blockquote><p>Denim you probably haven't heard of. Lorem ipsum dolor met consectetur adipisicing sit amet, consectetur adipisicing elit, of them jean shorts sed magna aliqua. Lorem ipsum dolor met consectetur adipisicing sit amet do eiusmod dolore.</p></blockquote>
-	                        <div class="carousel-info">
-	                          <img class="pull-left" src="/themes/bootstrap/assets/frontend/pages/img/people/img1-small.jpg" alt="">
-	                          <div class="pull-left">
-	                            <span class="testimonials-name">Lina Mars</span>
-	                            <span class="testimonials-post">Commercial Director</span>
-	                          </div>
-	                        </div>
-	                      </div>
+	                      <?php $i = 0; ?>
+	                      @foreach($item->testimonials as $testimonial)
+	                      <?php $i++; ?>
+	                      @if ($i == 1)
+	                      <div class="item active">
+	                      @else
 	                      <div class="item">
-	                        <blockquote><p>Raw denim you Mustache cliche tempor, williamsburg carles vegan helvetica probably haven't heard of them jean shorts austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.</p></blockquote>
+	                      @endif
+	                        <blockquote><p>{{$testimonial->description}}</p></blockquote>
 	                        <div class="carousel-info">
-	                          <img class="pull-left" src="/themes/bootstrap/assets/frontend/pages/img/people/img5-small.jpg" alt="">
+	                          <img class="pull-left" src="/uploads/images/c3_{{$testimonial->image->url}}" alt="">
 	                          <div class="pull-left">
-	                            <span class="testimonials-name">Kate Ford</span>
-	                            <span class="testimonials-post">Commercial Director</span>
+	                            <span class="testimonials-name">{{ucwords($testimonial->name)}}</span>
+	                            <span class="testimonials-post">{{ucwords($testimonial->title)}}</span>
 	                          </div>
 	                        </div>
 	                      </div>
-	                      <div class="item">
-	                        <blockquote><p>Reprehenderit butcher stache cliche tempor, williamsburg carles vegan helvetica.retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid Aliquip placeat salvia cillum iphone.</p></blockquote>
-	                        <div class="carousel-info">
-	                          <img class="pull-left" src="/themes/bootstrap/assets/frontend/pages/img/people/img2-small.jpg" alt="">
-	                          <div class="pull-left">
-	                            <span class="testimonials-name">Jake Witson</span>
-	                            <span class="testimonials-post">Commercial Director</span>
-	                          </div>
-	                        </div>
-	                      </div>
+	                      @endforeach
 	                    </div>
 	                    <!-- Carousel nav -->
 	                    <a class="left-btn" href="#myCarousel1" data-slide="prev"></a>
@@ -125,79 +114,48 @@
 	                  </div>
 	                </div>
                </div>
+               @endif
                 <!-- END TESTIMONIALS -->
 
                 <!-- END CAROUSEL -->
               </div>
 
+              @if(count($item->staff) > 0)
               <div class="row front-team">
                 <ul class="list-unstyled">
+                  @foreach($item->staff as $staff)
+                  @if($staff->image)
                   <li class="col-md-3">
                     <div class="thumbnail">
-                      <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img1-large.jpg">
+                      <img alt="{{$staff->name}}" src="/uploads/images/c_{{$staff->image->url}}">
                       <h3>
-                        <strong>Lina Doe</strong>
-                        <small>Chief Executive Officer / CEO</small>
+                        <strong>{{$staff->name}}</strong>
+                        @if($staff->title)
+                        <small>{{ucwords($staff->title)}}</small>
+                        @endif
                       </h3>
-                      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
+                      <p>{{ucfirst($staff->intro)}}</p>
                       <ul class="social-icons social-icons-color">
-                        <li><a class="facebook" data-original-title="Facebook" href="#"></a></li>
-                        <li><a class="twitter" data-original-title="Twitter" href="#"></a></li>
-                        <li><a class="googleplus" data-original-title="Goole Plus" href="#"></a></li>
-                        <li><a class="linkedin" data-original-title="Linkedin" href="#"></a></li>
+                        @if($staff->facebook)
+                        <li><a class="facebook" target="_blank" data-original-title="Facebook" href="{{$staff->facebook}}"></a></li>
+                        @endif
+                        @if($staff->twitter)
+                        <li><a class="twitter" target="_blank" data-original-title="Twitter" href="{{$staff->twitter}}"></a></li>
+                        @endif
+                        @if($staff->google_plus)
+                        <li><a class="googleplus" target="_blank" data-original-title="Goole Plus" href="{{$staff->google_plus}}"></a></li>
+                        @endif
+                        @if($staff->linkedin)
+                        <li><a class="linkedin" target="_blank" data-original-title="Linkedin" href="{{$staff->linkedin}}"></a></li>
+                        @endif
                       </ul>
                     </div>
                   </li>
-                  <li class="col-md-3">
-                    <div class="thumbnail">
-                      <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img4-large.jpg">
-                      <h3>
-                        <strong>Carles Puyol</strong>
-                        <small>Chief Executive Officer / CEO</small>
-                      </h3>
-                      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
-                      <ul class="social-icons social-icons-color">
-                        <li><a class="facebook" data-original-title="Facebook" href="#"></a></li>
-                        <li><a class="twitter" data-original-title="Twitter" href="#"></a></li>
-                        <li><a class="googleplus" data-original-title="Goole Plus" href="#"></a></li>
-                        <li><a class="linkedin" data-original-title="Linkedin" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="col-md-3">
-                    <div class="thumbnail">
-                      <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img2-large.jpg">
-                      <h3>
-                        <strong>Andres Iniesta</strong>
-                        <small>Chief Executive Officer / CEO</small>
-                      </h3>
-                      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
-                      <ul class="social-icons social-icons-color">
-                        <li><a class="facebook" data-original-title="Facebook" href="#"></a></li>
-                        <li><a class="twitter" data-original-title="Twitter" href="#"></a></li>
-                        <li><a class="googleplus" data-original-title="Goole Plus" href="#"></a></li>
-                        <li><a class="linkedin" data-original-title="Linkedin" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="col-md-3">
-                    <div class="thumbnail">
-                      <img alt="" src="/themes/bootstrap/assets/frontend/pages/img/people/img5-large.jpg">
-                      <h3>
-                        <strong>Jessica Alba</strong>
-                        <small>Chief Executive Officer / CEO</small>
-                      </h3>
-                      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
-                      <ul class="social-icons social-icons-color">
-                        <li><a class="facebook" data-original-title="Facebook" href="#"></a></li>
-                        <li><a class="twitter" data-original-title="Twitter" href="#"></a></li>
-                        <li><a class="googleplus" data-original-title="Goole Plus" href="#"></a></li>
-                        <li><a class="linkedin" data-original-title="Linkedin" href="#"></a></li>
-                      </ul>
-                    </div>
-                  </li>
+                  @endif
+                  @endforeach
                 </ul>
               </div>
+              @endif
 
             </div>
           </div>

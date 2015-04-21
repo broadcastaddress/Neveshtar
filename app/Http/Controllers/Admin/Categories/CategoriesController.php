@@ -116,6 +116,27 @@ class CategoriesController extends \App\Http\Controllers\Admin\AdminController {
             }
         }
 
+        if (Input::get('staff') !== NULL) {
+            $staff = explode(',', Input::get('staff'));
+            foreach($staff as $user) {
+				$new_staff = new App\CategoriesUser;
+				$new_staff->category_id = $db->id;
+				$new_staff->user_id = $user;
+				$new_staff->save();
+            }
+        }
+
+        if (Input::get('testimonials') !== NULL) {
+            $testimonials = explode(',', Input::get('testimonials'));
+            foreach($testimonials as $testimonial) {
+				$new_staff = new App\CategoriesTestimonial;
+				$new_staff->category_id = $db->id;
+				$new_staff->testimonial_id = $testimonial;
+				$new_staff->save();
+            }
+        }
+
+
 	    return redirect('/admin/categories')->with('message', Lang::get('admin.category').' '.Lang::get('admin.create_success'));
 	}
 
@@ -150,6 +171,28 @@ class CategoriesController extends \App\Http\Controllers\Admin\AdminController {
             }
         }
 
+    	App\CategoriesUser::where('category_id',$id)->delete();
+        if (Input::get('staff') !== NULL) {
+            $staff = explode(',', Input::get('staff'));
+            foreach($staff as $user) {
+				$new_staff = new App\CategoriesUser;
+				$new_staff->category_id = $db->id;
+				$new_staff->user_id = $user;
+				$new_staff->save();
+            }
+        }
+
+    	App\CategoriesTestimonial::where('category_id',$id)->delete();
+        if (Input::get('testimonials') !== NULL) {
+            $testimonials = explode(',', Input::get('testimonials'));
+            foreach($testimonials as $testimonial) {
+				$new_staff = new App\CategoriesTestimonial;
+				$new_staff->category_id = $db->id;
+				$new_staff->testimonial_id = $testimonial;
+				$new_staff->save();
+            }
+        }
+
 	    return redirect('/admin/categories')->with('message', Lang::get('admin.category').' '.Lang::get('admin.update_success'));
 	}
 
@@ -159,6 +202,8 @@ class CategoriesController extends \App\Http\Controllers\Admin\AdminController {
 				$items = App\Items::where('category_id',$id)->get();
 			if (Request::input('customActionName') == "delete") {
 				$media = App\CategoriesMedia::where('category_id',$id)->delete();
+				$media = App\CategoriesUser::where('category_id',$id)->delete();
+				$media = App\CategoriesTestimonial::where('category_id',$id)->delete();
 				foreach($items as $item) {
 					$item->status = 0;
 					$item->save();

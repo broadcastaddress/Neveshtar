@@ -68,6 +68,12 @@
 						<span class="title">Users</span>
 						</a>
 					</li>
+					<li id="side-users">
+						<a href="/admin/testimonials">
+						<i class="icon-emoticon-smile"></i>
+						<span class="title">Testimonials</span>
+						</a>
+					</li>
 				</ul>
 				<!-- END SIDEBAR MENU -->
 			</div>
