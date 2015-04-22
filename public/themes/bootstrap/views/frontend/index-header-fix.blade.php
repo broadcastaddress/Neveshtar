@@ -593,7 +593,6 @@
 @section('headerPlugins')
 <link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
 <link href="/themes/bootstrap/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
-<link href="/themes/bootstrap/assets/global/plugins/slider-revolution-slider/rs-plugin/css/settings.css" rel="stylesheet">
 @endsection
 
 @section('footerPlugins')
@@ -603,16 +602,11 @@
     jQuery(document).ready(function() {
         Layout.init();
         Layout.initOWL();
-        RevosliderInit.initRevoSlider();
         Layout.initFixHeaderWithPreHeader(); /* Switch On Header Fixing (only if you have pre-header) */
         Layout.initNavScrolling();
     });
 </script>
 <!-- BEGIN RevolutionSlider -->
-<script src="/themes/bootstrap/assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.plugins.min.js" type="text/javascript"></script>
-<script src="/themes/bootstrap/assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
-<script src="/themes/bootstrap/assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js" type="text/javascript"></script>
-<script src="/themes/bootstrap/assets/frontend/pages/scripts/revo-slider-init.js" type="text/javascript"></script>
 <!-- END RevolutionSlider -->
 
 <script src="/themes/bootstrap/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>

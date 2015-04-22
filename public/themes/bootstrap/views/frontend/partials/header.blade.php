@@ -44,7 +44,13 @@
   <link href="/themes/bootstrap/assets/frontend/pages/css/style-revolution-slider.css" rel="stylesheet"><!-- revo slider styles -->
   <link href="/themes/bootstrap/assets/frontend/layout/css/style-responsive.css" rel="stylesheet">
   <link href="/themes/bootstrap/assets/frontend/layout/css/themes/red.css" rel="stylesheet" id="style-color">
+  @if($site_language->direction == "rtl")
+  <link href="/themes/bootstrap/assets/global/css/bootstrap-rtl.min.css" rel="stylesheet">
+  @endif
   <link href="/themes/bootstrap/assets/frontend/layout/css/custom.css" rel="stylesheet">
+  @if($site_language->direction == "rtl")
+  <link href="/themes/bootstrap/assets/frontend/layout/css/custom-rtl.css" rel="stylesheet">
+  @endif
   <!-- Theme styles END -->
 </head>
 <!-- Head END -->

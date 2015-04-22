@@ -1,0 +1,55 @@
+body {
+	overflow-x: hidden;
+}
+.pre-header .col-md-6{
+	direction: ltr;
+	float: left;
+}
+.site-logo {
+    float: right;
+    margin-left: 67px;
+    margin-right: 0px;
+}
+.header-navigation > ul > li {
+    float: right;
+}
+.header-navigation .dropdown-menu {
+	right: auto !important;
+}
+.header-navigation .search-box {
+	right: auto;
+    left: -7px !important;
+}
+.header-navigation .search-box:after {
+	right: auto;
+	left: 8px !important;
+}
+.breadcrumb > li + li:before {
+	content: "\f104 ";
+}
+.social-footer {
+	text-align: left;
+}
+.recent-work {
+	direction: ltr;
+}
+.recent-work p, .recent-work h2 {
+	direction: rtl;
+}
+.recent-work .owl-buttons {
+	right: -74px;
+	left: auto;
+}
+.recent-work .recent-work-item a.recent-work-description {
+	direction: rtl;
+}
+.our-clients {
+	direction: ltr;
+}
+.our-clients .owl-buttons {
+	right: -74px;
+	left: auto;
+}
+.our-clients p, .our-clients h2 {
+	direction: rtl;
+}

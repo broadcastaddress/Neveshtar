@@ -13,6 +13,14 @@
                     	@if(isset($site_settings->main_email))
                         <li><i class="fa fa-envelope-o"></i><span><a href="mailto:{{$site_settings->main_email}}">{{$site_settings->main_email}}</a></span></li>
                         @endif
+                        <li class="langs-block list-unstyled list-inline">
+                            <a href="" class="current">{{$site_language->name}} </a>
+                            <div class="langs-block-others-wrapper"><div class="langs-block-others">
+                              @foreach($site_languages as $language)
+                              <a href="/{{$language->language}}">{{ucwords($language->name)}}</a>
+                              @endforeach
+                            </div></div>
+                        </li>
                     </ul>
                 </div>
                 <!-- END TOP BAR LEFT PART -->
@@ -46,7 +54,7 @@
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
         <!-- BEGIN NAVIGATION -->
-        <div class="header-navigation pull-right font-transform-inherit">
+        <div class="header-navigation pull-{{$site_language->opposite_direction}} font-transform-inherit">
           <ul>
           	@if(Route::currentRouteName() == 'WelcomeController')
             <li class="active">
@@ -85,16 +93,7 @@
             	@endif
         	</li>
             @endforeach
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="#">
-                Pages
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="/search">Search Result</a></li>
-              </ul>
-            </li>
             <li><a href="/{{Lang::getLocale()}}/contact">Contact</a></li>
-            <li><a href="/admin" target="_blank">Admin</a></li>
 
             <!-- BEGIN TOP SEARCH -->
             <li class="menu-search">

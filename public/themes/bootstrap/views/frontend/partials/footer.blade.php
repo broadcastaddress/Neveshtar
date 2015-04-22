@@ -74,7 +74,7 @@
           <!-- END COPYRIGHT -->
           <!-- BEGIN PAYMENTS -->
           <div class="col-md-6 col-sm-6">
-            <ul class="social-footer list-unstyled list-inline pull-right">
+            <ul class="social-footer list-unstyled list-inline pull-{{$site_language->opposite_direction}}">
               @if(isset($site_settings->social_facebook))
               <li><a target="_blank" href="{{$site_settings->social_facebook}}"><i class="fa fa-facebook"></i></a></li>
               @endif
@@ -117,6 +117,7 @@
     <![endif]-->
     <script src="/themes/bootstrap/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="/themes/bootstrap/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="/themes/bootstrap/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/themes/bootstrap/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/themes/bootstrap/assets/frontend/layout/scripts/back-to-top.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
