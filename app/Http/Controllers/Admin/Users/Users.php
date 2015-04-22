@@ -10,7 +10,7 @@ class Users extends Model {
 
     public function image()
     {
-        return $this->hasOne('App\Media', 'id', 'profile_image')->where('profile_image <> NULL');
+        return $this->hasOne('App\Media', 'id', 'profile_image');
     }
 
 }

@@ -2633,7 +2633,7 @@ Demo Utils
   color: #E84D1C;
 }
 .sidebar-categories li a:before {
-    content: "";
+    content: "\f105";
     font-family: FontAwesome !important;
     font-size: 8px;
     padding-right: 10px;

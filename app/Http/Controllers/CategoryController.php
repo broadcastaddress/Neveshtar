@@ -16,9 +16,9 @@ class CategoryController extends Controller {
 		View::share('posts',$posts);
 
 		//Sidebar Stuff
-		$categories = App\Category::where('parent_id',$item->parent_id)->where('status',1)->get();
+		$categories = App\Category::where('parent_id',$item->parent_id)->where('language',Lang::getLocale())->where('status',1)->get();
 		View::share('categories',$categories);
-		$subcategories = App\Category::where('parent_id',$item->id)->where('status',1)->get();
+		$subcategories = App\Category::where('parent_id',$item->id)->where('language',Lang::getLocale())->where('status',1)->get();
 		View::share('subcategories',$subcategories);
 		$recent = App\Items::where('status',1)->where('type','item')->where('language',Lang::getLocale())->orderBy('id','desc')->take(4)->get();
 		View::share('recent',$recent);
@@ -31,7 +31,7 @@ class CategoryController extends Controller {
 		$tags = App\Items::where('status',1)->where('language',Lang::getLocale())->orderBy('id','desc')->take(8)->get();
 
 		$tags = null;
-		$itemtags = App\Items::with(['tags' => function ($q) use (&$tags) {
+		$itemtags = App\Items::where('language',Lang::getLocale())->with(['tags' => function ($q) use (&$tags) {
 		  $tags = $q->orderBy('id','DESC')->get();
 		}])->get();
 		if($tags) {
@@ -41,7 +41,7 @@ class CategoryController extends Controller {
 
 		if($item->parent_id) {
 			$parent_category = App\Category::where('id',$item->parent_id)->first();
-			$parentcategories = App\Category::where('parent_id',$parent_category->parent_id)->where('status',1)->get();
+			$parentcategories = App\Category::where('parent_id',$parent_category->parent_id)->where('language',Lang::getLocale())->where('status',1)->get();
 			View::share('parentcategories',$parentcategories);
 		};
 		//End Sidebar stuff

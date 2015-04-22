@@ -28,14 +28,14 @@
                 <div class="col-md-6 col-sm-6 additional-nav">
                     <ul class="list-unstyled list-inline pull-right">
 						@if (Auth::guest())
-							<li><a href="/{{Lang::getLocale()}}/auth/login">Login</a>
-							<li><a href="/{{Lang::getLocale()}}/auth/login?register">Register</a></li>
+							<li><a href="/{{Lang::getLocale()}}/auth/login">{{ucwords(Lang::get('site.login'))}}</a>
+							<li><a href="/{{Lang::getLocale()}}/auth/login?register">{{ucwords(Lang::get('site.register'))}}</a></li>
 						@else
                         <li class="langs-block dropdown">
                             <a href="/{{Lang::getLocale()}}/profile" class="current"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a>
                             <div class="langs-block-others-wrapper"><div class="langs-block-others">
-                              <a href="/{{Lang::getLocale()}}/profile"><i class="fa fa-user"></i> Profile</a>
-                              <a href="/{{Lang::getLocale()}}/auth/logout"><i class="fa fa-times-circle-o"></i> Logout</a>
+                              <a href="/{{Lang::getLocale()}}/profile"><i class="fa fa-user"></i> {{ucwords(Lang::get('site.profile'))}}</a>
+                              <a href="/{{Lang::getLocale()}}/auth/logout"><i class="fa fa-times-circle-o"></i> {{ucwords(Lang::get('site.logout'))}}</a>
                             </div></div>
                         </li>
 						@endif
@@ -62,11 +62,11 @@
             <li>
             @endif
               <a data-target="/{{Lang::getLocale()}}" href="/{{Lang::getLocale()}}">
-                Home
+                {{ucwords(Lang::get('site.home'))}}
               </a>
             </li>
             @foreach($site_navigation as $menu)
-            @if((Request::segment(2)) == $menu->slug)
+            @if(urldecode(Request::segment(2)) == $menu->slug || urldecode(Request::segment(3)) == $menu->slug)
             @if((count($menu['children']) > 0) && ($menu->type == "category"))
             <li class="dropdown active">
             @else
@@ -93,7 +93,7 @@
             	@endif
         	</li>
             @endforeach
-            <li><a href="/{{Lang::getLocale()}}/contact">Contact</a></li>
+            <li><a href="/{{Lang::getLocale()}}/contact">{{ucwords(Lang::get('site.contact'))}}</a></li>
 
             <!-- BEGIN TOP SEARCH -->
             <li class="menu-search">
@@ -102,9 +102,9 @@
               <div class="search-box">
                 <form action="#">
                   <div class="input-group">
-                    <input type="text" placeholder="Search" class="form-control">
+                    <input type="text" placeholder="{{ucwords(Lang::get('site.search'))}}" class="form-control">
                     <span class="input-group-btn">
-                      <button class="btn btn-primary" type="submit">Search</button>
+                      <button class="btn btn-primary" type="submit">{{ucwords(Lang::get('site.search'))}}</button>
                     </span>
                   </div>
                 </form>

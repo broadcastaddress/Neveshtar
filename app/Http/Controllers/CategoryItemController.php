@@ -18,9 +18,9 @@ class CategoryItemController extends Controller {
 		//Sidebar Stuff
 		if($item->type == "item") {
 			$cat = App\Category::where('id', $item->category_id)->select(array('id', 'parent_id'))->first();
-			$categories = App\Category::where('parent_id',$cat->parent_id)->where('status',1)->get();
+			$categories = App\Category::where('parent_id',$cat->parent_id)->where('language',Lang::getLocale())->where('status',1)->get();
 			View::share('categories',$categories);
-			$subcategories = App\Category::where('parent_id',$cat->id)->where('status',1)->get();
+			$subcategories = App\Category::where('parent_id',$cat->id)->where('language',Lang::getLocale())->where('status',1)->get();
 			View::share('subcategories',$subcategories);
 			$recent = App\Items::where('status',1)->where('type','item')->where('language',Lang::getLocale())->orderBy('id','desc')->take(4)->get();
 			View::share('recent',$recent);
@@ -33,7 +33,7 @@ class CategoryItemController extends Controller {
 			$tags = App\Items::where('status',1)->where('language',Lang::getLocale())->orderBy('id','desc')->take(8)->get();
 
 			$tags = null;
-			$itemtags = App\Items::with(['tags' => function ($q) use (&$tags) {
+			$itemtags = App\Items::where('language',Lang::getLocale())->with(['tags' => function ($q) use (&$tags) {
 			  $tags = $q->orderBy('id','DESC')->get();
 			}])->get();
 			if($tags) {
@@ -43,7 +43,7 @@ class CategoryItemController extends Controller {
 
 			if($cat->parent_id) {
 				$parent_category = App\Category::where('id',$cat->parent_id)->first();
-				$parentcategories = App\Category::where('parent_id',$parent_category->parent_id)->where('status',1)->get();
+				$parentcategories = App\Category::where('language',Lang::getLocale())->where('parent_id',$parent_category->parent_id)->where('status',1)->get();
 				View::share('parentcategories',$parentcategories);
 			};
 		};

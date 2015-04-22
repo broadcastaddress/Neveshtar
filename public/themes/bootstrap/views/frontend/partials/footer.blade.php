@@ -17,24 +17,24 @@
               {{$site_settings->main_address}}<br>
               @endif
               @if(isset($site_settings->main_telephone))
-              Phone: <a href="tel:{{$site_settings->main_telephone}}">{{$site_settings->main_telephone}}</a><br>
+              {{ucwords(Lang::get('site.phone'))}}: <a href="tel:{{$site_settings->main_telephone}}">{{$site_settings->main_telephone}}</a><br>
               @endif
               @if(isset($site_settings->main_fax))
-              Fax: {{$site_settings->main_fax}}<br>
+              {{ucwords(Lang::get('site.fax'))}}: {{$site_settings->main_fax}}<br>
               @endif
               @if(isset($site_settings->main_email))
-              Email: <a href="mailto:{{$site_settings->main_email}}">{{$site_settings->main_email}}</a><br>
+              {{ucwords(Lang::get('site.email'))}}: <a href="mailto:{{$site_settings->main_email}}">{{$site_settings->main_email}}</a><br>
               @endif
             </address>
 
             <div class="pre-footer-subscribe-box pre-footer-subscribe-box-vertical">
-              <h2>Newsletter</h2>
-              <p>Subscribe to our newsletter and stay up to date with the latest news and deals!</p>
+              <h2>{{ucwords(Lang::get('site.newsletter'))}}</h2>
+              <p>{{ucwords(Lang::get('site.newsletter_intro'))}}</p>
               <form action="#">
                 <div class="input-group">
                   <input type="text" placeholder="youremail@mail.com" class="form-control">
                   <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">Subscribe</button>
+                    <button class="btn btn-primary" type="submit">{{ucwords(Lang::get('site.newsletter'))}}</button>
                   </span>
                 </div>
               </form>
