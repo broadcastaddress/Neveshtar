@@ -7,7 +7,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="utf-8"/>
-<title>{{$title}}</title>
+<title><?php echo e($title); ?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -29,14 +29,14 @@
 <link href="/themes/bootstrap/assets/global/css/plugins.css" rel="stylesheet" type="text/css"/>
 <link href="/themes/bootstrap/assets/admin/layout/css/layout.css" rel="stylesheet" type="text/css"/>
 <link id="style_color" href="/themes/bootstrap/assets/admin/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css"/>
-@if($site_language->direction == "rtl")
+<?php if($site_language->direction == "rtl"): ?>
 <link href="/themes/bootstrap/assets/global/css/bootstrap-rtl.min.css" rel="stylesheet">
-@endif
+<?php endif; ?>
 <link href="/themes/bootstrap/assets/admin/layout/css/custom.css" rel="stylesheet">
-@if($site_language->direction == "rtl")
+<?php if($site_language->direction == "rtl"): ?>
 <link href="/themes/bootstrap/assets/frontend/layout/css/custom-rtl.css" rel="stylesheet">
 <link href="/themes/bootstrap/assets/admin/layout/css/custom-rtl.css" rel="stylesheet">
-@endif
+<?php endif; ?>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 </head>
@@ -58,43 +58,43 @@
 <div class="content">
 	<!-- BEGIN LOGIN FORM -->
 	<form class="login-form" action="/auth/login" method="post">
-	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		<h3 class="form-title">{{ucfirst(Lang::get('site.login_account'))}}</h3>
+	<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+		<h3 class="form-title"><?php echo e(ucfirst(Lang::get('site.login_account'))); ?></h3>
 		<div class="alert alert-danger display-hide">
 			<button class="close" data-close="alert"></button>
 			<span>
-			{{ucfirst(Lang::get('site.enter_user_pass'))}} </span>
+			<?php echo e(ucfirst(Lang::get('site.enter_user_pass'))); ?> </span>
 		</div>
-		@if (count($errors) > 0)
+		<?php if(count($errors) > 0): ?>
 			<div class="alert alert-danger">
 				<strong>Whoops!</strong> There were some problems with your input.<br><br>
 				<ul>
-					@foreach ($errors->all() as $error)
-						<li>{{ $error }}</li>
-					@endforeach
+					<?php foreach($errors->all() as $error): ?>
+						<li><?php echo e($error); ?></li>
+					<?php endforeach; ?>
 				</ul>
 			</div>
-		@endif
+		<?php endif; ?>
 		<div class="form-group">
 			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-			<label class="control-label visible-ie8 visible-ie9">{{ucfirst(Lang::get('site.email'))}}</label>
+			<label class="control-label visible-ie8 visible-ie9"><?php echo e(ucfirst(Lang::get('site.email'))); ?></label>
 			<div class="input-icon">
 				<i class="fa fa-user"></i>
-				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="{{ucfirst(Lang::get('site.email'))}}" name="email"/>
+				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="<?php echo e(ucfirst(Lang::get('site.email'))); ?>" name="email"/>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">{{ucfirst(Lang::get('site.password'))}}</label>
+			<label class="control-label visible-ie8 visible-ie9"><?php echo e(ucfirst(Lang::get('site.password'))); ?></label>
 			<div class="input-icon">
 				<i class="fa fa-lock"></i>
-				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="{{ucfirst(Lang::get('site.password'))}}" name="password"/>
+				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="<?php echo e(ucfirst(Lang::get('site.password'))); ?>" name="password"/>
 			</div>
 		</div>
 		<div class="form-actions">
 			<label class="checkbox">
-			<input type="checkbox" name="remember"/> {{ucfirst(Lang::get('site.remember_me'))}} </label>
-			<button type="submit" class="btn blue pull-{{$site_language->opposite_direction}}">
-			{{ucfirst(Lang::get('site.login'))}} <i class="m-icon-swap{{$site_language->opposite_direction}} m-icon-white"></i>
+			<input type="checkbox" name="remember"/> <?php echo e(ucfirst(Lang::get('site.remember_me'))); ?> </label>
+			<button type="submit" class="btn blue pull-<?php echo e($site_language->opposite_direction); ?>">
+			<?php echo e(ucfirst(Lang::get('site.login'))); ?> <i class="m-icon-swap<?php echo e($site_language->opposite_direction); ?> m-icon-white"></i>
 			</button>
 		</div>
 		<!--
@@ -121,102 +121,103 @@
 		</div>
 		-->
 		<div class="forget-password">
-			<h4>{{ucfirst(Lang::get('site.forgot_password'))}}</h4>
+			<h4><?php echo e(ucfirst(Lang::get('site.forgot_password'))); ?></h4>
 			<p>
-			<a href="#" id="forget-password">{{ucfirst(Lang::get('site.reset_password'))}}</a>
+			<a href="#" id="forget-password"><?php echo e(ucfirst(Lang::get('site.reset_password'))); ?></a>
 			</p>
 		</div>
 		<div class="create-account">
 			<p>
-				 {{ucfirst(Lang::get('site.no_account'))}}&nbsp; <a href="javascript:;" id="register-btn">
-				{{ucfirst(Lang::get('site.register_account'))}} </a>
+				 <?php echo e(ucfirst(Lang::get('site.no_account'))); ?>&nbsp; <a href="javascript:;" id="register-btn">
+				<?php echo e(ucfirst(Lang::get('site.register_account'))); ?> </a>
 			</p>
 		</div>
 	</form>
 	<!-- END LOGIN FORM -->
 	<!-- BEGIN FORGOT PASSWORD FORM -->
 	<form class="forget-form" action="index.html" method="post">
-		<h3>{{ucfirst(Lang::get('site.forgot_password'))}}</h3>
+		<h3><?php echo e(ucfirst(Lang::get('site.forgot_password'))); ?></h3>
 		<p>
-			 {{ucfirst(Lang::get('site.enter_email_reset'))}}
+			 <?php echo e(ucfirst(Lang::get('site.enter_email_reset'))); ?>
+
 		</p>
 		<div class="form-group">
 			<div class="input-icon">
 				<i class="fa fa-envelope"></i>
-				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="{{ucfirst(Lang::get('site.email'))}}" name="email"/>
+				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="<?php echo e(ucfirst(Lang::get('site.email'))); ?>" name="email"/>
 			</div>
 		</div>
 		<div class="form-actions">
 			<button type="button" id="back-btn" class="btn">
-			<i class="m-icon-swap{{$site_language->main_direction}}"></i> {{ucfirst(Lang::get('site.back'))}} </button>
-			<button type="submit" class="btn blue pull-{{$site_language->opposite_direction}}">
-			{{ucfirst(Lang::get('site.submit'))}} <i class="m-icon-swap{{$site_language->opposite_direction}} m-icon-white"></i>
+			<i class="m-icon-swap<?php echo e($site_language->main_direction); ?>"></i> <?php echo e(ucfirst(Lang::get('site.back'))); ?> </button>
+			<button type="submit" class="btn blue pull-<?php echo e($site_language->opposite_direction); ?>">
+			<?php echo e(ucfirst(Lang::get('site.submit'))); ?> <i class="m-icon-swap<?php echo e($site_language->opposite_direction); ?> m-icon-white"></i>
 			</button>
 		</div>
 	</form>
 	<!-- END FORGOT PASSWORD FORM -->
 	<!-- BEGIN REGISTRATION FORM -->
 	<form class="register-form" action="/auth/register" method="post">
-	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		<h3>{{ucfirst(Lang::get('site.register_account'))}}</h3>
+	<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+		<h3><?php echo e(ucfirst(Lang::get('site.register_account'))); ?></h3>
 		<p>
-			 {{ucfirst(Lang::get('site.enter_personal_details'))}}:
+			 <?php echo e(ucfirst(Lang::get('site.enter_personal_details'))); ?>:
 		</p>
-		@if (count($errors) > 0)
+		<?php if(count($errors) > 0): ?>
 			<div class="alert alert-danger">
 				<strong>Whoops!</strong> There were some problems with your input.<br><br>
 				<ul>
-					@foreach ($errors->all() as $error)
-						<li>{{ $error }}</li>
-					@endforeach
+					<?php foreach($errors->all() as $error): ?>
+						<li><?php echo e($error); ?></li>
+					<?php endforeach; ?>
 				</ul>
 			</div>
-		@endif
+		<?php endif; ?>
 		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">{{ucfirst(Lang::get('site.full_name'))}}</label>
+			<label class="control-label visible-ie8 visible-ie9"><?php echo e(ucfirst(Lang::get('site.full_name'))); ?></label>
 			<div class="input-icon">
 				<i class="fa fa-font"></i>
-				<input class="form-control placeholder-no-fix" type="text" placeholder="{{ucwords(Lang::get('site.full_name'))}}" name="name"/>
+				<input class="form-control placeholder-no-fix" type="text" placeholder="<?php echo e(ucwords(Lang::get('site.full_name'))); ?>" name="name"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-			<label class="control-label visible-ie8 visible-ie9">{{ucfirst(Lang::get('site.email'))}}</label>
+			<label class="control-label visible-ie8 visible-ie9"><?php echo e(ucfirst(Lang::get('site.email'))); ?></label>
 			<div class="input-icon">
 				<i class="fa fa-envelope"></i>
-				<input class="form-control placeholder-no-fix" type="text" placeholder="{{ucfirst(Lang::get('site.email'))}}" name="email"/>
+				<input class="form-control placeholder-no-fix" type="text" placeholder="<?php echo e(ucfirst(Lang::get('site.email'))); ?>" name="email"/>
 			</div>
 		</div>
 		<p>
-			 {{ucfirst(Lang::get('site.enter_account_details'))}}:
+			 <?php echo e(ucfirst(Lang::get('site.enter_account_details'))); ?>:
 		</p>
 		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">{{ucfirst(Lang::get('site.password'))}}</label>
+			<label class="control-label visible-ie8 visible-ie9"><?php echo e(ucfirst(Lang::get('site.password'))); ?></label>
 			<div class="input-icon">
 				<i class="fa fa-lock"></i>
-				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="{{ucfirst(Lang::get('site.password'))}}" name="password"/>
+				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="<?php echo e(ucfirst(Lang::get('site.password'))); ?>" name="password"/>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">{{ucwords(Lang::get('site.retype_password'))}}</label>
+			<label class="control-label visible-ie8 visible-ie9"><?php echo e(ucwords(Lang::get('site.retype_password'))); ?></label>
 			<div class="controls">
 				<div class="input-icon">
 					<i class="fa fa-check"></i>
-					<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="{{ucwords(Lang::get('site.retype_password'))}}" name="password_confirmation"/>
+					<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="<?php echo e(ucwords(Lang::get('site.retype_password'))); ?>" name="password_confirmation"/>
 				</div>
 			</div>
 		</div>
 		<div class="form-group">
 			<label>
-			<input type="checkbox" name="tnc"/> {!!ucwords(Lang::get('site.agree_terms_of_service', ['terms' => '/'.Lang::getLocale().'/terms_of_service', 'privacy' => '/'.Lang::getLocale().'/privacy_policy']))!!} </label>
+			<input type="checkbox" name="tnc"/> <?php echo ucwords(Lang::get('site.agree_terms_of_service', ['terms' => '/'.Lang::getLocale().'/terms_of_service', 'privacy' => '/'.Lang::getLocale().'/privacy_policy'])); ?> </label>
 			<div id="register_tnc_error">
 			</div>
 		</div>
 		<div class="form-actions">
 			<button id="register-back-btn" type="button" class="btn">
-			<i class="m-icon-swap{{$site_language->main_direction}}"></i> {{ucfirst(Lang::get('site.back'))}} </button>
-			<button type="submit" id="register-submit-btn" class="btn blue pull-{{$site_language->opposite_direction}}">
-			{{ucwords(Lang::get('site.sign_up'))}} <i class="m-icon-swap{{$site_language->opposite_direction}} m-icon-white"></i>
+			<i class="m-icon-swap<?php echo e($site_language->main_direction); ?>"></i> <?php echo e(ucfirst(Lang::get('site.back'))); ?> </button>
+			<button type="submit" id="register-submit-btn" class="btn blue pull-<?php echo e($site_language->opposite_direction); ?>">
+			<?php echo e(ucwords(Lang::get('site.sign_up'))); ?> <i class="m-icon-swap<?php echo e($site_language->opposite_direction); ?> m-icon-white"></i>
 			</button>
 		</div>
 	</form>

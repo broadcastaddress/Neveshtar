@@ -1,0 +1,145 @@
+<?php $__env->startSection('content'); ?>
+    <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active"><?php echo e($title); ?></li>
+        </ul>
+
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1><?php echo e($title); ?></h1>
+            <div class="content-page">
+              <div class="row">
+                <div class="col-md-7">
+					<?php if($item->subtitle): ?>
+					<h2><?php echo e($item->subtitle); ?></h2>
+					<?php endif; ?>
+					<?php if($item->intro): ?>
+					<p><strong><?php echo e($item->intro); ?></strong></p>
+					<?php endif; ?>
+					<?php if($item->quote): ?>
+					<blockquote>
+					<p><?php echo e($item->quote); ?></p>
+					<small><?php echo e($item->quote_author); ?></small>
+					</blockquote>
+					<?php endif; ?>
+					<p><?php echo $item->description; ?></p>
+                </div>
+                <!-- END SERVICE BLOCKS -->
+
+                <!-- BEGIN CAROUSEL AND TESTIMONIALS -->
+                <div class="col-md-5">
+				  <?php if((isset($item->main_image->url)) || (count($item->gallery) > 0)): ?>
+                  <div class="front-carousel">
+                    <div class="carousel slide" id="myCarousel" data-interval="false">
+                      <!-- Carousel items -->
+                      <div class="carousel-inner">
+                      	<?php $i = 0; ?>
+                      	<?php if(isset($item->main_image->url)): ?>
+                      	<?php $i++; ?>
+						<div class="gallery-item item active">
+							<a class="fancybox-button" title="<?php echo e($item->main_image->title); ?>" rel="group" href="/uploads/images/<?php echo e($item->main_image->url); ?>">
+								<img alt="<?php echo e($item->main_image->title); ?>" src="/uploads/images/3_<?php echo e($item->main_image->url); ?>">
+								<span class="carousel-caption row-fluid">
+									<p><?php echo e($item->main_image->title); ?></p>
+								</span>
+								<div class="zoomix"><i class="fa fa-search"></i></div>
+							</a>
+						</div>
+                        <?php endif; ?>
+                        <?php if(count($item->gallery) > 0): ?>
+                        <?php foreach($item->gallery as $gallery): ?>
+                        <?php if(!isset($item->main_image->url) || ($gallery->url !== $item->main_image->url)): ?>
+                        <?php if($i == 0): ?>
+                        <div class="gallery-item item active">
+                        <?php else: ?>
+                        <div class="gallery-item item">
+                        <?php endif; ?>
+							<a class="fancybox-button" title="<?php echo e($gallery->title); ?>" rel="group" href="/uploads/images/<?php echo e($gallery->url); ?>">
+								<img alt="<?php echo e($gallery->title); ?>" src="/uploads/images/3_<?php echo e($gallery->url); ?>">
+								<span class="carousel-caption row-fluid">
+									<p><?php echo e($gallery->title); ?></p>
+								</span>
+								<div class="zoomix"><i class="fa fa-search"></i></div>
+							</a>
+						</div>
+                        <?php $i++; ?>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
+                      </div>
+                      <!-- Carousel nav -->
+                      <?php if($i > 1): ?>
+                      <a data-slide="prev" href="#myCarousel" class="carousel-control left">
+                        <i class="fa fa-angle-left"></i>
+                      </a>
+                      <a data-slide="next" href="#myCarousel" class="carousel-control right">
+                        <i class="fa fa-angle-right"></i>
+                      </a>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                  <?php endif; ?>
+
+                <!-- BEGIN TESTIMONIALS -->
+                <?php if(count($item->testimonials) > 0): ?>
+                <div class="testimonials-v1 testimonials-v1-another-color">
+                <br/>
+                  <h2>Clients Testimonials</h2>
+                  <div id="myCarousel1" class="carousel slide">
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+                      <?php $i = 0; ?>
+                      <?php foreach($item->testimonials as $testimonial): ?>
+                      <?php $i++; ?>
+                      <?php if($i == 1): ?>
+                      <div class="item active">
+                      <?php else: ?>
+                      <div class="item">
+                      <?php endif; ?>
+                        <blockquote><p><?php echo e($testimonial->description); ?></p></blockquote>
+                        <div class="carousel-info">
+                          <img class="pull-left" src="/uploads/images/c3_<?php echo e($testimonial->image->url); ?>" alt="">
+                          <div class="pull-left">
+                            <span class="testimonials-name"><?php echo e(ucwords($testimonial->name)); ?></span>
+                            <span class="testimonials-post"><?php echo e(ucwords($testimonial->title)); ?></span>
+                          </div>
+                        </div>
+                      </div>
+                      <?php endforeach; ?>
+                    </div>
+                    <!-- Carousel nav -->
+                    <a class="left-btn" href="#myCarousel1" data-slide="prev"></a>
+                    <a class="right-btn" href="#myCarousel1" data-slide="next"></a>
+                  </div>
+                </div>
+                <?php endif; ?>
+                <!-- END TESTIMONIALS -->
+                </div>
+                <!-- END BEGIN VIDEO AND TESTIMONIALS -->
+              </div>
+            </div>
+          </div>
+        </oiv>
+      </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('headerPlugins'); ?>
+<link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+<link href="/themes/bootstrap/assets/frontend/pages/css/gallery.css" rel="stylesheet">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('footerPlugins'); ?>
+<script src="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+<script src="/themes/bootstrap/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        Layout.init();
+    });
+</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make($theme_layout, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

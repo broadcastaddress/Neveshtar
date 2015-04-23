@@ -65,5 +65,15 @@ return [
 	'reset_password'			=> 'click here to reset it',
 	'no_account'				=> "you don't have an account?",
 	'register_account'			=> 'register an account',
+	'enter_user_pass'			=> 'please enter email and password',
+	'enter_email_reset'			=> "Enter your email below to reset it's password",
+	'back'						=> 'back',
+	'submit'					=> 'submit',
+	'enter_personal_details'	=> 'enter personal details below',
+	'enter_account_details'		=> 'enter account details below',
+	'retype_password'			=> 'retype your password',
+	'agree_terms_of_service'	=> 'I agree to the <a target="_blank" href=":terms">Terms of Service</a> and <a target="_blank" href=":privacy">Privacy Policy</a>',
+	'sign_up'					=> 'sign up',
+
 
 ];

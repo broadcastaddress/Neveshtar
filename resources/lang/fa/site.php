@@ -65,5 +65,14 @@ return [
 	'reset_password'			=> 'اینجا کلیک کنید تا آن را بازیابی کنید',
 	'no_account'				=> 'حساب کاربری ندارید؟',
 	'register_account'			=> 'برای عضویت اینجا کلیک کنید',
+	'enter_user_pass'			=> 'لطفا ایمیل و رمز عبور خود را وارد نمایید',
+	'enter_email_reset'			=> "ایمیل خود را جهت بازیابی رمز عبور وارد نمایید",
+	'back'						=> 'بازگشت',
+	'submit'					=> 'ثبت',
+	'enter_personal_details'	=> 'اطلاعات شخصی خود را وارد نمایید',
+	'enter_account_details'		=> 'اطلاعات حساب خود را وارد نمایید',
+	'retype_password'			=> 'تکرار مجدد رمز عبور',
+	'agree_terms_of_service'	=> 'من <a target="_blank" href=":terms">شرایط خدمات</a> و <a target="_blank" href=":privacy">سیاست محرمانگی</a> این وبسایت را قبول دارم',
+	'sign_up'					=> 'عضویت',
 
 ];

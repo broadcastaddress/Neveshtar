@@ -1,0 +1,144 @@
+<?php $__env->startSection('content'); ?>
+    <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active"><?php echo e($title); ?></li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1><?php echo e($title); ?></h1>
+            <div class="content-page">
+              <div class="row">
+                <!-- BEGIN CAROUSEL -->
+				  <?php if((isset($item->main_image->url)) || (count($item->gallery) > 0)): ?>
+                  <div class="col-md-5 front-carousel">
+                    <div class="carousel slide" id="myCarousel" data-interval="false">
+                      <!-- Carousel items -->
+                      <div class="carousel-inner">
+                      	<?php $i = 0; ?>
+                      	<?php if(isset($item->main_image->url)): ?>
+                      	<?php $i++; ?>
+						<div class="gallery-item item active">
+							<a class="fancybox-button" title="<?php echo e($item->main_image->title); ?>" rel="group" href="/uploads/images/<?php echo e($item->main_image->url); ?>">
+								<img alt="<?php echo e($item->main_image->title); ?>" src="/uploads/images/3_<?php echo e($item->main_image->url); ?>">
+								<span class="carousel-caption row-fluid">
+									<p><?php echo e($item->main_image->title); ?></p>
+								</span>
+								<div class="zoomix"><i class="fa fa-search"></i></div>
+							</a>
+						</div>
+                        <?php endif; ?>
+                        <?php if(count($item->gallery) > 0): ?>
+                        <?php foreach($item->gallery as $gallery): ?>
+                        <?php if(!isset($item->main_image->url) || ($gallery->url !== $item->main_image->url)): ?>
+                        <?php if($i == 0): ?>
+                        <div class="gallery-item item active">
+                        <?php else: ?>
+                        <div class="gallery-item item">
+                        <?php endif; ?>
+							<a class="fancybox-button" title="<?php echo e($gallery->title); ?>" rel="group" href="/uploads/images/<?php echo e($gallery->url); ?>">
+								<img alt="<?php echo e($gallery->title); ?>" src="/uploads/images/3_<?php echo e($gallery->url); ?>">
+								<span class="carousel-caption row-fluid">
+									<p><?php echo e($gallery->title); ?></p>
+								</span>
+								<div class="zoomix"><i class="fa fa-search"></i></div>
+							</a>
+						</div>
+                        <?php $i++; ?>
+                        <?php endif; ?>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
+                      </div>
+                      <!-- Carousel nav -->
+                      <?php if($i > 1): ?>
+                      <a data-slide="prev" href="#myCarousel" class="carousel-control left">
+                        <i class="fa fa-angle-left"></i>
+                      </a>
+                      <a data-slide="next" href="#myCarousel" class="carousel-control right">
+                        <i class="fa fa-angle-right"></i>
+                      </a>
+                      <?php endif; ?>
+                    </div>
+	                  <?php if($item->quote): ?>
+	                  <blockquote>
+	                    <p><?php echo e(ucfirst($item->quote)); ?></p>
+	                    <small><?php echo e(ucwords($item->quote_author)); ?></small>
+	                  </blockquote>
+	                  <?php endif; ?>
+                  </div>
+                  <?php endif; ?>
+                <!-- END CAROUSEL -->
+
+                <!-- BEGIN PORTFOLIO DESCRIPTION -->
+                <div class="col-md-7">
+                  <?php if($item->subtitle): ?>
+                  <h2><?php echo e($item->subtitle); ?></h2>
+                  <?php endif; ?>
+                  <?php if($item->intro): ?>
+                  <h4><?php echo e($item->intro); ?></h4>
+                  <?php endif; ?>
+                  <?php if($item->description): ?>
+                  <p><?php echo $item->description; ?></p>
+                  <?php endif; ?>
+                </div>
+                <!-- END PORTFOLIO DESCRIPTION -->
+              </div>
+
+              <hr/>
+
+        <!-- BEGIN RECENT WORKS -->
+        <div class="row recent-work margin-bottom-40">
+          <div class="col-md-3">
+            <h2><?php echo e(ucwords(Lang::get('site.recent_works'))); ?></h2>
+          </div>
+          <div class="col-md-9">
+            <div class="owl-carousel owl-carousel3">
+              <?php foreach($recent as $ritem): ?>
+              <div class="recent-work-item">
+                <em>
+                  <img src="/uploads/images/c_<?php echo e($ritem->main_image->url); ?>" alt="<?php echo e($ritem->title); ?>" class="img-responsive">
+                  <a href="/<?php echo e($ritem->language); ?>/<?php echo e($ritem->slug); ?>"><i class="fa fa-link"></i></a>
+                  <a href="/uploads/images/<?php echo e($ritem->main_image->url); ?>" class="fancybox-button" title="<?php echo e($ritem->title); ?>" data-rel="fancybox-button"><i class="fa fa-search"></i></a>
+                </em>
+                <a class="recent-work-description" href="#">
+                  <strong><?php echo e($ritem->title); ?></strong>
+                </a>
+              </div>
+              <?php endforeach; ?>
+            </div>
+          </div>
+        </div>
+        <!-- END RECENT WORKS -->
+
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+      </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('headerPlugins'); ?>
+<link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+<link href="/themes/bootstrap/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
+<link href="/themes/bootstrap/assets/frontend/pages/css/portfolio.css" rel="stylesheet">
+<link href="/themes/bootstrap/assets/frontend/pages/css/gallery.css" rel="stylesheet">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('footerPlugins'); ?>
+<script src="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+<script src="/themes/bootstrap/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+
+<script src="/themes/bootstrap/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        Layout.init();
+        Layout.initOWL();
+    });
+</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make($theme_layout, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

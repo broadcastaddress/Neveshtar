@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use View;
 use Theme;
 use Lang;
+use App;
 
 class AuthController extends Controller {
 
@@ -43,7 +44,8 @@ class AuthController extends Controller {
 	{
 		$this->auth = $auth;
 		$this->registrar = $registrar;
-
+        $this->site_language = App\Languages::where('language',Lang::getLocale())->first();
+        View::share('site_language', $this->site_language);
 		View::share('title',Lang::get('site.login'));
 
 		$this->middleware('guest', ['except' => 'getLogout']);
