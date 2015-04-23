@@ -95,7 +95,11 @@
                   <ul class="blog-info">
                     <li><i class="fa fa-user"></i> {{$item->user->name}}</li>
                     <li><i class="fa fa-clock-o"></i> {{$item->created_at->diffForHumans()}}</li>
+                    @if($site_language->language == "fa")
+                    <li><i class="fa fa-calendar"></i> {{Miladr\Jalali\jDate::forge($item->created_at)->format('%A، %d %B %Y - %l:%M %P')}}</li>
+                    @else
                     <li><i class="fa fa-calendar"></i> {{$item->created_at->toDayDateTimeString()}}</li>
+                    @endif
                     <li><i class="fa fa-comments"></i> {{count($item->comments_count)}}</li>
                     @if(count($item->tags) > 0)
                     <li><i class="fa fa-tags"></i>
@@ -113,7 +117,7 @@
                   <div class="comments">
                   	@foreach($item->comments as $comment)
                     <div class="media">
-                      <a href="#" class="pull-left">
+                      <a href="#" class="pull-{{$site_language->main_direction}}">
                       <img src="/themes/bootstrap/assets/frontend/pages/img/people/img1-small.jpg" alt="" class="media-object">
                       </a>
                       <div class="media-body">
@@ -128,7 +132,7 @@
                         @foreach($comment->replies as $reply)
                         <!-- Nested media object -->
                         <div class="media">
-                          <a href="#" class="pull-left">
+                          <a href="#" class="pull-{{$site_language->main_direction}}">
                           <img src="/themes/bootstrap/assets/frontend/pages/img/people/img2-small.jpg" alt="" class="media-object">
                           </a>
                           <div class="media-body">
@@ -302,7 +306,7 @@
                   <!-- BEGIN BLOG PHOTOS STREAM -->
                   @if(count($photos_stream) > 0)
                   <div class="blog-photo-stream margin-bottom-20">
-                    <h2>Photos Stream</h2>
+                    <h2>{{Lang::get('site.photos_stream')}}</h2>
                     <ul class="list-unstyled">
                       @foreach($photos_stream as $stream)
                       @if($stream->main_image)
