@@ -143,3 +143,32 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     left: 0px;
     right: auto;
 }
+.blog-item .blog-info li:first-child {
+    padding-right: 0px;
+    padding-left: 0px;
+    border-right: medium none;
+    border-left: none;
+    margin-right: 0px !important;
+}
+.blog-item .blog-info li {
+    padding-right: 13px;
+    padding-left: 0px;
+    border-right: 1px solid rgb(236, 235, 235);
+    border-left: none;
+}
+.blog-info li {
+    margin-right: 10px !important;
+    margin-left: 0px !important;
+}
+.content-page {
+    margin-right: 0px;
+    margin-left: 10px;
+}
+.front-carousel .carousel-caption {
+    text-align: right;
+}
+.social-icons li {
+    float: right;
+    margin-left: 5px;
+    margin-right: 0px;
+}

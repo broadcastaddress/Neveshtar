@@ -117,7 +117,7 @@
 								<input type="hidden" id="main_image" name="image_id" class="form-control select2" value="">
 							</div>
 						</div>
-						<div class="form-group category careers about_us services">
+						<div class="form-group category  gallery careers about_us services">
 							<label class="control-label col-md-3">{{Lang::get('admin.gallery')}} {{Lang::get('admin.images')}}</label>
 							<div class="col-md-4">
 								<input type="hidden" id="gallery" name="gallery" class="form-control select2" value="">
