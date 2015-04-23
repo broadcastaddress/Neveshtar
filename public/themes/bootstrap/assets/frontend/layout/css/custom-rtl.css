@@ -23,19 +23,36 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: 'Open Sans', "Nasim", sans-serif;
 }
+.pre-header {
+	font-family: 'Open Sans', "BYekan", sans-serif;
+	font-size: 15px;
+}
 .pre-header .col-md-6{
 	direction: ltr;
 	float: left;
+}
+.langs-block-others-wrapper {
+	direction: rtl;
+	right: 0px !important;
+	left: auto;
+}
+.langs-block-others:after {
+	left: 0px;
+	right: 8px;
 }
 .site-logo {
     float: right;
     margin-left: 67px;
     margin-right: 0px;
 }
+.header-navigation {
+	font-family: "Open Sans", "BYekan", sans-serif;
+}
 .header-navigation > ul > li {
     float: right;
 }
 .header-navigation .dropdown-menu {
+	font-family: "Open Sans", "BYekan", sans-serif;
 	right: auto !important;
 }
 .header-navigation .search-box {
@@ -51,6 +68,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 .social-footer {
 	text-align: left;
+}
+.ecommerce .pre-footer-subscribe-box h2, .corporate .pre-footer-subscribe-box h2 {
+    float: right;
+    margin-right: 0px;
+    margin-left: 20px;
+}
+.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+    margin-left: 1px;
+    margin-right: auto;
+}
+.pre-footer-subscribe-box .btn-primary {
+    margin-left: 1px !important;
 }
 .recent-work {
 	direction: ltr;

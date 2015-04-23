@@ -6,6 +6,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use App;
 use View;
 use Lang;
+use Jenssegers\Date\Date;
 
 abstract class Controller extends BaseController {
 

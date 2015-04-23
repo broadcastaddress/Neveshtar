@@ -56,5 +56,7 @@ return [
 	'search'					=> 'search',
 	'newsletter'				=> 'newsletter',
 	'newsletter_intro'			=> 'Subscribe to our newsletter and stay up to date with the latest news and deals!',
+	'login'						=> 'login',
+	'register'					=> 'register',
 
 ];

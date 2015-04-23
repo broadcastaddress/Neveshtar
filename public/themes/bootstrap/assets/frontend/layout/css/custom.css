@@ -20,3 +20,6 @@
 .testimonials-v1 span.testimonials-name {
 	margin: 3px 0px 7px;
 }
+.breadcrumb {
+	display: none;
+}

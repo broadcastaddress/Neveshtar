@@ -3067,5 +3067,55 @@
             "testing",
             "xunit"
         ]
+    },
+    {
+        "name": "jenssegers/date",
+        "version": "v2.0.20",
+        "version_normalized": "2.0.20.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jenssegers/laravel-date.git",
+            "reference": "422c6682fe68de59398ef89cca45d920afe12436"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jenssegers/laravel-date/zipball/422c6682fe68de59398ef89cca45d920afe12436",
+            "reference": "422c6682fe68de59398ef89cca45d920afe12436",
+            "shasum": ""
+        },
+        "require": {
+            "nesbot/carbon": "*",
+            "php": ">=5.3.0",
+            "symfony/translation": "*"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "*",
+            "satooshi/php-coveralls": "*"
+        },
+        "time": "2015-03-14 13:21:54",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Jenssegers\\Date": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jens Segers",
+                "homepage": "http://jenssegers.be"
+            }
+        ],
+        "description": "A date library to help you work with dates",
+        "keywords": [
+            "date",
+            "datetime",
+            "laravel",
+            "time"
+        ]
     }
 ]

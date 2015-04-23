@@ -176,7 +176,13 @@
                         </li>
                       </ul>
                       <p>{{$post->intro}}</p>
-                      <a href="/{{Lang::getLocale()}}/{{$post->slug}}" class="more">{{ucwords(Lang::get('site.read_more'))}} <i class="fa fa-angle-right"></i></a>
+                      <a href="/{{Lang::getLocale()}}/{{$post->slug}}" class="more">{{ucwords(Lang::get('site.read_more'))}}
+                      @if($site_language->direction == "ltr")
+                      <i class="fa fa-angle-right"></i>
+                      @else
+                      <i class="fa fa-angle-left"></i>
+                      @endif
+                      </a>
                     </div>
                   </div>
                   <hr class="blog-post-sep">
@@ -327,7 +333,7 @@
                   <!-- BEGIN BLOG PHOTOS STREAM -->
                   @if(count($photos_stream) > 0)
                   <div class="blog-photo-stream margin-bottom-20">
-                    <h2>Photos Stream</h2>
+                    <h2>{{ucwords(Lang::get('site.photos_stream'))}}</h2>
                     <ul class="list-unstyled">
                       @foreach($photos_stream as $stream)
                       @if($stream->main_image)
