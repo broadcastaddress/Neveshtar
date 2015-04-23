@@ -165,7 +165,11 @@
                       <h2><a href="/{{Lang::getLocale()}}/{{$post->slug}}">{{ucwords($post->title)}}</a></h2>
                       <ul class="blog-info">
                         <li><i class="fa fa-clock-o"></i> {{$post->created_at->diffForHumans()}}</li>
+                        @if($site_language->language == "fa")
+                        <li><i class="fa fa-calendar"></i> {{Miladr\Jalali\jDate::forge($post->created_at)->format('%A، %d %B %Y - %l:%M %P')}}</li>
+                        @else
                         <li><i class="fa fa-calendar"></i> {{$post->created_at->toDayDateTimeString()}}</li>
+                        @endif
                         <li><i class="fa fa-comments"></i> {{count($post->comments_count)}}</li>
                         <li><i class="fa fa-tags"></i>
                         	<?php $i = 0; ?>

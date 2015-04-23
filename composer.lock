@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9fc5851d042463dcef1c0b87711649bc",
+    "hash": "c13d9c487cb068d4aa927781ec96d735",
     "packages": [
         {
             "name": "caffeinated/themes",
@@ -457,54 +457,6 @@
             "time": "2014-07-14 20:59:35"
         },
         {
-            "name": "jenssegers/date",
-            "version": "v2.0.20",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jenssegers/laravel-date.git",
-                "reference": "422c6682fe68de59398ef89cca45d920afe12436"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/laravel-date/zipball/422c6682fe68de59398ef89cca45d920afe12436",
-                "reference": "422c6682fe68de59398ef89cca45d920afe12436",
-                "shasum": ""
-            },
-            "require": {
-                "nesbot/carbon": "*",
-                "php": ">=5.3.0",
-                "symfony/translation": "*"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "*",
-                "satooshi/php-coveralls": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Jenssegers\\Date": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jens Segers",
-                    "homepage": "http://jenssegers.be"
-                }
-            ],
-            "description": "A date library to help you work with dates",
-            "keywords": [
-                "date",
-                "datetime",
-                "laravel",
-                "time"
-            ],
-            "time": "2015-03-14 13:21:54"
-        },
-        {
             "name": "jeremeamia/SuperClosure",
             "version": "2.1.0",
             "source": {
@@ -818,6 +770,48 @@
                 "php"
             ],
             "time": "2015-03-18 10:36:55"
+        },
+        {
+            "name": "miladr/jalali",
+            "version": "0.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/miladr/jalali.git",
+                "reference": "b0b2cb0a764a753bb3af6741a94878ee00d7838b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/miladr/jalali/zipball/b0b2cb0a764a753bb3af6741a94878ee00d7838b",
+                "reference": "b0b2cb0a764a753bb3af6741a94878ee00d7838b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Miladr\\Jalali": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Milad Rey",
+                    "email": "miladr@gmail.com"
+                }
+            ],
+            "description": "This Package helps developers to easily work with Jalali (Shamsi or Iranian) dates in Laravel 4 applications, based on Jalali (Shamsi) DateTime class. This Package is based on a Laravel 3 bundle sallar/laravel-jdate by Sallar Kaboli.",
+            "keywords": [
+                "Jalali",
+                "date",
+                "datetime",
+                "laravel"
+            ],
+            "time": "2014-10-26 04:43:04"
         },
         {
             "name": "monolog/monolog",

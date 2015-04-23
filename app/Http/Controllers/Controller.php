@@ -6,7 +6,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use App;
 use View;
 use Lang;
-use Jenssegers\Date\Date;
+use Carbon\Carbon;
 
 abstract class Controller extends BaseController {
 
@@ -18,6 +18,7 @@ abstract class Controller extends BaseController {
     public function __construct()
     {
         // Fetch the Site Settings object
+		Carbon::setLocale(Lang::getLocale());
         $this->site_settings = App\Settings::where('language',Lang::getLocale())->first();
         View::share('site_settings', $this->site_settings);
         $this->site_navigation = App\Navigation::tree();

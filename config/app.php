@@ -150,7 +150,7 @@ return [
 		'Caffeinated\Themes\ThemesServiceProvider',
 	    'Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider',
 	    'Intervention\Image\ImageServiceProvider',
-	    'Jenssegers\Date\DateServiceProvider',
+	    'Miladr\Jalali\JalaliServiceProvider',
 
 
 	],

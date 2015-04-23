@@ -9,7 +9,7 @@
 		"caffeinated/themes": "dev-master",
 		"mcamara/laravel-localization": "dev-master",
 		"intervention/image": "2.*",
-		"jenssegers/date": "~2.0"
+		"miladr/jalali": "0.0.7.*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
