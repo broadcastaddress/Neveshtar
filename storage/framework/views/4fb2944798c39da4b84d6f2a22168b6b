@@ -1,0 +1,62 @@
+<?php $__env->startSection('content'); ?>
+    <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="#"><?php echo e($title); ?></a></li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1><?php echo e($title); ?></h1>
+            <div class="content-page">
+                <div class="filter-v1">
+                  <ul class="mix-filter">
+                    <li data-filter="all" class="filter active"><?php echo e($item->title); ?> (<?php echo e(ucwords(Lang::get('site.all'))); ?>)</li>
+                    <?php foreach($subcategories as $sub): ?>
+                    <li data-filter="<?php echo e($sub->slug); ?>" class="filter"><?php echo e($sub->title); ?></li>
+                    <?php endforeach; ?>
+                  </ul>
+                  <div class="row mix-grid thumbnails">
+                      <?php foreach($posts as $post): ?>
+                      <div class="col-md-3 col-sm-4 mix <?php echo e($post->category->slug); ?> mix_all" style="display: block; opacity: 1; ">
+                        <div class="mix-inner">
+                           <img alt="" src="/uploads/images/4_<?php echo e($post->main_image->url); ?>" class="img-responsive">
+                           <div class="mix-details">
+                              <h4><?php echo e(Illuminate\Support\Str::Words($post->title,8)); ?></h4>
+                              <a class="mix-link" href="/<?php echo e($post->language); ?>/<?php echo e($post->slug); ?>"><i class="fa fa-link"></i></a>
+                              <a data-rel="fancybox-button" title="<?php echo e($post->title); ?>" href="/uploads/images/<?php echo e($post->main_image->url); ?>" class="mix-preview fancybox-button"><i class="fa fa-search"></i></a>
+                           </div>
+                        </div>
+                      </div>
+                      <?php endforeach; ?>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+      </div>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('headerPlugins'); ?>
+<link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+<link href="/themes/bootstrap/assets/frontend/pages/css/portfolio.css" rel="stylesheet">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('footerPlugins'); ?>
+<script src="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+<script src="/themes/bootstrap/assets/global/plugins/jquery-mixitup/jquery.mixitup.min.js" type="text/javascript"></script>
+<script src="/themes/bootstrap/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="/themes/bootstrap/assets/frontend/pages/scripts/portfolio.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        Layout.init();
+        Portfolio.init();
+    });
+</script>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make($theme_layout, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

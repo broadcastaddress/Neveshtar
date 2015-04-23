@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Response;
 use Illuminate\View\Factory as ViewFactory;
+use URL;
 
 class Themes
 {
@@ -119,7 +120,7 @@ class Themes
 	 */
 	public function getPath()
 	{
-		return $this->path ?: $this->config->get('themes.path');
+		return $this->path ?: $this->config->get('themes.paths.absolute');
 	}
 
 	/**
@@ -345,6 +346,40 @@ class Themes
 		}
 
 		return false;
+	}
+
+	/**
+	 * Generate a HTML link to the given asset using HTTP for the
+	 * currently active theme.
+	 *
+	 * @return string
+	 */
+	public function asset($asset)
+	{
+		$segments = explode('::', $asset);
+		$theme    = null;
+
+		if (count($segments) == 2) {
+			list($theme, $asset) = $segments;
+		} else {
+			$asset = $segments[0];
+		}
+
+		return '/'.$this->config->get('themes.paths.base').'/'
+			.($theme ?: $this->getActive()).'/'
+			.$this->config->get('themes.paths.assets').'/'
+			.$asset;
+	}
+
+	/**
+	 * Generate a HTML link to the given asset using HTTPS for the
+	 * currently active theme.
+	 *
+	 * @return string
+	 */
+	public function secureAsset($asset)
+	{
+		return preg_replace("/^http:/i", "https:", $this->asset($asset));
 	}
 
 	/**
