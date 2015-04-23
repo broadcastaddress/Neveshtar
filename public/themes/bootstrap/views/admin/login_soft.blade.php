@@ -52,11 +52,11 @@
 	<!-- BEGIN LOGIN FORM -->
 	<form class="login-form" action="/auth/login" method="post">
 	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		<h3 class="form-title">Login to your account</h3>
+		<h3 class="form-title">{{ucfirst(Lang::get('site.login_account'))}}</h3>
 		<div class="alert alert-danger display-hide">
 			<button class="close" data-close="alert"></button>
 			<span>
-			Enter any username and password. </span>
+			{{ucfirst(Lang::get('site.enter_user_pass'))}} </span>
 		</div>
 		@if (count($errors) > 0)
 			<div class="alert alert-danger">
@@ -70,26 +70,27 @@
 		@endif
 		<div class="form-group">
 			<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
-			<label class="control-label visible-ie8 visible-ie9">Email</label>
+			<label class="control-label visible-ie8 visible-ie9">{{ucfirst(Lang::get('site.email'))}}</label>
 			<div class="input-icon">
 				<i class="fa fa-user"></i>
-				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="email"/>
+				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="{{ucfirst(Lang::get('site.email'))}}" name="email"/>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label visible-ie8 visible-ie9">Password</label>
+			<label class="control-label visible-ie8 visible-ie9">{{ucfirst(Lang::get('site.password'))}}</label>
 			<div class="input-icon">
 				<i class="fa fa-lock"></i>
-				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password"/>
+				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="{{ucfirst(Lang::get('site.password'))}}" name="password"/>
 			</div>
 		</div>
 		<div class="form-actions">
 			<label class="checkbox">
-			<input type="checkbox" name="remember"/> Remember me </label>
+			<input type="checkbox" name="remember"/> {{ucfirst(Lang::get('site.remember_me'))}} </label>
 			<button type="submit" class="btn blue pull-right">
-			Login <i class="m-icon-swapright m-icon-white"></i>
+			{{ucfirst(Lang::get('site.login'))}} <i class="m-icon-swapright m-icon-white"></i>
 			</button>
 		</div>
+		<!--
 		<div class="login-options">
 			<h4>Or login with</h4>
 			<ul class="social-icons">
@@ -111,18 +112,17 @@
 				</li>
 			</ul>
 		</div>
+		-->
 		<div class="forget-password">
-			<h4>Forgot your password ?</h4>
+			<h4>{{ucfirst(Lang::get('site.forgot_password'))}}</h4>
 			<p>
-				 no worries, click <a href="javascript:;" id="forget-password">
-				here </a>
-				to reset your password.
+			<a href="#">{{ucfirst(Lang::get('site.reset_password'))}}</a>
 			</p>
 		</div>
 		<div class="create-account">
 			<p>
-				 Don't have an account yet ?&nbsp; <a href="javascript:;" id="register-btn">
-				Create an account </a>
+				 {{ucfirst(Lang::get('site.no_account'))}}&nbsp; <a href="javascript:;" id="register-btn">
+				{{ucfirst(Lang::get('site.register_account'))}} </a>
 			</p>
 		</div>
 	</form>
@@ -220,13 +220,6 @@
 	<!-- END REGISTRATION FORM -->
 </div>
 <!-- END LOGIN -->
-<!-- BEGIN COPYRIGHT -->
-<div class="copyright">
-	 2014 &copy; Neveshtar - Admin Dashboard Template.
-</div>
-<!-- END COPYRIGHT -->
-<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-<!-- BEGIN CORE PLUGINS -->
 <!--[if lt IE 9]>
 <script src="/themes/bootstrap/assets/global/plugins/respond.min.js"></script>
 <script src="/themes/bootstrap/assets/global/plugins/excanvas.min.js"></script>

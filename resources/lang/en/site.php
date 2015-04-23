@@ -58,5 +58,12 @@ return [
 	'newsletter_intro'			=> 'Subscribe to our newsletter and stay up to date with the latest news and deals!',
 	'login'						=> 'login',
 	'register'					=> 'register',
+	'login_account'				=> 'login to your account',
+	'password'					=> 'password',
+	'remember_me'				=> 'remember me',
+	'forgot_password'			=> 'forgot your password?',
+	'reset_password'			=> 'click here to reset it',
+	'no_account'				=> "you don't have an account?",
+	'register_account'			=> 'register an account',
 
 ];

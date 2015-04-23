@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use View;
 use Theme;
+use Lang;
 
 class AuthController extends Controller {
 
@@ -43,7 +44,7 @@ class AuthController extends Controller {
 		$this->auth = $auth;
 		$this->registrar = $registrar;
 
-		View::share('title','Login');
+		View::share('title',Lang::get('site.login'));
 
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
