@@ -37,6 +37,11 @@ function()
 	    Route::post('items/ajax_table', 'Admin\Items\ItemsController@ajax_table');
 	    Route::post('items/actions', 'Admin\Items\ItemsController@actions');
 
+	    // Sliders
+	    Route::resource('sliders', 'Admin\Sliders\SlidersController');
+	    Route::post('sliders/ajax_table', 'Admin\Sliders\SlidersController@ajax_table');
+	    Route::post('sliders/actions', 'Admin\Sliders\SlidersController@actions');
+
 	    // Images
 	    Route::get('images/images', 'Admin\Images\ImagesController@images');
 	    Route::post('images/crop', 'Admin\Images\ImagesController@crop');

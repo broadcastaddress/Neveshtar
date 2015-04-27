@@ -135,10 +135,12 @@
 	</form>
 	<!-- END LOGIN FORM -->
 	<!-- BEGIN FORGOT PASSWORD FORM -->
-	<form class="forget-form" action="index.html" method="post">
+	<form class="forget-form" action="<?php echo e(url('/password/email')); ?>" method="post" >
+	<input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+	<input type="hidden" name="token" value="<?php echo e(csrf_token()); ?>">
 		<h3><?php echo e(ucfirst(Lang::get('site.forgot_password'))); ?></h3>
 		<p>
-			 <?php echo e(ucfirst(Lang::get('site.enter_email_reset'))); ?>
+			 <?php echo ucfirst(Lang::get('site.enter_email_reset')); ?>
 
 		</p>
 		<div class="form-group">

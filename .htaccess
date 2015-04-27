@@ -1,8 +1,8 @@
 RewriteEngine on
-RewriteCond %{HTTP_HOST} ^www.niloofarshop.com$ [NC,OR]
-RewriteCond %{HTTP_HOST} ^niloofarshop.com$ [NC,OR]
-RewriteCond %{REQUEST_URI} !/public/
-RewriteRule (.*) /public/$1 [L]
+RewriteCond %{HTTP_HOST} ^www.listerooz.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^listerooz.com$ [NC,OR]
+RewriteCond %{REQUEST_URI} !Neveshtar/public/
+RewriteRule (.*) Neveshtar/public/$1 [L]
 
 <IfModule mod_deflate.c>
 # force deflate for mangled headers

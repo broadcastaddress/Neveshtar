@@ -31,7 +31,7 @@ class AuthController extends Controller {
 
 	public function redirectPath()
 	{
-		return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
+		return property_exists($this, 'redirectTo') ? $this->redirectTo : '/'.Lang::getLocale().'';
 	}
 	/**
 	 * Create a new authentication controller instance.

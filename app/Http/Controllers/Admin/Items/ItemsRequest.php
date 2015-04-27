@@ -21,9 +21,11 @@ class ItemsRequest extends Request {
 	 */
 	public function rules()
 	{
+
+		$id = (Request::segment(4));
 		return [
 			'title' => 'required',
-			'slug' => 'required|unique:categories',
+			'slug' => 'required|unique:items,slug,'.$id,
 			'language' => 'required',
 			'category_id' => 'required|integer',
 			'tags' => 'required',

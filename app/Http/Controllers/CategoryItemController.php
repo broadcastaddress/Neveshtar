@@ -13,10 +13,10 @@ class CategoryItemController extends Controller {
 	public function index($slug)
 	{
 		Theme::setLayout('frontend.app');
-		$item = App\Items::where('slug', $slug)->where('status',1)->first();
+		$item = App\Items::where('slug', $slug)->where('language',Lang::getLocale())->where('status',1)->first();
 
 		//Sidebar Stuff
-		if($item->type == "item") {
+		if($item->type == "item" || $item->type == "gallery") {
 			$cat = App\Category::where('id', $item->category_id)->select(array('id', 'parent_id'))->first();
 			$categories = App\Category::where('parent_id',$cat->parent_id)->where('language',Lang::getLocale())->where('status',1)->get();
 			View::share('categories',$categories);
@@ -67,6 +67,9 @@ class CategoryItemController extends Controller {
 		View::share('title',$item->title);
 
 		if($item->type == "item") {
+			return Theme::view('frontend/category-item');
+		};
+		if($item->type == "gallery") {
 			return Theme::view('frontend/category-item');
 		};
 		if($item->type == "portfolio") {

@@ -22,7 +22,7 @@ class UsersRequest extends Request {
 	public function rules()
 	{
 
-		$id = (Request::segment(3));
+		$id = (Request::segment(4));
 		return [
 			'name' => 'required',
 			'email' => 'required|unique:users,email,'.$id,

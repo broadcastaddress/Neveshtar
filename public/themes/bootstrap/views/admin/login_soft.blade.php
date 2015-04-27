@@ -135,10 +135,12 @@
 	</form>
 	<!-- END LOGIN FORM -->
 	<!-- BEGIN FORGOT PASSWORD FORM -->
-	<form class="forget-form" action="index.html" method="post">
+	<form class="forget-form" action="{{url('/password/email')}}" method="post" >
+	<input type="hidden" name="_token" value="{{ csrf_token() }}">
+	<input type="hidden" name="token" value="{{ csrf_token() }}">
 		<h3>{{ucfirst(Lang::get('site.forgot_password'))}}</h3>
 		<p>
-			 {{ucfirst(Lang::get('site.enter_email_reset'))}}
+			 {!!ucfirst(Lang::get('site.enter_email_reset'))!!}
 		</p>
 		<div class="form-group">
 			<div class="input-icon">

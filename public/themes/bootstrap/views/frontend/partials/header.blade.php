@@ -43,7 +43,7 @@
   <link href="/themes/bootstrap/assets/frontend/layout/css/style.css" rel="stylesheet">
   <link href="/themes/bootstrap/assets/frontend/pages/css/style-revolution-slider.css" rel="stylesheet"><!-- revo slider styles -->
   <link href="/themes/bootstrap/assets/frontend/layout/css/style-responsive.css" rel="stylesheet">
-  <link href="/themes/bootstrap/assets/frontend/layout/css/themes/red.css" rel="stylesheet" id="style-color">
+  <link href="/themes/bootstrap/assets/frontend/layout/css/themes/blue.css" rel="stylesheet" id="style-color">
   @if($site_language->direction == "rtl")
   <link href="/themes/bootstrap/assets/global/css/bootstrap-rtl.min.css" rel="stylesheet">
   @endif

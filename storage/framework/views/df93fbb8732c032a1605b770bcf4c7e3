@@ -19,6 +19,12 @@
 						<span class="title">Dashboard</span>
 						</a>
 					</li>
+					<li id="side-sliders">
+						<a href="/admin/sliders">
+						<i class="icon-control-play"></i>
+						<span class="title">Slider</span>
+						</a>
+					</li>
 					<li id="side-settings">
 						<a href="/admin/settings">
 						<i class="icon-wrench"></i>

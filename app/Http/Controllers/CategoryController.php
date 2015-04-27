@@ -10,7 +10,7 @@ class CategoryController extends Controller {
 
 	public function show($slug)
 	{
-		$item = App\Category::where('slug',$slug)->where('status',1)->first();
+		$item = App\Category::where('slug',$slug)->where('language',Lang::getLocale())->where('status',1)->first();
 		View::share('item',$item);
 		$posts = App\Category::latestTopic($item->id,20,0);
 		View::share('posts',$posts);

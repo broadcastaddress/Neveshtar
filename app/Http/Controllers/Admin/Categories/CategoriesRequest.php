@@ -22,7 +22,7 @@ class CategoriesRequest extends Request {
 	public function rules()
 	{
 
-		$id = (Request::segment(3));
+		$id = (Request::segment(4));
 		return [
 			'title' => 'required',
 			'slug' => 'required|unique:categories,slug,'.$id,

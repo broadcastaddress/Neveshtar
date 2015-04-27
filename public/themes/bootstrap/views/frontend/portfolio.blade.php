@@ -58,6 +58,7 @@
     jQuery(document).ready(function() {
         Layout.init();
         Portfolio.init();
+        Layout.initFixHeaderWithPreHeader();
     });
 </script>
 @endsection

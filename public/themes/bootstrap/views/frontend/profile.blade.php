@@ -114,6 +114,7 @@
     jQuery(document).ready(function() {
         Layout.init();
         FormValidation.init();
+        Layout.initFixHeaderWithPreHeader();
     });
 </script>
 @endsection

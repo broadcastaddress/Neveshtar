@@ -173,6 +173,7 @@
         Layout.init();
         Layout.initUniform();
         FormValidation.init();
+        Layout.initFixHeaderWithPreHeader();
     });
 </script>
 @endsection

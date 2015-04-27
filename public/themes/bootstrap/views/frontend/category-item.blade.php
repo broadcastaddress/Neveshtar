@@ -354,6 +354,7 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();
+        Layout.initFixHeaderWithPreHeader();
     });
 </script>
 @endsection

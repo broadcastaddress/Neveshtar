@@ -140,6 +140,7 @@
     jQuery(document).ready(function() {
         Layout.init();
         Layout.initOWL();
+        Layout.initFixHeaderWithPreHeader();
     });
 </script>
 @endsection
