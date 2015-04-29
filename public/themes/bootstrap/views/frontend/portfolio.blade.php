@@ -45,15 +45,15 @@
 @endsection
 
 @section('headerPlugins')
-<link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-<link href="/themes/bootstrap/assets/frontend/pages/css/portfolio.css" rel="stylesheet">
+{!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css') !!}
+{!! Minify::stylesheet('/themes/bootstrap/assets/frontend/pages/css/portfolio.css') !!}
 @endsection
 
 @section('footerPlugins')
-<script src="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-<script src="/themes/bootstrap/assets/global/plugins/jquery-mixitup/jquery.mixitup.min.js" type="text/javascript"></script>
-<script src="/themes/bootstrap/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
-<script src="/themes/bootstrap/assets/frontend/pages/scripts/portfolio.js" type="text/javascript"></script>
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') !!}<!-- pop up -->
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/jquery-mixitup/jquery.mixitup.min.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/frontend/layout/scripts/layout.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/frontend/pages/scripts/portfolio.js') !!}
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();

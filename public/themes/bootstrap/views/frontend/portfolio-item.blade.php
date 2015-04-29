@@ -125,17 +125,17 @@
 @endsection
 
 @section('headerPlugins')
-<link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-<link href="/themes/bootstrap/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
-<link href="/themes/bootstrap/assets/frontend/pages/css/portfolio.css" rel="stylesheet">
-<link href="/themes/bootstrap/assets/frontend/pages/css/gallery.css" rel="stylesheet">
+{!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css') !!}
+{!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css') !!}
+{!! Minify::stylesheet('/themes/bootstrap/assets/frontend/pages/css/portfolio.css') !!}
+{!! Minify::stylesheet('/themes/bootstrap/assets/frontend/pages/css/gallery.css') !!}
 @endsection
 
 @section('footerPlugins')
-<script src="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-<script src="/themes/bootstrap/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js" type="text/javascript"></script><!-- slider for products -->
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') !!}<!-- pop up -->
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js') !!}<!-- slider for products -->
 
-<script src="/themes/bootstrap/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+{!! Minify::javascript('/themes/bootstrap/assets/frontend/layout/scripts/layout.js') !!}
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();

@@ -113,13 +113,12 @@
     <!-- Load javascripts at bottom, this will reduce page load time -->
     <!-- BEGIN CORE PLUGINS (REQUIRED FOR ALL PAGES) -->
     <!--[if lt IE 9]>
-    <script src="/themes/bootstrap/assets/global/plugins/respond.min.js"></script>
+    {!! Minify::javascript('/themes/bootstrap/assets/global/plugins/respond.min.js') !!}
     <![endif]-->
-    <script src="/themes/bootstrap/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
-    <script src="/themes/bootstrap/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
-    <script src="/themes/bootstrap/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/themes/bootstrap/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/themes/bootstrap/assets/frontend/layout/scripts/back-to-top.js" type="text/javascript"></script>
+	{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/jquery.min.js') !!}
+	{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/jquery-migrate.min.js') !!}
+	{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/bootstrap/js/bootstrap.min.js') !!}
+	{!! Minify::javascript('/themes/bootstrap/assets/frontend/layout/scripts/back-to-top.js') !!}
     <!-- END CORE PLUGINS -->
 
     <!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->

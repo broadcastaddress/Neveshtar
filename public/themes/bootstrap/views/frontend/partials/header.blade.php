@@ -32,7 +32,7 @@
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
   <!-- Fonts END -->
   <!-- Global styles START -->
-  {!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/font-awesome/css/font-awesome.min.css') !!}
+  <link href="/themes/bootstrap/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   {!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/bootstrap/css/bootstrap.min.css') !!}
   <!-- Global styles END -->
   <!-- Page level plugin styles START -->

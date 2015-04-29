@@ -97,19 +97,19 @@
 @endsection
 
 @section('headerPlugins')
-<link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="/themes/bootstrap/assets/global/plugins/select2/select2.css"/>
-<link rel="stylesheet" type="text/css" href="/themes/bootstrap/assets/global/plugins/bootstrap-datepicker/css/datepicker.css"/>
+{!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css') !!}
+{!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/select2/select2.css') !!}
+{!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/bootstrap-datepicker/css/datepicker.css') !!}
 @endsection
 
 @section('footerPlugins')
-<script src="/themes/bootstrap/assets/global/scripts/metronic.js" type="text/javascript"></script>
-<script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script src="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-<script src="/themes/bootstrap/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
-<script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/select2/select2.min.js"></script>
-<script type="text/javascript" src="/themes/bootstrap/assets/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
-<script src="/themes/bootstrap/assets/admin/pages/scripts/form-validation.js"></script>
+{!! Minify::javscript('/themes/bootstrap/assets/global/scripts/metronic.js') !!}
+{!! Minify::javscript('/themes/bootstrap/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') !!}
+{!! Minify::javscript('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') !!}<!-- pop up -->
+{!! Minify::javscript('/themes/bootstrap/assets/frontend/layout/scripts/layout.js') !!}
+{!! Minify::javscript('/themes/bootstrap/assets/global/plugins/select2/select2.min.js') !!}
+{!! Minify::javscript('/themes/bootstrap/assets/global/plugins/jquery-validation/js/jquery.validate.min.js') !!}
+{!! Minify::javscript('/themes/bootstrap/assets/admin/pages/scripts/form-validation.js') !!}
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();

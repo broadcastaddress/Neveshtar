@@ -62,13 +62,12 @@
 @endsection
 
 @section('headerPlugins')
-<link href="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
+{!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css') !!}
 @endsection
 
 @section('footerPlugins')
-<script src="/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
-
-<script src="/themes/bootstrap/assets/frontend/layout/scripts/layout.js" type="text/javascript"></script>
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') !!}<!-- pop up -->
+{!! Minify::javascript('/themes/bootstrap/assets/frontend/layout/scripts/layout.js') !!}
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();
