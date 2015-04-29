@@ -29,7 +29,9 @@
         "App\\Providers\\RouteServiceProvider",
         "Caffeinated\\Themes\\ThemesServiceProvider",
         "Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider",
-        "Intervention\\Image\\ImageServiceProvider"
+        "Intervention\\Image\\ImageServiceProvider",
+        "GrahamCampbell\\HTMLMin\\HTMLMinServiceProvider",
+        "Devfactory\\Minify\\MinifyServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -50,7 +52,9 @@
         "App\\Providers\\RouteServiceProvider",
         "Caffeinated\\Themes\\ThemesServiceProvider",
         "Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider",
-        "Intervention\\Image\\ImageServiceProvider"
+        "Intervention\\Image\\ImageServiceProvider",
+        "GrahamCampbell\\HTMLMin\\HTMLMinServiceProvider",
+        "Devfactory\\Minify\\MinifyServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

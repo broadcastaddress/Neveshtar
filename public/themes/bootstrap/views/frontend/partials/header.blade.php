@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="{{Lang::getLocale()}}" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="{{Lang::getLocale()}}" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en">
-<!--<![endif]-->
+<!--[if !IE]>
+<html lang="{{Lang::getLocale()}}">
+<![endif]-->
 <!-- Head BEGIN -->
 <head>
   <meta charset="utf-8">
@@ -39,7 +39,7 @@
   @yield('headerPlugins')
   <!-- Page level plugin styles END -->
   <!-- Theme styles START -->
-  <link href="/themes/bootstrap/assets/global/css/components.css" rel="stylesheet">
+  <link href="{!!HTMLMin::css('/themes/bootstrap/assets/global/css/components.css')!!}" rel="stylesheet">
   <link href="/themes/bootstrap/assets/frontend/layout/css/style.css" rel="stylesheet">
   <link href="/themes/bootstrap/assets/frontend/pages/css/style-revolution-slider.css" rel="stylesheet"><!-- revo slider styles -->
   <link href="/themes/bootstrap/assets/frontend/layout/css/style-responsive.css" rel="stylesheet">

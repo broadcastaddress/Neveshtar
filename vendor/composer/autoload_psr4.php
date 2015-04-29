@@ -13,6 +13,8 @@ return array(
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
     'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src/Intervention/Image'),
     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
+    'GrahamCampbell\\HTMLMin\\' => array($vendorDir . '/graham-campbell/htmlmin/src'),
+    'Devfactory\\Minify\\' => array($vendorDir . '/devfactory/minify/src'),
     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
     'Caffeinated\\Themes\\' => array($vendorDir . '/caffeinated/themes/src/Caffeinated/Themes'),
     'App\\' => array($baseDir . '/app'),

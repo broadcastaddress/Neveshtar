@@ -9,7 +9,9 @@
 		"mcamara/laravel-localization": "dev-master",
 		"intervention/image": "2.*",
 		"miladr/jalali": "0.0.7.*",
-		"caffeinated/themes": "~1.2"
+		"caffeinated/themes": "~1.2",
+		"graham-campbell/htmlmin": "~3.0",
+		"devfactory/minify": "1.0.*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
@@ -36,7 +38,7 @@
 		"post-update-cmd": [
 			"php artisan clear-compiled",
 			"php artisan optimize",
-			"php artisan vendor:publish --force"
+			"php artisan vendor:publish"
 		],
 		"post-create-project-cmd": [
 			"php -r \"copy('.env.example', '.env');\"",

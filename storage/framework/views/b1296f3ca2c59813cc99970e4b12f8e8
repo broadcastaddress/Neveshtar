@@ -1,4 +1,0 @@
-<?php echo Component::header($title); ?>
-<?php echo Component::topbar(''); ?>
-<?php echo $__env->yieldContent('content'); ?>
-<?php echo Component::footer(''); ?>

@@ -137,6 +137,8 @@ class WelcomeController extends Controller {
 		Theme::setLayout('frontend.app');
 		$sliders = App\Sliders::where('language',Lang::getLocale())->where('status',1)->orderBy('id','DESC')->get();
 		View::share('sliders',$sliders);
+		$currencies = App\Currency::orderBy('order','ASC')->get();
+		View::share('currencies',$currencies);
 		View::share('title',$this->site_settings->site_slogan);
 		return Theme::view('frontend/index-header-fix');
 
