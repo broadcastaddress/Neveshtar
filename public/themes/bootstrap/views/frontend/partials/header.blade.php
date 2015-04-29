@@ -32,24 +32,25 @@
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
   <!-- Fonts END -->
   <!-- Global styles START -->
-  <link href="/themes/bootstrap/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="/themes/bootstrap/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  {!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/font-awesome/css/font-awesome.min.css') !!}
+  {!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/bootstrap/css/bootstrap.min.css') !!}
   <!-- Global styles END -->
   <!-- Page level plugin styles START -->
   @yield('headerPlugins')
   <!-- Page level plugin styles END -->
   <!-- Theme styles START -->
-  <link href="{!!HTMLMin::css('/themes/bootstrap/assets/global/css/components.css')!!}" rel="stylesheet">
-  <link href="/themes/bootstrap/assets/frontend/layout/css/style.css" rel="stylesheet">
-  <link href="/themes/bootstrap/assets/frontend/pages/css/style-revolution-slider.css" rel="stylesheet"><!-- revo slider styles -->
-  <link href="/themes/bootstrap/assets/frontend/layout/css/style-responsive.css" rel="stylesheet">
-  <link href="/themes/bootstrap/assets/frontend/layout/css/themes/blue.css" rel="stylesheet" id="style-color">
+  {!! Minify::stylesheet('/themes/bootstrap/assets/global/css/components.css') !!}
+  {!! Minify::stylesheet('/themes/bootstrap/assets/frontend/layout/css/style.css') !!}
+  {!! Minify::stylesheet('/themes/bootstrap/assets/frontend/pages/css/style-revolution-slider.css') !!}
+  {!! Minify::stylesheet('/themes/bootstrap/assets/frontend/layout/css/style-responsive.css') !!}
+  {!! Minify::stylesheet('/themes/bootstrap/assets/frontend/layout/css/themes/blue.css') !!}
   @if($site_language->direction == "rtl")
-  <link href="/themes/bootstrap/assets/global/css/bootstrap-rtl.min.css" rel="stylesheet">
+  {!! Minify::stylesheet('/themes/bootstrap/assets/global/css/bootstrap-rtl.min.css') !!}
+
   @endif
-  <link href="/themes/bootstrap/assets/frontend/layout/css/custom.css" rel="stylesheet">
+  {!! Minify::stylesheet('/themes/bootstrap/assets/frontend/layout/css/custom.css') !!}
   @if($site_language->direction == "rtl")
-  <link href="/themes/bootstrap/assets/frontend/layout/css/custom-rtl.css" rel="stylesheet">
+  {!! Minify::stylesheet('/themes/bootstrap/assets/frontend/layout/css/custom-rtl.css') !!}
   @endif
   <!-- Theme styles END -->
 </head>

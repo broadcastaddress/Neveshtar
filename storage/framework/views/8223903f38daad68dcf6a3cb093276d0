@@ -1,0 +1,2 @@
+  <?php echo Minify::javascript('/themes/bootstrap/assets/frontend/layout/css/themes/blue.css'); ?>
+
