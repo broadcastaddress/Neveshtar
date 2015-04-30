@@ -116,6 +116,7 @@
     {!! Minify::javascript('/themes/bootstrap/assets/global/plugins/respond.min.js') !!}
     <![endif]-->
 	{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/jquery.min.js') !!}
+	{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/pace/pace.min.js') !!}
 	{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/jquery-migrate.min.js') !!}
 	{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/bootstrap/js/bootstrap.min.js') !!}
 	{!! Minify::javascript('/themes/bootstrap/assets/frontend/layout/scripts/back-to-top.js') !!}

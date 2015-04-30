@@ -13,7 +13,7 @@ class Currency extends Model {
 
     public function latest_data()
     {
-        return $this->hasMany('App\CurrencyData', 'currency_id', 'id')->orderBy('id','DESC')->take(2);
+        return $this->hasMany('App\CurrencyData', 'currency_id', 'id')->orderBy('id','DESC')->groupBy('buy_price')->groupBy('sell_price')->take(2);
     }
 
 }

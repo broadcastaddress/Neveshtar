@@ -1,6 +1,6 @@
 /* General body settings */
-body { 
-  color: #5f6f7e; 
+body {
+  color: #5f6f7e;
   direction: ltr;
   font: 300 14px/1.4 "Open Sans", Arial, sans-serif;
   background: #fff;
@@ -14,8 +14,8 @@ body {
   text-align: center;
 }
 .content h1:after, .content h2:after {
-  z-index: 2; 
-  content: " "; 
+  z-index: 2;
+  content: " ";
   display: block;
   padding-top: 7px;
   border-bottom: 2px solid #b7bbbf;
@@ -27,7 +27,7 @@ body {
   padding: 0;
   margin: 0;
 }
-.content h1 strong, 
+.content h1 strong,
 .content h2 strong,
 .content h3 strong,
 .content h4 strong {
@@ -105,10 +105,10 @@ a:hover {
   zoom: 1;
 }
 .clear {
-  clear: both; 
-  height: 0; 
-  font-size: 0; 
-  line-height: 0; 
+  clear: both;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
   overflow: hidden;
 }
 .block-center {
@@ -280,7 +280,7 @@ a:hover {
 }
 
 .btn {
-  padding: 7px 14px;  
+  padding: 7px 14px;
   font-size: 14px;
   text-transform: uppercase;
   border-radius: 0;
@@ -297,7 +297,7 @@ a:hover {
   background: #cc3304;
   border: none;
 }
-.content-page .btn-primary, 
+.content-page .btn-primary,
 .content-page .btn-primary:hover {
   color: #fff;
   margin-left: 0 !important;
@@ -306,7 +306,7 @@ a:hover {
   border: 1px solid #EDEDED;
   color: #A8AEB3;
   background: transparent;
-  padding: 6px 13px; 
+  padding: 6px 13px;
 }
 .btn-default:hover,
 .btn-default:focus,
@@ -314,7 +314,7 @@ a:hover {
   border: 1px solid #A8AEB3;
   color: #fff;
   background: #A8AEB3;
-  padding: 6px 13px; 
+  padding: 6px 13px;
 }
 
 /*  media */
@@ -342,7 +342,7 @@ a:hover {
 .panel-default > .panel-heading {
   background: #ecf0f1;
   border-color: #ecf0f1;
-  color: #333;  
+  color: #333;
 }
 .panel-default > .panel-heading h4 {
   font: 300 16px "Open Sans", sans-serif;
@@ -420,13 +420,13 @@ a:hover {
   display: none;
   margin: 15px 15px 0;
   position: relative;
-  background: url(../img/toggler.png) no-repeat 6px 8px;
+  background: url(/themes/bootstrap/assets/frontend/onepage/img/toggler.png) no-repeat 6px 8px;
 }
 .header .mobi-toggler i {
   display: none;
 }
 .header .mobi-toggler:hover {
-  background: #e34f00 url(../img/toggler.png) no-repeat 6px -28px;
+  background: #e34f00 url(/themes/bootstrap/assets/frontend/onepage/img/toggler.png) no-repeat 6px -28px;
   border-color: #e34f00;
   color: #fff;
 }
@@ -695,7 +695,7 @@ a:hover {
   background: #e85425;
   color: #fff;
   width: 99px;
-  height: 99px;  
+  height: 99px;
   line-height: 1;
   border-radius: 50%;
   position: relative;
@@ -703,13 +703,13 @@ a:hover {
 }
 .services-block .fa:after {
   bottom: -8px;
-  width: 0; 
+  width: 0;
   height: 0;
   left: 50%;
   margin-left: -9px;
-  z-index: 2; 
-  content: " "; 
-  display: block; 
+  z-index: 2;
+  content: " ";
+  display: block;
   position: absolute;
   border-top: 9px solid #e85425;
   border-right: 9px solid transparent;
@@ -911,7 +911,7 @@ a:hover {
   padding: 13px 15px 9px;
   margin-bottom: 26px;
 }
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   .pricing-head {
     padding: 12px 15px 10px;
   }
@@ -930,7 +930,7 @@ a:hover {
   background: #e85425;
   color: #fff;
   width: 128px;
-  height: 128px;  
+  height: 128px;
   line-height: 1;
   border-radius: 50%;
   position: relative;
@@ -939,20 +939,20 @@ a:hover {
 }
 .pi-price strong:after {
   bottom: -8px;
-  width: 0; 
+  width: 0;
   height: 0;
   left: 50%;
   margin-left: -9px;
-  z-index: 2; 
-  content: " "; 
-  display: block; 
+  z-index: 2;
+  content: " ";
+  display: block;
   position: absolute;
   border-top: 9px solid #e85425;
   border-right: 9px solid transparent;
   border-left: 9px solid transparent;
 }
 .pi-price strong em {
-  font-size: 71px;  
+  font-size: 71px;
   font-style: normal;
 }
 .pricing-content {
@@ -1061,12 +1061,12 @@ a:hover {
   width: 198px;
   height: 198px;
   border-radius: 50% !important;
-  padding: 33px 0 0; 
+  padding: 33px 0 0;
   margin: 0 auto;
 }
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   .facts-block .item {
-    padding: 31px 0 0; 
+    padding: 31px 0 0;
   }
 }
 .ie8 .facts-block .item {
@@ -1096,7 +1096,7 @@ a:hover {
   height: 100%;
   top: 0;
   left: 0;
-  position: absolute;  
+  position: absolute;
   z-index: 1;
 }*/
 .message-block h2 {
@@ -1150,7 +1150,7 @@ a:hover {
   font: 400 20px/20px "PT Sans Narrow", Arial, sans-serif;
   padding: 15px 20px 14px;
 }
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   .checkout-block .btn {
     padding: 14px 20px 15px;
   }
@@ -1221,7 +1221,7 @@ Pre-Footer and pre-footer elements
 .pre-footer .social-icons {
   padding-top: 5px;
 }
-.pre-footer .social-icons li a, 
+.pre-footer .social-icons li a,
 .pre-footer a.social-icon {
   transition: all 0.1s ease-in-out !important;
   -o-transition: all 0.1s ease-in-out !important;
@@ -1293,7 +1293,7 @@ Pre-Footer and pre-footer elements
     transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;  
+    -webkit-transition: all 0.3s ease-in-out;
 }
 
 /* light pre-footer */
@@ -1449,7 +1449,7 @@ Pre-Footer and pre-footer elements
 .copyright {
   padding-top: 7px;
 }
-@-moz-document url-prefix() { 
+@-moz-document url-prefix() {
   .copyright {
     padding-top: 6px;
   }
@@ -1541,7 +1541,7 @@ Styler Panel
   display: none;
   padding: 20px 10px 10px;
   position: absolute;
-  background: #3d3d3d;  
+  background: #3d3d3d;
 }
 .color-mode p {
   color: #cfcfcf;
@@ -1597,7 +1597,7 @@ Styler Panel
   margin: 0 5px;
   display: block;
 }
-.color-mode label span {  
+.color-mode label span {
   text-transform: uppercase;
 }
 .color-mode label > span {

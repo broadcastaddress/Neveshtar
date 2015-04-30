@@ -20,59 +20,60 @@ array(
 function()
 {
 
-	Route::group(array('middleware' => 'auth', 'prefix' => 'admin'), function()
+	Route::group(array('middleware' => 'App\Http\Middleware\AdminAuth', 'prefix' => 'admin'), function()
 	{
-	    // Example route with an admin prefix
-	    Route::get('/', array('uses' => 'Admin\AdminController@index'));
 
-	    // Categories
-	    Route::resource('categories', 'Admin\Categories\CategoriesController');
-	    Route::post('categories/ajax_table', 'Admin\Categories\CategoriesController@ajax_table');
-	    Route::post('categories/actions', 'Admin\Categories\CategoriesController@actions');
+		    // Example route with an admin prefix
+		    Route::get('/', array('uses' => 'Admin\AdminController@index'));
 
-	    // Items
-	    Route::get('items/tags', 'Admin\Items\ItemsController@tags');
-	    Route::get('items/categories', 'Admin\Items\ItemsController@categories');
-	    Route::resource('items', 'Admin\Items\ItemsController');
-	    Route::post('items/ajax_table', 'Admin\Items\ItemsController@ajax_table');
-	    Route::post('items/actions', 'Admin\Items\ItemsController@actions');
+		    // Categories
+		    Route::resource('categories', 'Admin\Categories\CategoriesController');
+		    Route::post('categories/ajax_table', 'Admin\Categories\CategoriesController@ajax_table');
+		    Route::post('categories/actions', 'Admin\Categories\CategoriesController@actions');
 
-	    // Sliders
-	    Route::resource('sliders', 'Admin\Sliders\SlidersController');
-	    Route::post('sliders/ajax_table', 'Admin\Sliders\SlidersController@ajax_table');
-	    Route::post('sliders/actions', 'Admin\Sliders\SlidersController@actions');
+		    // Items
+		    Route::get('items/tags', 'Admin\Items\ItemsController@tags');
+		    Route::get('items/categories', 'Admin\Items\ItemsController@categories');
+		    Route::resource('items', 'Admin\Items\ItemsController');
+		    Route::post('items/ajax_table', 'Admin\Items\ItemsController@ajax_table');
+		    Route::post('items/actions', 'Admin\Items\ItemsController@actions');
 
-	    // Images
-	    Route::get('images/images', 'Admin\Images\ImagesController@images');
-	    Route::post('images/crop', 'Admin\Images\ImagesController@crop');
-	    Route::resource('images', 'Admin\Images\ImagesController');
-	    Route::post('images/ajax_table', 'Admin\Images\ImagesController@ajax_table');
-	    Route::post('images/actions', 'Admin\Images\ImagesController@actions');
+		    // Sliders
+		    Route::resource('sliders', 'Admin\Sliders\SlidersController');
+		    Route::post('sliders/ajax_table', 'Admin\Sliders\SlidersController@ajax_table');
+		    Route::post('sliders/actions', 'Admin\Sliders\SlidersController@actions');
 
-	    // Comments
-	    Route::resource('comments', 'Admin\Comments\CommentsController');
-	    Route::post('comments/ajax_table', 'Admin\Comments\CommentsController@ajax_table');
-	    Route::post('comments/actions', 'Admin\Comments\CommentsController@actions');
+		    // Images
+		    Route::get('images/images', 'Admin\Images\ImagesController@images');
+		    Route::post('images/crop', 'Admin\Images\ImagesController@crop');
+		    Route::resource('images', 'Admin\Images\ImagesController');
+		    Route::post('images/ajax_table', 'Admin\Images\ImagesController@ajax_table');
+		    Route::post('images/actions', 'Admin\Images\ImagesController@actions');
 
-	    // Feedbacks
-	    Route::resource('feedbacks', 'Admin\Feedbacks\FeedbacksController');
-	    Route::post('feedbacks/ajax_table', 'Admin\Feedbacks\FeedbacksController@ajax_table');
-	    Route::post('feedbacks/actions', 'Admin\Feedbacks\FeedbacksController@actions');
+		    // Comments
+		    Route::resource('comments', 'Admin\Comments\CommentsController');
+		    Route::post('comments/ajax_table', 'Admin\Comments\CommentsController@ajax_table');
+		    Route::post('comments/actions', 'Admin\Comments\CommentsController@actions');
 
-	    // Settings
-	    Route::resource('settings', 'Admin\Settings\SettingsController');
+		    // Feedbacks
+		    Route::resource('feedbacks', 'Admin\Feedbacks\FeedbacksController');
+		    Route::post('feedbacks/ajax_table', 'Admin\Feedbacks\FeedbacksController@ajax_table');
+		    Route::post('feedbacks/actions', 'Admin\Feedbacks\FeedbacksController@actions');
 
-	    // Users
-	    Route::get('users/staff', 'Admin\Users\UsersController@staff');
-	    Route::resource('users', 'Admin\Users\UsersController');
-	    Route::post('users/ajax_table', 'Admin\Users\UsersController@ajax_table');
-	    Route::post('users/actions', 'Admin\Users\UsersController@actions');
+		    // Settings
+		    Route::resource('settings', 'Admin\Settings\SettingsController');
 
-	    // Testimonials
-	    Route::get('testimonials/testimonial', 'Admin\Testimonials\TestimonialsController@testimonial');
-	    Route::resource('testimonials', 'Admin\Testimonials\TestimonialsController');
-	    Route::post('testimonials/ajax_table', 'Admin\Testimonials\TestimonialsController@ajax_table');
-	    Route::post('testimonials/actions', 'Admin\Testimonials\TestimonialsController@actions');
+		    // Users
+		    Route::get('users/staff', 'Admin\Users\UsersController@staff');
+		    Route::resource('users', 'Admin\Users\UsersController');
+		    Route::post('users/ajax_table', 'Admin\Users\UsersController@ajax_table');
+		    Route::post('users/actions', 'Admin\Users\UsersController@actions');
+
+		    // Testimonials
+		    Route::get('testimonials/testimonial', 'Admin\Testimonials\TestimonialsController@testimonial');
+		    Route::resource('testimonials', 'Admin\Testimonials\TestimonialsController');
+		    Route::post('testimonials/ajax_table', 'Admin\Testimonials\TestimonialsController@ajax_table');
+		    Route::post('testimonials/actions', 'Admin\Testimonials\TestimonialsController@actions');
 
 	});
 

@@ -137,8 +137,11 @@ class WelcomeController extends Controller {
 		Theme::setLayout('frontend.app');
 		$sliders = App\Sliders::where('language',Lang::getLocale())->where('status',1)->orderBy('id','DESC')->get();
 		View::share('sliders',$sliders);
-		$currencies = App\Currency::orderBy('order','ASC')->get();
+		$currencies = App\Currency::orderBy('id','ASC')->get();
 		View::share('currencies',$currencies);
+        $dollar_sell_chart = App\CurrencyData::where('currency_id',33)->orderBy('created_at','ASC')->groupBy('sell_price')->select('sell_price','created_at')->take(20);
+        $dollar_sell_chart = $dollar_sell_chart->get()->toArray();
+		View::share('dollar_sell_chart',$dollar_sell_chart);
 		View::share('title',$this->site_settings->site_slogan);
 		return Theme::view('frontend/index-header-fix');
 

@@ -33,6 +33,7 @@
   <!-- Fonts END -->
   <!-- Global styles START -->
   <link href="/themes/bootstrap/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  {!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/pace/themes/pace-theme-flash.css') !!}
   {!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/bootstrap/css/bootstrap.min.css') !!}
   <!-- Global styles END -->
   <!-- Page level plugin styles START -->

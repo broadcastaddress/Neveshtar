@@ -49,6 +49,7 @@
 
     <div class="main">
       <div class="container">
+			<div class="col-md-6 col-sm-6">
 			<!-- Start Currency -->
 			<div class="portlet">
 				<div class="portlet-title">
@@ -61,19 +62,19 @@
 						<table class="table table-striped table-bordered table-advance table-hover">
 						<thead>
 						<tr>
-							<th>
+							<th width="30%">
 								<i class="fa"></i> {{Lang::get('site.currency')}}
 							</th>
-							<th>
+							<th width="20%">
 								<i class="fa"></i> {{Lang::get('site.buy_price')}}
 							</th>
-							<th>
+							<th width="15%">
 								<i class="fa"></i> {{Lang::get('site.buy_difference')}}
 							</th>
-							<th>
+							<th width="20%">
 								<i class="fa"></i> {{Lang::get('site.sell_price')}}
 							</th>
-							<th>
+							<th width="15%">
 								<i class="fa"></i> {{Lang::get('site.sell_difference')}}
 							</th>
 						</tr>
@@ -86,7 +87,7 @@
 							@foreach($currency->latest_data as $latest_data)
 							<?php $i++; ?>
 							@if($i == 1)
-								<td>{{$latest_data->buy_price}}</td>
+								<td>{{str_replace(".00", "", (string)number_format ($latest_data->buy_price, 2, ".", ","))}}</td>
 							@else
 								<?php
 								$bd = $latest_data->buy_price - $currency->latest_data->first()->buy_price;
@@ -105,7 +106,7 @@
 							@foreach($currency->latest_data as $latest_data)
 							<?php $i++; ?>
 							@if($i == 1)
-								<td>{{$latest_data->sell_price}}</td>
+								<td>{{str_replace(".00", "", (string)number_format ($latest_data->sell_price, 2, ".", ","))}}</td>
 							@else
 								<?php
 								$sd = $latest_data->sell_price - $currency->latest_data->first()->sell_price;
@@ -128,6 +129,10 @@
 				</div>
 			</div>
 			<!-- End Currency -->
+			</div>
+			<div class="col-md-6 col-sm-6">
+				<div id="chartdiv" class="amcharts" style="width:100%; height:400px;"></div>
+			</div>
 
       </div>
     </div>
@@ -137,12 +142,16 @@
 {!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.css') !!}
 {!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.css') !!}
 {!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/slider-revolution-slider/rs-plugin/css/settings.css') !!}
+{!! Minify::stylesheet('/themes/bootstrap/assets/global/plugins/amcharts/amstockcharts/style.css') !!}
 @endsection
 
 @section('footerPlugins')
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/amcharts/amcharts/amcharts.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/amcharts/amcharts/serial.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/amcharts/amstockcharts/themes/dark.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/amcharts/amstockcharts/amstock.js') !!}
 {!! Minify::javascript('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') !!}
 {!! Minify::javascript('/themes/bootstrap/assets/global/plugins/carousel-owl-carousel/owl-carousel/owl.carousel.min.js') !!}
-{!! Minify::javascript('') !!}<!-- slider for products -->
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();
@@ -151,6 +160,70 @@
         Layout.initFixHeaderWithPreHeader(); /* Switch On Header Fixing (only if you have pre-header) */
         Layout.initNavScrolling();
     });
+
+    var chartData = [
+    	@foreach($dollar_sell_chart as $sell)
+    	<?php $sell_date = date_parse($sell['created_at']); ?>
+        {date: new Date({{$sell_date['year']}}, {{$sell_date['month']}}, {{$sell_date['day']}}, {{$sell_date['hour']}}, {{$sell_date['minute']}}, 0, 0), val:{{$sell['sell_price']}}},
+        @endforeach
+    ];
+
+    AmCharts.ready(function() {
+        var chart = new AmCharts.AmStockChart();
+        chart.pathToImages = "amcharts/images/";
+
+        var dataSet = new AmCharts.DataSet();
+        dataSet.dataProvider = chartData;
+        dataSet.fieldMappings = [{fromField:"val", toField:"value"}];
+        dataSet.categoryField = "date";
+        chart.dataSets = [dataSet];
+
+        var stockPanel = new AmCharts.StockPanel();
+        chart.panels = [stockPanel];
+
+        var legend = new AmCharts.StockLegend();
+        stockPanel.stockLegend = legend;
+
+        var panelsSettings = new AmCharts.PanelsSettings();
+        panelsSettings.startDuration = 1;
+        chart.panelsSettings = panelsSettings;
+
+        var graph = new AmCharts.StockGraph();
+        graph.valueField = "value";
+        graph.type = "column";
+        graph.title = "MyGraph";
+        graph.fillAlphas = 1;
+        stockPanel.addStockGraph(graph);
+
+        var categoryAxesSettings = new AmCharts.CategoryAxesSettings();
+        categoryAxesSettings.dashLength = 5;
+        chart.categoryAxesSettings = categoryAxesSettings;
+
+        var valueAxesSettings = new AmCharts.ValueAxesSettings();
+        valueAxesSettings .dashLength = 5;
+        chart.valueAxesSettings  = valueAxesSettings;
+
+        var chartScrollbarSettings = new AmCharts.ChartScrollbarSettings();
+        chartScrollbarSettings.graph = graph;
+        chartScrollbarSettings.graphType = "line";
+        chart.chartScrollbarSettings = chartScrollbarSettings;
+
+        var chartCursorSettings = new AmCharts.ChartCursorSettings();
+        chartCursorSettings.valueBalloonsEnabled = true;
+        chart.chartCursorSettings = chartCursorSettings;
+
+        var periodSelector = new AmCharts.PeriodSelector();
+        periodSelector.periods = [{period:"DD", count:1, label:"1 day"},
+                                  {period:"DD", selected:true, count:5, label:"5 days"},
+                                  {period:"MM", count:1, label:"1 month"},
+                                  {period:"YYYY", count:1, label:"1 year"},
+                                  {period:"YTD", label:"YTD"},
+                                  {period:"MAX", label:"MAX"}];
+        chart.periodSelector = periodSelector;
+
+        chart.write("chartdiv");
+    });
+
 </script>
 <!-- BEGIN RevolutionSlider -->
 {!! Minify::javascript('/themes/bootstrap/assets/global/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.plugins.min.js') !!}
