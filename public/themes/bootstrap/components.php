@@ -48,3 +48,21 @@
 \Component::register('footer', function($data) {
     return \Theme::view('frontend.partials.footer', compact('data'));
 });
+
+// Store Components
+
+\Component::register('shop', function($title) {
+    return \Theme::view('frontend.shop', compact('title'));
+});
+
+\Component::register('shopHeader', function($title) {
+    return \Theme::view('frontend.partials.shop-header', compact('title'));
+});
+
+\Component::register('shopTopbar', function($data) {
+    return \Theme::view('frontend.partials.shop-topbar', compact('data'));
+});
+
+\Component::register('shopFooter', function($data) {
+    return \Theme::view('frontend.partials.shop-footer', compact('data'));
+});

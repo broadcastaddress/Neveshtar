@@ -1,5 +1,5 @@
 /*********************************
- METRONIC ROUNDED STYLE COMPONENTS 
+ METRONIC ROUNDED STYLE COMPONENTS
 *********************************/
 /***
 General reset
@@ -15,8 +15,8 @@ body {
 }
 
 /*
- Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't 
- properly apply the media queries in Bootstrap's CSS. To address this, 
+ Internet Explorer 10 doesn't differentiate device width from viewport width, and thus doesn't
+ properly apply the media queries in Bootstrap's CSS. To address this,
  you can optionally include the following CSS and JavaScript to work around this problem until Microsoft issues a fix.
 */
 @-webkit-viewport {
@@ -35,8 +35,8 @@ body {
   width: device-width;
 }
 /*
- Internet Explorer 10 doesn't differentiate device width from viewport width, 
- and thus doesn't properly apply the media queries in Bootstrap's CSS. To address this, following CSS code applied 
+ Internet Explorer 10 doesn't differentiate device width from viewport width,
+ and thus doesn't properly apply the media queries in Bootstrap's CSS. To address this, following CSS code applied
 */
 @-ms-viewport {
   width: auto !important;
@@ -430,7 +430,7 @@ Users
 }
 
 /***
-Top News Blocks(new in v1.2.2) 
+Top News Blocks(new in v1.2.2)
 ***/
 .top-news {
   color: #fff;
@@ -881,7 +881,7 @@ Simple Line Icons Demo
     width: 33.333%;
   }
 }
-/*** 
+/***
 Glyphicons Demo
 ***/
 .glyphicons-demo ul {
@@ -1707,7 +1707,7 @@ Chats
 }
 
 /***
-Customized Bootstrap Close Icon 
+Customized Bootstrap Close Icon
 ***/
 .close {
   display: inline-block;
@@ -3150,7 +3150,7 @@ Metro icons
 }
 
 /***
-Customized Bootstrap Modal 
+Customized Bootstrap Modal
 ***/
 .modal {
   z-index: 10050;
@@ -3534,7 +3534,7 @@ Portlets
   border-radius: 4px;
 }
 .portlet.portlet-fullscreen {
-  z-index: 10060;
+  z-index: 999999999;
   margin: 0;
   position: fixed;
   top: 0;
@@ -4943,7 +4943,7 @@ Light Table
 }
 
 /***
-Customized Bootstrap Tabs 
+Customized Bootstrap Tabs
 ***/
 /* Tabs and pills */
 .nav-tabs,
@@ -5306,11 +5306,10 @@ Tiles(new in v1.1.1)
   display: block;
   letter-spacing: 0.02em;
   float: left;
-  height: 135px;
+  height: 210px;
   width: 135px !important;
   cursor: pointer;
   text-decoration: none;
-  color: #ffffff;
   position: relative;
   font-weight: 300;
   font-size: 12px;
@@ -5325,10 +5324,10 @@ Tiles(new in v1.1.1)
   float: left;
 }
 .tiles .tile.double {
-  width: 280px !important;
+  width: 277px !important;
 }
 .tiles .tile.double-down {
-  height: 280px !important;
+  height: 277px !important;
 }
 .tiles .tile.double-down i {
   margin-top: 95px;
@@ -5382,15 +5381,11 @@ Tiles(new in v1.1.1)
   position: relative;
   font-weight: 400;
   font-size: 12px;
-  color: #000000;
-  color: #ffffff;
   margin-bottom: 10px;
 }
 .tiles .tile .tile-body p {
   font-weight: 400;
   font-size: 13px;
-  color: #000000;
-  color: #ffffff;
   line-height: 20px;
   overflow: hidden;
 }
@@ -5471,7 +5466,6 @@ Tiles(new in v1.1.1)
   margin-right: 15px;
   font-weight: 400;
   font-size: 13px;
-  color: #ffffff;
 }
 .tiles .tile .tile-object > .name > i {
   vertical-align: middle;

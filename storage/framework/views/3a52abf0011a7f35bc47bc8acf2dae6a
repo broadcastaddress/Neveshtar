@@ -1,0 +1,4 @@
+<?php echo Component::shopHeader($title); ?>
+<?php echo Component::shopTopbar(''); ?>
+<?php echo $__env->yieldContent('content'); ?>
+<?php echo Component::shopFooter(''); ?>

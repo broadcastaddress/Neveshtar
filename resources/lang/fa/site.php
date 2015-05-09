@@ -75,13 +75,4 @@ return [
 	'agree_terms_of_service'	=> 'من <a target="_blank" href=":terms">شرایط خدمات</a> و <a target="_blank" href=":privacy">سیاست محرمانگی</a> این وبسایت را قبول دارم',
 	'sign_up'					=> 'عضویت',
 
-
-	// Listerooz
-	'currency_rates'			=> 'نرخ ارزهای خارجی نسبت به ریال ایران',
-	'currency'					=> 'ارز',
-	'buy_price'					=> 'نرخ خرید',
-	'sell_price'				=> 'نرخ فروش',
-	'buy_difference'			=> 'تغییر فروش',
-	'sell_difference'			=> 'تغییر خرید',
-
 ];

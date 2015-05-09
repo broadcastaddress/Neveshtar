@@ -103,13 +103,13 @@
 @endsection
 
 @section('footerPlugins')
-{!! Minify::javscript('/themes/bootstrap/assets/global/scripts/metronic.js') !!}
-{!! Minify::javscript('/themes/bootstrap/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') !!}
-{!! Minify::javscript('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') !!}<!-- pop up -->
-{!! Minify::javscript('/themes/bootstrap/assets/frontend/layout/scripts/layout.js') !!}
-{!! Minify::javscript('/themes/bootstrap/assets/global/plugins/select2/select2.min.js') !!}
-{!! Minify::javscript('/themes/bootstrap/assets/global/plugins/jquery-validation/js/jquery.validate.min.js') !!}
-{!! Minify::javscript('/themes/bootstrap/assets/admin/pages/scripts/form-validation.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/global/scripts/metronic.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/frontend/layout/scripts/layout.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/select2/select2.min.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/global/plugins/jquery-validation/js/jquery.validate.min.js') !!}
+{!! Minify::javascript('/themes/bootstrap/assets/admin/pages/scripts/form-validation.js') !!}
 <script type="text/javascript">
     jQuery(document).ready(function() {
         Layout.init();

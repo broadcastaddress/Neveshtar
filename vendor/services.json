@@ -31,7 +31,8 @@
         "Mcamara\\LaravelLocalization\\LaravelLocalizationServiceProvider",
         "Intervention\\Image\\ImageServiceProvider",
         "GrahamCampbell\\HTMLMin\\HTMLMinServiceProvider",
-        "Devfactory\\Minify\\MinifyServiceProvider"
+        "Devfactory\\Minify\\MinifyServiceProvider",
+        "Yangqi\\Htmldom\\HtmldomServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -145,6 +146,7 @@
         "Illuminate\\Queue\\QueueServiceProvider": [],
         "Illuminate\\Redis\\RedisServiceProvider": [],
         "Illuminate\\Auth\\Passwords\\PasswordResetServiceProvider": [],
-        "Illuminate\\Translation\\TranslationServiceProvider": []
+        "Illuminate\\Translation\\TranslationServiceProvider": [],
+        "Yangqi\\Htmldom\\HtmldomServiceProvider": []
     }
 }

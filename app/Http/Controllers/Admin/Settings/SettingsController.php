@@ -30,7 +30,7 @@ class SettingsController extends \App\Http\Controllers\Admin\AdminController {
 		return Theme::view('admin.settings.show');
 	}
 
-	public function update($id, settingsRequest $request) {
+	public function update($id, SettingsRequest $request) {
 	    $data = Input::all();
 	    array_forget($data, '_token');
 	    array_forget($data, '_wysihtml5_mode');

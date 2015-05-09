@@ -189,12 +189,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-right: 0px !important;
     margin-left: 5px;
 }
-.amcharts {
-	direction: ltr;
+.portlet-title > .actions {
+    float: left !important;
 }
-#chartdiv {
-	background: #3f3f4f;
-	color:#ffffff;
-	width	: 100%;
-	height	: 500px;
+.tiles .tile {
+  float: right;
+  margin: 0 0 10px 10px !important;
+}
+.tiles .tile .tile-object > .name {
+  left: auto;
+  right: 0 !important;
+  margin-left: 15px;
+  margin-right: 10px;
 }

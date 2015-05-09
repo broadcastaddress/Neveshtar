@@ -1,0 +1,122 @@
+<!-- Body BEGIN -->
+<body class="ecommerce">
+    <!-- BEGIN TOP BAR -->
+    <div class="pre-header">
+        <div class="container">
+            <div class="row">
+                <!-- BEGIN TOP BAR LEFT PART -->
+                <div class="col-md-6 col-sm-6 additional-shop-info">
+                    <ul class="list-unstyled list-inline">
+                    	<?php if(isset($site_settings->main_telephone)): ?>
+                        <li><i class="fa fa-phone"></i><span><a href="tel:<?php echo e($site_settings->main_telephone); ?>"><?php echo e($site_settings->main_telephone); ?></a></span></li>
+                        <?php endif; ?>
+                    	<?php if(isset($site_settings->main_email)): ?>
+                        <li><i class="fa fa-envelope-o"></i><span><a href="mailto:<?php echo e($site_settings->main_email); ?>"><?php echo e($site_settings->main_email); ?></a></span></li>
+                        <?php endif; ?>
+                        <li class="langs-block list-unstyled list-inline">
+                            <a href="" class="current"><?php echo e($site_language->name); ?> </a>
+                            <div class="langs-block-others-wrapper"><div class="langs-block-others">
+                              <?php foreach($site_languages as $language): ?>
+                              <a href="/<?php echo e($language->language); ?>"><?php echo e(ucwords($language->name)); ?></a>
+                              <?php endforeach; ?>
+                            </div></div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END TOP BAR LEFT PART -->
+                <!-- BEGIN TOP BAR MENU -->
+                <div class="col-md-6 col-sm-6 additional-nav">
+                    <ul class="list-unstyled list-inline pull-right">
+						<?php if(Auth::guest()): ?>
+							<li><a href="/<?php echo e(Lang::getLocale()); ?>/auth/login"><?php echo e(ucwords(Lang::get('site.login'))); ?></a>
+							<li><a href="/<?php echo e(Lang::getLocale()); ?>/auth/login?register"><?php echo e(ucwords(Lang::get('site.register'))); ?></a></li>
+						<?php else: ?>
+                        <li class="langs-block dropdown">
+                            <a href="/<?php echo e(Lang::getLocale()); ?>/profile" class="current"><i class="fa fa-user"></i> <?php echo e(Auth::user()->name); ?></a>
+                            <div class="langs-block-others-wrapper"><div class="langs-block-others">
+                              <a href="/<?php echo e(Lang::getLocale()); ?>/profile"><i class="fa fa-user"></i> <?php echo e(ucwords(Lang::get('site.profile'))); ?></a>
+                              <a href="/<?php echo e(Lang::getLocale()); ?>/auth/logout"><i class="fa fa-times-circle-o"></i> <?php echo e(ucwords(Lang::get('site.logout'))); ?></a>
+                            </div></div>
+                        </li>
+						<?php endif; ?>
+                    </ul>
+                </div>
+                <!-- END TOP BAR MENU -->
+            </div>
+        </div>
+    </div>
+    <!-- END TOP BAR -->
+    <!-- BEGIN HEADER -->
+    <div class="header">
+      <div class="container">
+        <a class="site-logo" href="/<?php echo e(Lang::getLocale()); ?>"><?php echo e($site_settings->site_title); ?></a>
+
+        <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+
+        <!-- BEGIN NAVIGATION -->
+        <div class="header-navigation pull-<?php echo e($site_language->opposite_direction); ?> font-transform-inherit">
+          <ul>
+          	<?php if(Route::currentRouteName() == 'WelcomeController'): ?>
+            <li class="active">
+            <?php else: ?>
+            <li>
+            <?php endif; ?>
+              <a data-target="/<?php echo e(Lang::getLocale()); ?>" href="/<?php echo e(Lang::getLocale()); ?>">
+                <?php echo e(ucwords(Lang::get('site.home'))); ?>
+
+              </a>
+            </li>
+
+            <?php foreach($site_navigation as $menu): ?>
+            <?php if(urldecode(Request::segment(2)) == $menu->slug || urldecode(Request::segment(3)) == $menu->slug): ?>
+            <?php if((count($menu['children']) > 0) && ($menu->type == "category")): ?>
+            <li class="dropdown active">
+            <?php else: ?>
+            <li class="active">
+            <?php endif; ?>
+            <?php else: ?>
+            <?php if((count($menu['children']) > 0) && ($menu->type == "category")): ?>
+            <li class="dropdown">
+            <?php else: ?>
+            <li>
+            <?php endif; ?>
+            <?php endif; ?>
+            	<?php if((count($menu['children']) > 0) && ($menu->type == "category")): ?>
+	            	<a class="dropdown-toggle disabled" data-toggle="dropdown" data-target="#" href="/<?php echo e(Lang::getLocale()); ?>/c/<?php echo e($menu->slug); ?>">
+	            		<?php echo e(ucwords($menu->title)); ?>
+
+            		</a>
+	            	<ul class="dropdown-menu">
+		            <?php foreach($menu['children'] as $child): ?>
+		           		<li><a href="/<?php echo e(Lang::getLocale()); ?>/c/<?php echo e($child->slug); ?>"><?php echo e($child->title); ?></a></li>
+		            <?php endforeach; ?>
+	            	</ul>
+            	<?php else: ?>
+            	<a href="/<?php echo e(Lang::getLocale()); ?>/c/<?php echo e($menu->slug); ?>"><?php echo e(ucwords($menu->title)); ?></a>
+            	<?php endif; ?>
+        	</li>
+            <?php endforeach; ?>
+            <li><a href="/<?php echo e(Lang::getLocale()); ?>/contact"><?php echo e(ucwords(Lang::get('site.contact'))); ?></a></li>
+
+            <!-- BEGIN TOP SEARCH -->
+            <li class="menu-search">
+              <span class="sep"></span>
+              <i class="fa fa-search search-btn"></i>
+              <div class="search-box">
+                <form action="#">
+                  <div class="input-group">
+                    <input type="text" placeholder="<?php echo e(ucwords(Lang::get('site.search'))); ?>" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="submit"><?php echo e(ucwords(Lang::get('site.search'))); ?></button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </li>
+            <!-- END TOP SEARCH -->
+          </ul>
+        </div>
+        <!-- END NAVIGATION -->
+      </div>
+    </div>
+    <!-- Header END -->

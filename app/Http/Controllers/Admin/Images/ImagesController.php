@@ -89,7 +89,7 @@ class ImagesController extends \App\Http\Controllers\Admin\AdminController {
 		return Theme::view('admin.images.create');
 	}
 
-	public function store(imagesRequest $request) {
+	public function store(ImagesRequest $request) {
 
 		$title = Input::get('title');
 		$file = Input::file('file');
@@ -211,7 +211,7 @@ class ImagesController extends \App\Http\Controllers\Admin\AdminController {
 		return Theme::view('admin.images.show');
 	}
 
-	public function update($id, imagesRequest $request) {
+	public function update($id, ImagesRequest $request) {
 	    $data = Input::all();
 	    array_forget($data, '_token');
 	    $data['user_id'] = Auth::user()->id;

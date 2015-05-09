@@ -82,9 +82,8 @@ function()
 	    Route::resource('profile', 'ProfileController');
 	});
 
-	Route::get('/', [
-	    'as' => 'WelcomeController', 'uses' => 'WelcomeController@index'
-	]);
+	Route::get('/', ['as' => 'WelcomeController', 'uses' => 'WelcomeController@index']);
+
 	Route::get('privacy_policy', 'StaticController@privacy_policy');
 	Route::get('terms_of_service', 'StaticController@terms_of_service');
     Route::resource('c', 'CategoryController');
@@ -94,7 +93,6 @@ function()
 	Route::get('services', 'ServicesController@index');
 	Route::get('portfolio', 'PortfolioController@index');
 	Route::get('portfolioItem', 'PortfolioItemController@index');
-	Route::get('prices', 'pricesController@index');
 	Route::get('faq', 'FaqController@index');
 	Route::get('gallery', 'GalleryController@index');
 	Route::get('search', 'SearchController@index');

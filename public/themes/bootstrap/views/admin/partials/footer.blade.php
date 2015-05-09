@@ -34,11 +34,9 @@
 
 <script>
 jQuery(document).ready(function() {
-   Metronic.init(); // init metronic core componets
-   Layout.init(); // init layout
-   // BEGIN PAGE LEVEL INITS
-   @yield('inits')
-   // End PAGE LEVEL INITS
+   Metronic.init();
+   Layout.init();
+   @yield('inits');
 });
 </script>
 <script>

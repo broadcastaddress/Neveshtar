@@ -65,6 +65,7 @@
                 {{ucwords(Lang::get('site.home'))}}
               </a>
             </li>
+
             @foreach($site_navigation as $menu)
             @if(urldecode(Request::segment(2)) == $menu->slug || urldecode(Request::segment(3)) == $menu->slug)
             @if((count($menu['children']) > 0) && ($menu->type == "category"))

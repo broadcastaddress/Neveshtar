@@ -1,0 +1,31 @@
+<?php $__env->startSection('content'); ?>
+<!-- BEGIN PAGE CONTENT INNER -->
+<div class="row">
+</div>
+<!-- END PAGE CONTENT INNER -->
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('headerPlugins'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('header'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('footerPlugins'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('footer'); ?>
+<script src="/themes/bootstrap/assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="/themes/bootstrap/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
+<script src="/themes/bootstrap/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
+<script src="/themes/bootstrap/assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
+<script src="/themes/bootstrap/assets/admin/pages/scripts/index.js" type="text/javascript"></script>
+<script src="/themes/bootstrap/assets/admin/pages/scripts/tasks.js" type="text/javascript"></script>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('inits'); ?>
+Demo.init(); // init demo features
+Index.init();
+Tasks.initDashboardWidget();
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make($theme_layout, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

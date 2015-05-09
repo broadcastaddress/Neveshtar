@@ -113,15 +113,15 @@
 <script src="/themes/bootstrap/assets/global/scripts/datatable.js"></script>
 
 <script>
-	var ajax_url = "/admin/images/ajax_table"
-	var actions_url = "/admin/images/actions"
-	var _token = "{{ csrf_token() }}"
-	var items_total = "{{$items_total}}"
+	var ajax_url = "/admin/images/ajax_table";
+	var actions_url = "/admin/images/actions";
+	var _token = "{{ csrf_token() }}";
+	var items_total = "{{$items_total}}";
 </script>
 <script src="/themes/bootstrap/assets/admin/pages/scripts/table-ajax.js"></script>
 @endsection
 
 @section('inits')
-Demo.init(); // init demo features
+Demo.init();
 TableAjax.init();
 @endsection

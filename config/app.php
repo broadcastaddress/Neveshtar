@@ -152,6 +152,7 @@ return [
 	    'Intervention\Image\ImageServiceProvider',
 		'GrahamCampbell\HTMLMin\HTMLMinServiceProvider',
 		'Devfactory\Minify\MinifyServiceProvider',
+		'Yangqi\Htmldom\HtmldomServiceProvider',
 
 
 	],
@@ -207,6 +208,7 @@ return [
 	    'Image' 	=> 'Intervention\Image\Facades\Image',
 		'HTMLMin'	=> 'GrahamCampbell\HTMLMin\Facades\HTMLMin',
 		'Minify'	=> 'Devfactory\Minify\Facades\MinifyFacade',
+		'Htmldom' => 'Yangqi\Htmldom\Htmldom',
 
 	],
 

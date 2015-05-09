@@ -66,6 +66,7 @@
 
               </a>
             </li>
+
             <?php foreach($site_navigation as $menu): ?>
             <?php if(urldecode(Request::segment(2)) == $menu->slug || urldecode(Request::segment(3)) == $menu->slug): ?>
             <?php if((count($menu['children']) > 0) && ($menu->type == "category")): ?>
