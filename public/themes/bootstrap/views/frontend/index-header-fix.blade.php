@@ -379,6 +379,7 @@
         RevosliderInit.initRevoSlider();
         Layout.initFixHeaderWithPreHeader(); /* Switch On Header Fixing (only if you have pre-header) */
         Layout.initNavScrolling();
+        Layout.initImageZoom();
     });
 </script>
 <!-- BEGIN RevolutionSlider -->

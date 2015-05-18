@@ -46,8 +46,6 @@
 
 	<?php echo Minify::stylesheet('/themes/bootstrap/assets/frontend/layout/css/style.css'); ?>
 
-	<?php echo Minify::stylesheet('/themes/bootstrap/assets/frontend/pages/css/style-shop.css'); ?>
-
 	<?php echo Minify::stylesheet('/themes/bootstrap/assets/frontend/pages/css/style-revolution-slider.css'); ?>
 
 	<?php echo Minify::stylesheet('/themes/bootstrap/assets/frontend/layout/css/style-responsive.css'); ?>

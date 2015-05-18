@@ -69,6 +69,10 @@ class CategoryController extends Controller {
 		if($item->type == "careers") {
 			return Theme::view('frontend/careers');
 		};
+		if($item->type == "shop") {
+			Theme::setLayout('frontend.shop');
+			return Theme::view('frontend/shop-category');
+		};
 	}
 
 }

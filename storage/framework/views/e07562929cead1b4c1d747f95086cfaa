@@ -27,8 +27,8 @@
 						</span>
 						<select class="table-group-action-input form-control input-inline input-small input-sm">
 							<option value=""><?php echo e(Lang::get('admin.select')); ?>...</option>
-							<option value="activate"><?php echo e(Lang::get('admin.activate')); ?></option>
-							<option value="deactivate"><?php echo e(Lang::get('admin.deactivate')); ?></option>
+							<option value="read"><?php echo e(Lang::get('admin.read')); ?></option>
+							<option value="unread"><?php echo e(Lang::get('admin.unread')); ?></option>
 							<option value="delete"><?php echo e(Lang::get('admin.delete')); ?></option>
 						</select>
 						<button class="btn btn-sm yellow table-group-action-submit"><i class="fa fa-check"></i> <?php echo e(Lang::get('admin.submit')); ?></button>
@@ -47,15 +47,15 @@
 
 						</th>
 						<th width="30%">
-							 <?php echo e(Lang::get('admin.comment')); ?>
+							 <?php echo e(Lang::get('admin.message')); ?>
 
 						</th>
 						<th width="15%">
-							 <?php echo e(Lang::get('admin.item')); ?>
+							 <?php echo e(Lang::get('admin.email')); ?>
 
 						</th>
 						<th width="10%">
-							 <?php echo e(Lang::get('admin.owner')); ?>
+							 <?php echo e(Lang::get('admin.name')); ?>
 
 						</th>
 						<th width="5%">
@@ -72,9 +72,9 @@
 								<input type="checkbox" name="id[]" value="<?php echo e($item->id); ?>"></td>
 								<td><?php echo e($item->id); ?></td>
 								<td><?php echo e($item->created_at); ?></td>
-								<td><?php echo e($item->description); ?></td>
-								<td><?php echo e($item->item->title); ?></td>
-								<td><?php echo e($item->user->name); ?></td>
+								<td><?php echo e($item->message); ?></td>
+								<td><?php echo e($item->email); ?></td>
+								<td><?php echo e($item->name); ?></td>
 								<td><?php echo e($item->status); ?></td>
 							</tr>
 						<?php endforeach; ?>
@@ -112,8 +112,8 @@
 <script src="/themes/bootstrap/assets/global/scripts/datatable.js"></script>
 
 <script>
-	var ajax_url = "/admin/comments/ajax_table"
-	var actions_url = "/admin/comments/actions"
+	var ajax_url = "/admin/feedbacks/ajax_table"
+	var actions_url = "/admin/feedbacks/actions"
 	var _token = "<?php echo e(csrf_token()); ?>"
 	var items_total = "<?php echo e($items_total); ?>"
 </script>

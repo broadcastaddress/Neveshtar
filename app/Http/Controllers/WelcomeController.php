@@ -139,7 +139,7 @@ class WelcomeController extends Controller {
 		View::share('sliders',$sliders);
 
 		View::share('title',$this->site_settings->site_slogan);
-		return Theme::view('frontend/index-header-fix');
+		return Theme::view('frontend/shop-index');
 
 	}
 

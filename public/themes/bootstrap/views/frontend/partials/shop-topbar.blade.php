@@ -1,5 +1,6 @@
 <!-- Body BEGIN -->
 <body class="ecommerce">
+
     <!-- BEGIN TOP BAR -->
     <div class="pre-header">
         <div class="container">
@@ -13,7 +14,8 @@
                     	@if(isset($site_settings->main_email))
                         <li><i class="fa fa-envelope-o"></i><span><a href="mailto:{{$site_settings->main_email}}">{{$site_settings->main_email}}</a></span></li>
                         @endif
-                        <li class="langs-block list-unstyled list-inline">
+                        <!-- BEGIN LANGS -->
+                        <li class="langs-block">
                             <a href="" class="current">{{$site_language->name}} </a>
                             <div class="langs-block-others-wrapper"><div class="langs-block-others">
                               @foreach($site_languages as $language)
@@ -21,6 +23,7 @@
                               @endforeach
                             </div></div>
                         </li>
+                        <!-- END LANGS -->
                     </ul>
                 </div>
                 <!-- END TOP BAR LEFT PART -->
@@ -46,6 +49,7 @@
         </div>
     </div>
     <!-- END TOP BAR -->
+
     <!-- BEGIN HEADER -->
     <div class="header">
       <div class="container">
@@ -53,8 +57,85 @@
 
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
+        <!-- BEGIN CART -->
+        <div class="top-cart-block">
+          <div class="top-cart-info">
+            <a href="javascript:void(0);" class="top-cart-info-count">3 items</a>
+            <a href="javascript:void(0);" class="top-cart-info-value">$1260</a>
+          </div>
+          <i class="fa fa-shopping-cart"></i>
+
+          <div class="top-cart-content-wrapper">
+            <div class="top-cart-content">
+              <ul class="scroller" style="height: 250px;">
+                <li>
+                  <a href="shop-item.html"><img src="/themes/bootstrap/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                  <span class="cart-content-count">x 1</span>
+                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                  <em>$1230</em>
+                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                </li>
+                <li>
+                  <a href="shop-item.html"><img src="/themes/bootstrap/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                  <span class="cart-content-count">x 1</span>
+                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                  <em>$1230</em>
+                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                </li>
+                <li>
+                  <a href="shop-item.html"><img src="/themes/bootstrap/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                  <span class="cart-content-count">x 1</span>
+                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                  <em>$1230</em>
+                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                </li>
+                <li>
+                  <a href="shop-item.html"><img src="/themes/bootstrap/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                  <span class="cart-content-count">x 1</span>
+                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                  <em>$1230</em>
+                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                </li>
+                <li>
+                  <a href="shop-item.html"><img src="/themes/bootstrap/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                  <span class="cart-content-count">x 1</span>
+                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                  <em>$1230</em>
+                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                </li>
+                <li>
+                  <a href="shop-item.html"><img src="/themes/bootstrap/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                  <span class="cart-content-count">x 1</span>
+                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                  <em>$1230</em>
+                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                </li>
+                <li>
+                  <a href="shop-item.html"><img src="/themes/bootstrap/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                  <span class="cart-content-count">x 1</span>
+                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                  <em>$1230</em>
+                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                </li>
+                <li>
+                  <a href="shop-item.html"><img src="/themes/bootstrap/assets/frontend/pages/img/cart-img.jpg" alt="Rolex Classic Watch" width="37" height="34"></a>
+                  <span class="cart-content-count">x 1</span>
+                  <strong><a href="shop-item.html">Rolex Classic Watch</a></strong>
+                  <em>$1230</em>
+                  <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+                </li>
+              </ul>
+              <div class="text-right">
+                <a href="shop-shopping-cart.html" class="btn btn-default">View Cart</a>
+                <a href="shop-checkout.html" class="btn btn-primary">Checkout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--END CART -->
+
         <!-- BEGIN NAVIGATION -->
-        <div class="header-navigation pull-{{$site_language->opposite_direction}} font-transform-inherit">
+        <div class="header-navigation">
           <ul>
           	@if(Route::currentRouteName() == 'WelcomeController')
             <li class="active">
@@ -68,19 +149,19 @@
 
             @foreach($site_navigation as $menu)
             @if(urldecode(Request::segment(2)) == $menu->slug || urldecode(Request::segment(3)) == $menu->slug)
-            @if((count($menu['children']) > 0) && ($menu->type == "category"))
+            @if((count($menu['children']) > 0) && ($menu->type == "shop"))
             <li class="dropdown active">
             @else
             <li class="active">
             @endif
             @else
-            @if((count($menu['children']) > 0) && ($menu->type == "category"))
+            @if((count($menu['children']) > 0) && ($menu->type == "shop"))
             <li class="dropdown">
             @else
             <li>
             @endif
             @endif
-            	@if((count($menu['children']) > 0) && ($menu->type == "category"))
+            	@if((count($menu['children']) > 0) && ($menu->type == "shop"))
 	            	<a class="dropdown-toggle disabled" data-toggle="dropdown" data-target="#" href="/{{Lang::getLocale()}}/c/{{$menu->slug}}">
 	            		{{ucwords($menu->title)}}
             		</a>
@@ -103,9 +184,9 @@
               <div class="search-box">
                 <form action="#">
                   <div class="input-group">
-                    <input type="text" placeholder="{{ucwords(Lang::get('site.search'))}}" class="form-control">
+                    <input type="text" placeholder="Search" class="form-control">
                     <span class="input-group-btn">
-                      <button class="btn btn-primary" type="submit">{{ucwords(Lang::get('site.search'))}}</button>
+                      <button class="btn btn-primary" type="submit">Search</button>
                     </span>
                   </div>
                 </form>
